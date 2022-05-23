@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
+
 import { NotiIcon, SettingIcon } from 'assets/svgs'
 import ProfileImage from 'assets/images/profile.png'
 import styles from './layout.module.scss'
-import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (

@@ -2,7 +2,7 @@ import { MouseEvent, useRef, useState } from 'react'
 import cx from 'classnames'
 
 import { AddIcon, ArrowDownIcon } from 'assets/svgs'
-import styles from './layout.module.scss'
+import styles from './lnb.module.scss'
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +17,7 @@ const Dropdown = () => {
 
   return (
     <div className={cx(styles.dropdown, { [styles.open]: isOpen })}>
-      <button type='button' className={cx(styles.select, styles.mainText)} onClick={() => setIsOpen((prev) => !prev)}>
+      <button type='button' className={cx(styles.select, 'main-text')} onClick={() => setIsOpen((prev) => !prev)}>
         {selectedService}
         <ArrowDownIcon />
       </button>
@@ -32,7 +32,7 @@ const Dropdown = () => {
               </li>
             ))}
           </ul>
-          <button type='button' className={styles.add}>
+          <button type='button' className={styles.addButton}>
             <AddIcon />
             서비스 추가하기
           </button>
