@@ -1,28 +1,33 @@
 import { MouseEvent, useRef, useState } from 'react'
+import { useClickAway } from 'react-use'
 import cx from 'classnames'
+
+import { useRecoil } from 'hooks/state'
+import { currentServiceState, serviceListState } from 'states/service'
 
 import { AddIcon, ArrowDownIcon } from 'assets/svgs'
 import styles from './lnb.module.scss'
 
 const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [serviceList, setServiceList] = useState(['매드업', 'MADUP'])
-  const [selectedService, setSelectedService] = useState(serviceList[0])
+  const [serviceList] = useRecoil(serviceListState)
+  const [currentService, setCurrentService] = useRecoil(currentServiceState)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const handleItemClick = (e: MouseEvent<HTMLButtonElement>) => {
-    setSelectedService(e.currentTarget.value)
+    setCurrentService(e.currentTarget.value)
     setIsOpen(false)
   }
 
+  useClickAway(dropdownRef, () => setIsOpen(false))
   return (
-    <div className={cx(styles.dropdown, { [styles.open]: isOpen })}>
+    <div className={cx(styles.dropdown, { [styles.open]: isOpen })} ref={dropdownRef}>
       <button type='button' className={cx(styles.select, 'main-text')} onClick={() => setIsOpen((prev) => !prev)}>
-        {selectedService}
+        {currentService}
         <ArrowDownIcon />
       </button>
       {isOpen && (
-        <div className={styles.content} ref={dropdownRef}>
+        <div className={styles.content}>
           <ul>
             {serviceList.map((service) => (
               <li key={`service-${service}`}>
