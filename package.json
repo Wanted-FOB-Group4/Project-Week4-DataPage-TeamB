@@ -1,5 +1,5 @@
 {
-  "name": "foundation-ts",
+  "name": "lever-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -30,25 +30,15 @@
     "react-i18next": ">=11.16.4"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
-    "bignumber.js": "^9.0.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.2",
-    "ga-4-react": "^0.1.281",
-    "i18n-iso-countries": "^7.4.0",
-    "i18next": "^21.8.0",
-    "i18next-browser-languagedetector": "^6.1.4",
-    "lodash": "^4.17.21",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-error-boundary": "^3.1.4",
-    "react-i18next": "^11.16.9",
     "react-query": "^3.39.0",
-    "react-redux": "^8.0.1",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "react-use": "^17.3.2",
