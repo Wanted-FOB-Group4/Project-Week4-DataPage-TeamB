@@ -1,11 +1,16 @@
 @use 'styles/constants/colors';
 @use 'styles/mixins/flexbox';
 
+.dropdownWrapper {
+  position: relative;
+}
+
 .dropdownButton {
   @include flexbox.flexbox(between, center);
-  width: 120px;
+  width: 150px;
   height: 40px;
   padding: 0 10px;
+  color: colors.$ADS_FONT_DARK;
   border: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
   border-radius: 10px;
 
@@ -17,4 +22,39 @@
   .dropdownIcon {
     fill: colors.$ADS_FONT_DARK;
   }
+}
+
+.dropdownBottom {
+  position: absolute;
+  z-index: 10;
+  width: 150px;
+  margin-top: 10px;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+  box-shadow: 0 0 5px colors.$GRAYE;
+
+  li {
+    width: 100%;
+    border-bottom: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px 20px;
+      color: colors.$ADS_FONT_DARK;
+      text-align: left;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: colors.$ADS_FONT_BORDER;
+      }
+    }
+  }
+}
+
+.isDropdownHidden {
+  display: none;
 }
