@@ -3,10 +3,10 @@
 
 .adsListBlockWrapper {
   width: 100%;
-  border-top: 1px solid colors.$ADS_FONT_BORDER;
+  border-top: 1px solid colors.$ADS_CONTAINER_GRAY1;
 
   &:last-child {
-    border-bottom: 1px solid colors.$ADS_FONT_BORDER;
+    border-bottom: 1px solid colors.$ADS_CONTAINER_GRAY1;
   }
 }
 
@@ -19,7 +19,7 @@
 
   dt {
     width: 40%;
-    color: colors.$ADS_FONT_LIGHT;
+    color: colors.$ADS_CONTAINER_GRAY3;
     text-align: left;
   }
 

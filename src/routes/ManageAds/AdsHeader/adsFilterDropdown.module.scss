@@ -10,17 +10,17 @@
   width: 150px;
   height: 40px;
   padding: 0 10px;
-  color: colors.$ADS_FONT_DARK;
-  border: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+  color: colors.$ADS_CONTAINER_GRAY4;
+  border: 1px solid colors.$ADS_CONTAINER_GRAY2;
   border-radius: 10px;
 
   span {
     padding: 0 10px;
-    color: colors.$ADS_FONT_DARK;
+    color: colors.$ADS_CONTAINER_GRAY4;
   }
 
   .dropdownIcon {
-    fill: colors.$ADS_FONT_DARK;
+    fill: colors.$ADS_CONTAINER_GRAY4;
   }
 }
 
@@ -30,12 +30,12 @@
   width: 150px;
   margin-top: 10px;
   background-color: colors.$WHITE;
-  border: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+  border: 1px solid colors.$ADS_CONTAINER_GRAY2;
   box-shadow: 0 0 5px colors.$GRAYE;
 
   li {
     width: 100%;
-    border-bottom: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+    border-bottom: 1px solid colors.$ADS_CONTAINER_GRAY2;
 
     &:last-child {
       border-bottom: none;
@@ -44,12 +44,12 @@
     button {
       width: 100%;
       padding: 10px 20px;
-      color: colors.$ADS_FONT_DARK;
+      color: colors.$ADS_CONTAINER_GRAY4;
       text-align: left;
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: colors.$ADS_FONT_BORDER;
+        background-color: colors.$ADS_CONTAINER_GRAY1;
       }
     }
   }
