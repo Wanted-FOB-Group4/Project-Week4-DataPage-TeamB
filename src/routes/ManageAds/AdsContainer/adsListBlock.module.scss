@@ -1,0 +1,32 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+
+.adsListBlockWrapper {
+  border-top: 1px solid colors.$ADS_LIST_BORDER;
+
+  &:last-child {
+    border-bottom: 1px solid colors.$ADS_LIST_BORDER;
+  }
+}
+
+.adsListDL {
+  @include flexbox.flexbox(between, center);
+  flex-direction: row;
+  height: 40px;
+  font-size: 12px;
+  line-height: 40px;
+
+  dt {
+    width: 40%;
+    color: colors.$ADS_LIST_LIGHT;
+    text-align: left;
+  }
+
+  dd {
+    width: 60%;
+    overflow-x: hidden;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
