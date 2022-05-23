@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import cx from 'classnames'
 
+import Dropdown from './Dropdown'
 import { DashboardIcon, GuideIcon, LogoImage, ManageAdsIcon } from 'assets/svgs'
 import styles from './layout.module.scss'
 
@@ -15,7 +16,7 @@ const LNB = () => {
         </div>
         <div className={styles.service}>
           <div className={cx(styles.subText, styles.label)}>서비스</div>
-          <button type='button'>매드업 드롭다운</button>
+          <Dropdown />
         </div>
         <div>
           <div className={cx(styles.subText, styles.label)}>광고 센터</div>
