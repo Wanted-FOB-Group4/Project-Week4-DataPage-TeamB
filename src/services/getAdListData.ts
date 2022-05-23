@@ -1,2 +1,4 @@
 // wanted_FE_ad-list-data-set.json
-export {}
+import axios from 'axios'
+
+export const getAdListData = () => axios.get('/wanted_FE_ad-list-data-set.json')
