@@ -1,13 +1,16 @@
+import { Route, Routes } from 'react-router-dom'
 
+import Dashboard from './Dashboard'
+import ManageAds from './ManageAds'
 
 const App = () => {
   return (
-        <Routes> { /* 레이아웃 추가하기 */ }
-          <Route path='/' element={<DashBoard />} />
-          <Route path='dashboard' element={<DashBoard />} />
-          <Route path='manage' element={<ManageAds />} />
-          <Route path='*' element={<div>404</div>} />
-        </Routes>
+    <Routes>
+      <Route path='/' element={<Dashboard />} />
+      <Route path='dashboard' element={<Dashboard />} />
+      <Route path='manage' element={<ManageAds />} />
+      <Route path='*' element={<div>404</div>} />
+    </Routes>
   )
 }
 

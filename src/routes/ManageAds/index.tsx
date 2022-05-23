@@ -1,1 +1,5 @@
-// 광고관리
+const ManageAds = () => {
+  return <div>ManageAds</div>
+}
+
+export default ManageAds
