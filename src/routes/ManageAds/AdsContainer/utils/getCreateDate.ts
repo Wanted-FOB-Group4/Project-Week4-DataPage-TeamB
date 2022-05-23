@@ -1,12 +1,10 @@
 import dayjs from 'dayjs'
 
-import { IAds } from 'types/ads'
-
-const getCreateDate = (ads: IAds) => {
-  const startDate = dayjs(ads.startDate).format('YYYY-MM-DD')
-  if (ads.status === 'active') return startDate
-  const endDate = dayjs(ads.endDate).format('YYYY-MM-DD')
-  return `${startDate} (${endDate})`
+const getCreateDate = (startDate: string, endDate: string | null, status: string) => {
+  const formattedStartDate = dayjs(startDate).format('YYYY-MM-DD')
+  if (status === 'active') return formattedStartDate
+  const formattedEndDate = dayjs(endDate).format('YYYY-MM-DD')
+  return `${formattedStartDate} (${formattedEndDate})`
 }
 
 export default getCreateDate

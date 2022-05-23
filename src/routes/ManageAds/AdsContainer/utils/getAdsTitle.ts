@@ -1,8 +1,6 @@
-import { IAds } from 'types/ads'
-
-const getAdsTitle = (ads: IAds) => {
-  if (ads.adType === 'web') return `웹광고_${ads.title}`
-  return `앱광고_${ads.title}`
+const getAdsTitle = (title: string, type: string) => {
+  if (type === 'web') return `웹광고_${title}`
+  return `앱광고_${title}`
 }
 
 export default getAdsTitle
