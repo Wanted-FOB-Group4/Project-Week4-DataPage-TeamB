@@ -1,9 +1,9 @@
-export interface IAdsData {
+export interface IAdData {
   count: number
-  ads: IAds[]
+  ads: IAd[]
 }
 
-export interface IAds {
+export interface IAd {
   id: number
   adType: string
   title: string

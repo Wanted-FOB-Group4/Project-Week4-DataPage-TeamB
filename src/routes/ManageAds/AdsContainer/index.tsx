@@ -1,26 +1,26 @@
-import { IAds } from 'types/ads'
+import { IAd } from 'types/ads'
 import AdsListBlock from './AdsListBlock'
 import { getCreateDate, getBudget, getPercentage, getAdsTitle } from './utils'
 
 import styles from './adsContainer.module.scss'
 
 interface IProps {
-  ads: IAds
+  adData: IAd
 }
 
-export const AdsContainer = ({ ads }: IProps) => {
-  const title = getAdsTitle(ads.title, ads.adType)
-  const date = getCreateDate(ads.startDate, ads.endDate, ads.status)
-  const budget = getBudget(ads.budget)
-  const convValue = getBudget(ads.report.convValue)
-  const cost = getBudget(ads.report.cost)
-  const roas = getPercentage(ads.report.roas)
+export const AdsContainer = ({ adData }: IProps) => {
+  const title = getAdsTitle(adData.title, adData.adType)
+  const date = getCreateDate(adData.startDate, adData.endDate, adData.status)
+  const budget = getBudget(adData.budget)
+  const convValue = getBudget(adData.report.convValue)
+  const cost = getBudget(adData.report.cost)
+  const roas = getPercentage(adData.report.roas)
 
   return (
-    <div className={styles.adsContainerWrapper}>
+    <div className={styles.adDataContainerWrapper}>
       <h2>{title}</h2>
       <ul>
-        <AdsListBlock dataKey='상태' dataValue={ads.status === 'active' ? '진행중' : '완료'} />
+        <AdsListBlock dataKey='상태' dataValue={adData.status === 'active' ? '진행중' : '완료'} />
         <AdsListBlock dataKey='광고 생성일' dataValue={date} />
         <AdsListBlock dataKey='일 희망 예산' dataValue={budget} />
         <AdsListBlock dataKey='광고 수익률' dataValue={roas} />
