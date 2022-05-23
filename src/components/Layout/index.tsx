@@ -1,5 +1,13 @@
+import GNB from './GNB'
+import Header from './Header'
+
 const Layout = () => {
-  return <div>Layout</div>
+  return (
+    <>
+      <GNB />
+      <Header />
+    </>
+  )
 }
 
 export default Layout
