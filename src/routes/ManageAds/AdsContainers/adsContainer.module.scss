@@ -13,9 +13,13 @@
   border-radius: 10px;
 
   h2 {
+    width: 100%;
+    overflow-x: hidden;
     font-size: 15px;
     font-weight: 700;
     color: colors.$ADS_FONT_DARK;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   ul {
