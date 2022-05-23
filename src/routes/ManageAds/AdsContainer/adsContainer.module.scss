@@ -1,0 +1,32 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+
+.adsContainerWrapper {
+  @include flexbox.flexbox(center, start);
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  padding: 10px 20px 5px;
+  border: 1px solid colors.$ADS_CONTAINER_BORDER;
+  border-radius: 10px;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: colors.$ADS_FONT_DARK;
+  }
+
+  ul {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  button {
+    width: 92px;
+    height: 40px;
+    font-weight: 500;
+    color: colors.$ADS_FONT_DARK;
+    border: 1px solid colors.$ADS_CONTAINER_BTN_BORDER;
+    border-radius: 10px;
+  }
+}

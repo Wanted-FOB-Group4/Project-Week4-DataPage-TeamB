@@ -2,10 +2,11 @@
 @use 'styles/mixins/flexbox';
 
 .adsListBlockWrapper {
-  border-top: 1px solid colors.$ADS_LIST_BORDER;
+  width: 100%;
+  border-top: 1px solid colors.$ADS_FONT_BORDER;
 
   &:last-child {
-    border-bottom: 1px solid colors.$ADS_LIST_BORDER;
+    border-bottom: 1px solid colors.$ADS_FONT_BORDER;
   }
 }
 
@@ -18,7 +19,7 @@
 
   dt {
     width: 40%;
-    color: colors.$ADS_LIST_LIGHT;
+    color: colors.$ADS_FONT_LIGHT;
     text-align: left;
   }
 
