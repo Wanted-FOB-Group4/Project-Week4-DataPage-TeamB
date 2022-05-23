@@ -7,7 +7,7 @@
 }
 
 .mainContainer {
-  padding: 0 40px;
+  padding: 0 40px 60px;
   margin-left: sizes.$LNB_WIDTH;
 }
 
@@ -36,6 +36,7 @@
   height: 100%;
   padding: 60px 40px;
   background-color: colors.$WHITE;
+  box-shadow: 4px 0px 10px 0px rgba(0, 0, 0, 4%);
   overflow-y: scroll;
 
   .logoWrapper {

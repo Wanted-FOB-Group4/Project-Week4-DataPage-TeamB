@@ -1,0 +1,26 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  width: 100%;
+  padding: 40px;
+  margin-bottom: 20px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 4%);
+}
+
+.title {
+  padding: 25px 0;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 30px;
+  color: colors.$GRAY800;
+}
+
+.subtitle {
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: colors.$GRAY800;
+}
