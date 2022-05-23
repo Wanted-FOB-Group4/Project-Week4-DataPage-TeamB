@@ -10,7 +10,7 @@ export interface IAds {
   budget: number
   status: string
   startDate: string
-  endDate?: string
+  endDate: string | null
   report: {
     cost: number
     convValue: number
