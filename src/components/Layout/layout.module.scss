@@ -1,0 +1,107 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.appContainer {
+  min-height: 100vh;
+  background-color: colors.$BACKGROUND;
+}
+
+.lnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: sizes.$LNB_WIDTH;
+  height: 100%;
+  padding: 60px 40px;
+  background-color: colors.$WHITE;
+  overflow-y: scroll;
+
+  .logoWrapper {
+    padding-bottom: 60px;
+    border-bottom: 1px solid colors.$GRAY50;
+  }
+
+  .service {
+    margin: 40px 0;
+  }
+
+  .label {
+    padding: 13px 20px;
+    font-weight: 700;
+  }
+
+  .navigation {
+    a {
+      display: flex;
+      align-items: center;
+      padding: 20px 22px;
+      border-radius: 10px;
+
+      svg {
+        margin-right: 12px;
+      }
+
+      &.isActive {
+        color: colors.$PRIMARY;
+        background-color: colors.$GRAY50;
+      }
+    }
+  }
+
+  .guide {
+    display: flex;
+    width: 100%;
+    padding: 30px 20px;
+    margin: 260px 0 40px;
+    text-align: left;
+    background-color: colors.$SECONDARY;
+    border-radius: 10px;
+
+    .iconWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      background-color: colors.$PRIMARY;
+      border-radius: 50%;
+    }
+
+    .description {
+      :first-child {
+        margin-bottom: 7px;
+      }
+    }
+  }
+
+  .bottomText {
+    padding: 0 20px;
+
+    :first-child {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.mainText {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: colors.$GRAY800;
+}
+
+.subText {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: colors.$GRAY300;
+}
+
+.mainContainer {
+  margin-left: sizes.$LNB_WIDTH;
+}

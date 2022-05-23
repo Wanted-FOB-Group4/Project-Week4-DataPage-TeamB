@@ -1,29 +1,33 @@
 import { Link, NavLink } from 'react-router-dom'
 import cx from 'classnames'
 
-import { DashboardIcon, GuideIcon, ManageAdsIcon } from 'assets/svgs'
+import { DashboardIcon, GuideIcon, LogoImage, ManageAdsIcon } from 'assets/svgs'
 import styles from './layout.module.scss'
 
-const GNB = () => {
+const LNB = () => {
   return (
-    <aside>
-      <Link to='/'>LEVER</Link>
-      <div>
-        <div>서비스</div>
-        <div>매드업 드롭다운</div>
+    <aside className={styles.lnb}>
+      <div className={styles.logoWrapper}>
+        <Link to='/'>
+          <LogoImage />
+        </Link>
+      </div>
+      <div className={styles.service}>
+        <div className={cx(styles.subText, styles.label)}>서비스</div>
+        <button type='button'>매드업 드롭다운</button>
       </div>
       <div>
-        <div>광고 센터</div>
-        <nav className={styles.gnb}>
+        <div className={cx(styles.subText, styles.label)}>광고 센터</div>
+        <nav className={styles.navigation}>
           <ul>
             <li>
-              <NavLink to='dashboard' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+              <NavLink to='/' className={({ isActive }) => cx(styles.mainText, { [styles.isActive]: isActive })}>
                 <DashboardIcon />
                 대시보드
               </NavLink>
             </li>
             <li>
-              <NavLink to='manage' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+              <NavLink to='manage' className={({ isActive }) => cx(styles.mainText, { [styles.isActive]: isActive })}>
                 <ManageAdsIcon />
                 광고관리
               </NavLink>
@@ -31,19 +35,23 @@ const GNB = () => {
           </ul>
         </nav>
       </div>
-      <Link to='#'>
-        <GuideIcon />
-        <div>
-          <div>레버 이용 가이드</div>
-          <div>시작하기 전에 알아보기</div>
+      <button type='button' className={styles.guide}>
+        <div className={styles.iconWrapper}>
+          <GuideIcon />
         </div>
-      </Link>
-      <div>
-        <div>레버는 함께 만들어갑니다.</div>
-        <Link to='#'>이용약관</Link>
+        <div className={styles.description}>
+          <div className={styles.mainText}>레버 이용 가이드</div>
+          <div className={styles.subText}>시작하기 전에 알아보기</div>
+        </div>
+      </button>
+      <div className={styles.bottomText}>
+        <div className={styles.subText}>레버는 함께 만들어갑니다.</div>
+        <Link to='#' className={styles.subText}>
+          이용약관
+        </Link>
       </div>
     </aside>
   )
 }
 
-export default GNB
+export default LNB

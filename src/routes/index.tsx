@@ -9,7 +9,6 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<Dashboard />} />
-        <Route path='dashboard' element={<Dashboard />} />
         <Route path='manage' element={<ManageAds />} />
       </Route>
       <Route path='*' element={<div>404</div>} />
