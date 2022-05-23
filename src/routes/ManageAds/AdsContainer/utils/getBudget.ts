@@ -10,7 +10,7 @@ const getBudget = (budget: number) => {
   const tenThousand = Math.floor(budget / 10000)
   const rest = budget % 1000
   const strArr = []
-  if (tenThousand > 0) strArr.push(`${addCommaToNumbers(tenThousand)}}만`)
+  if (tenThousand > 0) strArr.push(`${addCommaToNumbers(tenThousand)}만`)
   if (thousand > 0) strArr.push(`${thousand}천`)
   if (rest > 0) strArr.push(rest)
   return `${strArr.join(' ')}원`
