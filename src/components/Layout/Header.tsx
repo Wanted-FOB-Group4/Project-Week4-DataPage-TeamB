@@ -8,7 +8,7 @@ const Header = () => {
     <header className={styles.header}>
       <ul>
         <li>
-          <button type='button'>
+          <button type='button' className={styles.notification}>
             <NotiIcon />
           </button>
         </li>
@@ -19,7 +19,7 @@ const Header = () => {
         </li>
         <li>
           <Link to='#' className={styles.profile}>
-            <img src={ProfileImage} alt='프로필' />
+            <img src={ProfileImage} alt='profile' />
             <span>원티드님</span>
           </Link>
         </li>

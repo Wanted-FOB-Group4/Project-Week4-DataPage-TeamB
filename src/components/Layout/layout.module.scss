@@ -123,6 +123,21 @@
     }
   }
 
+  .notification {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 5px;
+      content: '';
+      background-color: colors.$SECONDARY_RED;
+      border-radius: 50%;
+    }
+  }
+
   .profile {
     display: flex;
     align-items: center;
