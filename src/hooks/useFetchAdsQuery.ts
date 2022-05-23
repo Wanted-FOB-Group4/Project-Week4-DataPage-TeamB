@@ -6,5 +6,10 @@ export const useFetchAdsQuery = () => {
     refetchOnWindowFocus: false,
     staleTime: 60000,
     cacheTime: Infinity,
+    suspense: true,
+    onSuccess: (response) => {
+      console.log(response)
+    },
   })
+  return data
 }
