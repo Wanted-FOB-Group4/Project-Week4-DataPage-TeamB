@@ -8,7 +8,7 @@ interface IProps {
   adData: IAd
 }
 
-export const AdsContainer = ({ adData }: IProps) => {
+const AdsContainer = ({ adData }: IProps) => {
   const title = getAdsTitle(adData.title, adData.adType)
   const date = getCreateDate(adData.startDate, adData.endDate, adData.status)
   const budget = getBudget(adData.budget)
@@ -31,3 +31,5 @@ export const AdsContainer = ({ adData }: IProps) => {
     </div>
   )
 }
+
+export default AdsContainer

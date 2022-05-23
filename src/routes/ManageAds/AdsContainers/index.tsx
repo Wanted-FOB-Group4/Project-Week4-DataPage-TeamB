@@ -1,5 +1,5 @@
 import { useFetchAdsQuery } from 'hooks'
-import { AdsContainer } from './AdsContainer'
+import AdsContainer from './AdsContainer'
 
 const AdsContainers = () => {
   const data = useFetchAdsQuery()
