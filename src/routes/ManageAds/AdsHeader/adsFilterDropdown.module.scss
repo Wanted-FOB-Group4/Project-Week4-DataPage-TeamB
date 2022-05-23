@@ -1,0 +1,20 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+
+.dropdownButton {
+  @include flexbox.flexbox(between, center);
+  width: 120px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid colors.$ADS_CONTAINER_BORDER_GRAY;
+  border-radius: 10px;
+
+  span {
+    padding: 0 10px;
+    color: colors.$ADS_FONT_DARK;
+  }
+
+  .dropdownIcon {
+    fill: colors.$ADS_FONT_DARK;
+  }
+}
