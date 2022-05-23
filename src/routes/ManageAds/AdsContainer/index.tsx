@@ -17,7 +17,7 @@ export const AdsContainer = ({ adData }: IProps) => {
   const roas = getPercentage(adData.report.roas)
 
   return (
-    <div className={styles.adDataContainerWrapper}>
+    <div className={styles.adsContainerWrapper}>
       <h2>{title}</h2>
       <ul>
         <AdsListBlock dataKey='상태' dataValue={adData.status === 'active' ? '진행중' : '완료'} />
