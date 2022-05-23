@@ -7,9 +7,6 @@ export const useFetchAdsQuery = () => {
     staleTime: 60000,
     cacheTime: Infinity,
     suspense: true,
-    onSuccess: (response) => {
-      console.log(response)
-    },
   })
   return data
 }
