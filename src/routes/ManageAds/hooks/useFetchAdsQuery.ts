@@ -1,27 +1,24 @@
+import { adsDataState } from '../../../states/adsDataState'
 import { useQuery } from 'react-query'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import store from 'store'
 
 import { adsCurrentIndexState } from 'states'
 import { getAdListData } from 'routes/ManageAds/services'
-import { IAdData } from 'types/ads'
 
-const INIT_DATA: IAdData = {
-  count: 0,
-  ads: [],
-}
-
-export const useFetchAdsQuery = (): IAdData => {
+export const useFetchAdsQuery = () => {
   const [adsCurrentIndex, setAdsCurrentIndex] = useRecoilState(adsCurrentIndexState)
+  const setAdsData = useSetRecoilState(adsDataState)
 
-  const { data } = useQuery(['#adsData', adsCurrentIndex], getAdListData, {
+  useQuery(['#adsData', adsCurrentIndex], getAdListData, {
     refetchOnWindowFocus: false,
     cacheTime: 0,
     suspense: true,
     useErrorBoundary: true,
     onSuccess: (successData) => {
       store.set('adsData', successData)
+      setAdsData(successData)
       setAdsCurrentIndex(successData.count)
     },
   })
-  return data || INIT_DATA
 }
