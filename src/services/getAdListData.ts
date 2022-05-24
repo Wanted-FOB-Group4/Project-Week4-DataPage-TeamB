@@ -1,14 +1,14 @@
 import { IAd, IAdData } from 'types/ads'
 // wanted_FE_ad-list-data-set.json
 import axios, { AxiosResponse } from 'axios'
-import { setDelay } from 'utils'
+import { setFetchDelay } from 'utils'
 
 const STATUS = ['all', 'active', 'ended']
 
 export const getAdListData = (adsFilterIndex: number) =>
   axios
     .get('/wanted_FE_ad-list-data-set.json')
-    .then(setDelay(500))
+    .then(setFetchDelay(500))
     .then((response: AxiosResponse) => {
       if (adsFilterIndex === 0) return response.data
       const newData: IAdData = {
