@@ -1,5 +1,6 @@
+import { adsCurrentIndexState } from '../states/adsCurrentIndexState'
 import { useQuery } from 'react-query'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { adsFilterIndexState } from 'states'
 import { getAdListData } from 'services'
@@ -12,6 +13,7 @@ const INIT_DATA: IAdData = {
 
 export const useFetchAdsQuery = (): IAdData => {
   const adsFilterIndex = useRecoilValue(adsFilterIndexState)
+  const setAdsCurrentIndex = useSetRecoilState(adsCurrentIndexState)
 
   const { data } = useQuery(['#adsData', adsFilterIndex], () => getAdListData(adsFilterIndex), {
     refetchOnWindowFocus: false,
@@ -20,6 +22,6 @@ export const useFetchAdsQuery = (): IAdData => {
     suspense: true,
     useErrorBoundary: true,
   })
-
+  setAdsCurrentIndex(data.count)
   return data || INIT_DATA
 }
