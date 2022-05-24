@@ -5,8 +5,8 @@ interface IProps {
   setValue: React.Dispatch<boolean>
 }
 
-const AD_TYPE_WEB = true
-const AD_TYPE_APP = false
+const AD_TYPE_WEB = false
+const AD_TYPE_APP = true
 
 const AdsCreateFormAdTypeIput = ({ value, setValue }: IProps) => {
   const handleAdTypeWebChange = () => setValue(AD_TYPE_WEB)
