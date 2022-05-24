@@ -1,6 +1,9 @@
 import { ErrorMessage, Loading } from 'components'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import ChartByChannel from './ChartByChannel'
+import ChartByDate from './ChartByDate'
+import SelectButton from './SelectButton'
 import CardList from './CardList'
 import Table from './Table'
 
@@ -19,9 +22,12 @@ const Dashboard = () => {
             <CardList date={TMP_DATE} />
           </ErrorBoundary>
         </Suspense>
+        <SelectButton />
+        <ChartByDate />
       </div>
       <h2 className='subtitle'>매체 현황</h2>
       <div className='container'>
+        <ChartByChannel />
         <Table date={TMP_DATE} />
       </div>
     </>

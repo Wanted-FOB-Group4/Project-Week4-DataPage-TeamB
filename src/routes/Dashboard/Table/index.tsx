@@ -1,5 +1,9 @@
 import { useQuery } from 'react-query'
+import { useMount } from 'react-use'
 import { getMediaChannelData } from 'services/getMediaChannalData'
+
+import styles from './table.module.scss'
+import TableRow from './TableRow'
 
 const Table = ({ date }: IDate) => {
   const { data } = useQuery(['#mediaChannelData', date], () => getMediaChannelData(date.start, date.end), {
@@ -10,17 +14,24 @@ const Table = ({ date }: IDate) => {
     useErrorBoundary: true,
   })
 
+  useMount(() => {
+    console.log(data)
+  })
+
   return (
     <div>
-      <div>
-        <span>광고비</span>
-        <span>매출</span>
-        <span>ROAS</span>
-        <span>노출수</span>
-        <span>클릭 수</span>
-        <span>클릭률 (CTR)</span>
-        <span>클릭당비용 (CPC)</span>
-      </div>
+      <table className={styles.tableContainer}>
+        <tr className={styles.tableHeader}>
+          <th className={styles.tableTitle}> </th>
+          <th>광고비</th>
+          <th>매출</th>
+          <th>ROAS</th>
+          <th>노출수</th>
+          <th>클릭 수</th>
+          <th>클릭률 (CTR)</th>
+          <th>클릭당비용 (CPC)</th>
+        </tr>
+      </table>
     </div>
   )
 }
