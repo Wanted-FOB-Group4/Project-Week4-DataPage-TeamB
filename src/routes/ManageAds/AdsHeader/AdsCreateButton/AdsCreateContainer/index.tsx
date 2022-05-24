@@ -1,4 +1,4 @@
-import { useState, Dispatch, FormEvent, ChangeEvent } from 'react'
+import { useState, Dispatch, FormEvent, ChangeEvent, SetStateAction } from 'react'
 import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
 import store from 'store'
@@ -11,7 +11,7 @@ import { adsDataState } from 'states'
 import styles from './adsCreateContainer.module.scss'
 
 interface IProps {
-  setIsHidden: Dispatch<React.SetStateAction<boolean>>
+  setIsHidden: Dispatch<SetStateAction<boolean>>
 }
 
 const AdsCreateContainer = ({ setIsHidden }: IProps) => {

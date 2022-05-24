@@ -1,8 +1,10 @@
+import { Dispatch } from 'react'
+
 import styles from './adsCreateFormInput.module.scss'
 
 interface IProps {
   value: boolean
-  setValue: React.Dispatch<boolean>
+  setValue: Dispatch<boolean>
 }
 
 const AD_TYPE_WEB = false

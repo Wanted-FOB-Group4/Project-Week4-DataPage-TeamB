@@ -1,3 +1,4 @@
+import { ChangeEventHandler } from 'react'
 import cx from 'classnames'
 
 import styles from './adsCreateFormInput.module.scss'
@@ -5,7 +6,7 @@ import styles from './adsCreateFormInput.module.scss'
 interface IProps {
   name: string
   value: number | string | boolean | null
-  onChange?: React.ChangeEventHandler<HTMLInputElement>
+  onChange?: ChangeEventHandler<HTMLInputElement>
   startDate?: string
   isDone?: boolean
 }
