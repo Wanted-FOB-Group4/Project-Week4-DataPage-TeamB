@@ -7,6 +7,7 @@ import { IAd } from 'types/ads'
 import { useRecoilState } from 'recoil'
 import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
 import AdsCreateFormLi from './AdsCreateFormLi'
+import AdsCreateFormAdTypeLi from './AdsCreateFormAdTypeLi'
 
 const AdsCreateForm = () => {
   const today = dayjs().format('YYYY-MM-DD')
@@ -40,7 +41,7 @@ const AdsCreateForm = () => {
     <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
       <ul>
         <AdsCreateFormLi name='title' value={title} onChange={handleTitleChange} />
-        <AdsCreateFormLi name='adType' value={adType} setValue={setAdType} />
+        <AdsCreateFormAdTypeLi value={adType} setValue={setAdType} />
         <AdsCreateFormLi name='isActive' value={isActive} onChange={handleActiveChange} />
         <AdsCreateFormLi name='startDate' value={startDate} onChange={handleStartDateChange} />
         <AdsCreateFormLi
