@@ -1,10 +1,13 @@
-import { useFetchAdsQuery } from 'routes/ManageAds/hooks'
+import { useFetchAdsQuery, useFilterAds } from 'routes/ManageAds/hooks'
+
 import AdsContainer from './AdsContainer'
 
 import styles from './adsContainers.module.scss'
 
 const AdsContainers = () => {
-  const data = useFetchAdsQuery()
+  useFetchAdsQuery()
+  const data = useFilterAds()
+
   return (
     <ul className={styles.adsContainersWrapper}>
       {data.ads.map((adData) => (
