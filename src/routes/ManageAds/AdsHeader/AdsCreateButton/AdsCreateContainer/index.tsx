@@ -62,7 +62,7 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
           <AdsCreateFormInput name='cost' value={cost} onChange={handleCostChange} />
         </ul>
         <button type='submit'>추가하기</button>
-      </form>{' '}
+      </form>
     </div>
   )
 }
