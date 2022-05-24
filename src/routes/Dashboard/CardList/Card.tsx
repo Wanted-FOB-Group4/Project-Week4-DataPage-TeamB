@@ -1,9 +1,9 @@
-import { IncreaseIcon, DecreaseIcon } from 'assets/svgs'
 import { useMemo } from 'react'
-import styles from './cardList.module.scss'
+import { IncreaseIcon, DecreaseIcon } from 'assets/svgs'
+
 import { transformNum } from './utils'
 
-// TODO : 선택한 일수 만큼의 이전 데이터와 비교하여 증감분 나타냄
+import styles from './cardList.module.scss'
 
 interface IUnit {
   category: string

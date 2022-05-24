@@ -1,10 +1,13 @@
-import { useCalculateDate } from 'hooks/useCalculateDate'
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { getFilterTrendData } from 'services/getTrendData'
+import { useCalculateDate } from 'hooks/useCalculateDate'
+
 import Card from './Card'
-import styles from './cardList.module.scss'
+
+import { getFilterTrendData } from 'services/getTrendData'
 import { translateData } from './utils'
+
+import styles from './cardList.module.scss'
 
 interface IProps {
   category: string
