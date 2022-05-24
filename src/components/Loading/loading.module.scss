@@ -1,0 +1,23 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+@use 'styles/mixins/animation';
+
+.loadingWrapper {
+  @include flexbox.flexbox(center, center);
+  flex-direction: column;
+  height: 600px;
+
+  .loadingIcon {
+    @include animation.rotateAnimation(0.5s);
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    fill: colors.$GRAY100;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+  }
+}
