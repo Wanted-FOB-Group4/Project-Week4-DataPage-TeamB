@@ -38,19 +38,19 @@
     font-size: 15px;
     color: colors.$GRAY800;
   }
+
+  .checkBoxLabel {
+    width: 40px;
+    margin: 0 5px;
+    line-height: 20px;
+    color: colors.$GRAY800;
+  }
 }
 
 .radioInput {
   @include flexbox.flexbox(start, center);
   flex-direction: row;
   width: 140px;
-
-  label {
-    width: 40px;
-    margin: 0 5px;
-    line-height: 20px;
-    color: colors.$GRAY800;
-  }
 }
 
 .isInputHidden {

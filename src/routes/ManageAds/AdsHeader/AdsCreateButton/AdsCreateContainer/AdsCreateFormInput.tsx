@@ -34,6 +34,11 @@ const AdsCreateFormInput = ({ name, value, onChange, startDate, isActive }: IPro
     <li className={cx(styles.createList, { [styles.isInputHidden]: name === 'endDate' && !isActive })}>
       <label htmlFor={name}>{inputString}</label>
       {inputTag}
+      {name === 'isActive' && (
+        <label className={styles.checkBoxLabel} htmlFor={name}>
+          {value ? '완료' : '진행중'}
+        </label>
+      )}
     </li>
   )
 }

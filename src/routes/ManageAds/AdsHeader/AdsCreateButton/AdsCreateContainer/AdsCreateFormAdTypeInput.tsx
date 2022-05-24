@@ -20,20 +20,22 @@ const AdsCreateFormAdTypeIput = ({ value, setValue }: IProps) => {
           name='adType'
           id='radioWeb'
           type='radio'
-          className={styles.radioWeb}
           checked={value === AD_TYPE_WEB}
           onChange={handleAdTypeWebChange}
         />
-        <label htmlFor='radioWeb'>웹 광고</label>
+        <label htmlFor='radioWeb' className={styles.checkBoxLabel}>
+          웹 광고
+        </label>
         <input
           name='adType'
           id='radioApp'
           type='radio'
-          className={styles.radioApp}
           checked={value === AD_TYPE_APP}
           onChange={handleAdTypeAppChange}
         />
-        <label htmlFor='radioApp'>앱 광고</label>
+        <label htmlFor='radioApp' className={styles.checkBoxLabel}>
+          앱 광고
+        </label>
       </div>
     </li>
   )
