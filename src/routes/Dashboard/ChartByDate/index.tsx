@@ -1,48 +1,83 @@
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer } from 'victory'
-
 import dayjs from 'dayjs'
 
 import { makeDataByTrend } from 'utils/makeDataByTrend'
 
-const COLOR = {
+interface ICOLOR {
+  roas: string
+  click: string
+  cost: string
+  imp: string
+  sales: string
+  conversion: string
+
+  [key: string]: any
+}
+const COLOR: ICOLOR = {
   roas: '#4FADF7',
   click: '#85DA47',
   cost: '#AC8AF8',
   imp: '#f9e000',
-  salse: '#EA3A4B',
+  sales: '#EA3A4B',
   conversion: '#3A474E',
 }
 
-// ROAS, 광고비, 노출수, 클릭수, 전환 수, 매출 중 선택가능.
 const ChartByDate = () => {
-  const firstTarget = 'click'
-  const secondTarget = 'conversion'
+  const targets = ['click', 'imp']
   const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-11')
-  let firstMax = 0
-  let secondMax = 0
-  const firstData = totalDataByDate.map((item) => {
-    firstMax = Math.max(firstMax, item[firstTarget])
-    return { x: item.date, y: item[firstTarget] }
-  })
-  const secondData =
-    secondTarget &&
+  const maxs = [0, 0]
+  const offSet = [50, 1000]
+  const datas = targets.map((target: string, idx) =>
     totalDataByDate.map((item) => {
-      secondMax = Math.max(secondMax, item[secondTarget])
-      return { x: item.date, y: item[secondTarget] }
+      maxs[idx] = Math.max(maxs[idx], item[target])
+      return { x: item.date, y: item[target] }
     })
+  )
+  const maxDatas = maxs.map((maxData) => {
+    let digit = 1
+    while (digit * 10 < maxData) {
+      digit *= 10
+    }
+    return (Math.floor(maxData / digit) + 1) * digit
+  })
 
-  let firstDigit = 1
-  let secondDigit = 1
-  while (firstDigit * 10 < firstMax) {
-    firstDigit *= 10
-  }
-  while (secondDigit * 10 < secondMax) {
-    secondDigit *= 10
-  }
-
-  firstMax = (Math.floor(firstMax / firstDigit) + 1) * firstDigit
-  secondMax = (Math.floor(secondMax / secondDigit) + 1) * secondDigit
-
+  const axisesY = targets.map((target, idx) => {
+    const key = `Axis-${target}`
+    return (
+      <VictoryAxis
+        key={key}
+        dependentAxis
+        offsetX={offSet[idx]}
+        tickValues={[0.25, 0.5, 0.75, 1]}
+        tickFormat={(t) => {
+          return t * maxDatas[idx]
+        }}
+        style={{
+          axis: { stroke: 'transparent' },
+          tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+          ticks: { stroke: '#eeeeee', size: 0 },
+          grid: { stroke: '#eeeeee' },
+        }}
+      />
+    )
+  })
+  const lineChartes = targets.map((target, idx) => {
+    const key = `lineChart-${target}`
+    return (
+      <VictoryLine
+        key={key}
+        data={datas[idx]}
+        style={{
+          data: {
+            stroke: COLOR[target],
+          },
+          labels: { fontSize: 10 },
+        }}
+        y={(datum) => datum.y / maxDatas[idx]}
+        labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
+      />
+    )
+  })
   return (
     <div style={{ height: '400px' }}>
       <VictoryChart
@@ -66,64 +101,8 @@ const ChartByDate = () => {
             ticks: { stroke: 'grey', size: 0 },
           }}
         />
-        <VictoryAxis
-          key={firstTarget}
-          dependentAxis
-          tickValues={[0.25, 0.5, 0.75, 1]}
-          tickFormat={(t) => {
-            return t * firstMax
-          }}
-          style={{
-            axis: { stroke: 'transparent' },
-            tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: '#eeeeee', size: 0 },
-            grid: { stroke: '#eeeeee' },
-          }}
-        />
-        {secondTarget && (
-          <VictoryAxis
-            dependentAxis
-            key={secondTarget}
-            offsetX={970}
-            tickValues={[0.25, 0.5, 0.75, 1]}
-            tickFormat={(t) => {
-              return t * secondMax * 2
-            }}
-            style={{
-              axis: { stroke: 'transparent' },
-              tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc', textAnchor: 'start' },
-              ticks: { stroke: '#eeeeee', size: 0 },
-              grid: { stroke: '#eeeeee' },
-            }}
-          />
-        )}
-
-        <VictoryLine
-          key={firstTarget}
-          data={firstData}
-          style={{
-            data: {
-              stroke: COLOR[firstTarget],
-            },
-            labels: { fontSize: 10 },
-          }}
-          y={(datum) => datum.y / firstMax}
-          labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-        />
-        {secondTarget && (
-          <VictoryLine
-            key={secondTarget}
-            data={secondData}
-            style={{
-              data: {
-                stroke: COLOR[secondTarget],
-              },
-              labels: { fontSize: 10 },
-            }}
-            y={(datum) => datum.y / (secondMax * 2)}
-            labelComponent={<VictoryTooltip dy={0} centerOffset={{ x: 25 }} />}
-          />
-        )}
+        {axisesY}
+        {lineChartes}
       </VictoryChart>
     </div>
   )

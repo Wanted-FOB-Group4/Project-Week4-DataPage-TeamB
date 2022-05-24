@@ -45,4 +45,6 @@ export interface ITrendDataItem {
 export interface ITrendDataByDate extends ITrendDataItem {
   conversion: number
   sales: number
+
+  [prop: string]: any
 }

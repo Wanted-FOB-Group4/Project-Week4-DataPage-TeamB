@@ -18,15 +18,7 @@ interface IMediaTotalByDateItem {
   conversion: number
 }
 
-interface IMediaTotalByDate {
-  google: IMediaTotalByDateItem
-  naver: IMediaTotalByDateItem
-  kakao: IMediaTotalByDateItem
-  facebook: IMediaTotalByDateItem
-  total: IMediaTotalByDateItem
-}
-
-const INIT_DATA_ITEM = {
+const INIT_DATA_ITEM: IMediaTotalByDateItem = {
   cost: 0,
   imp: 0,
   sales: 0,
@@ -34,19 +26,27 @@ const INIT_DATA_ITEM = {
   click: 0,
   ctr: 0,
   cpc: 0,
-  naver: 0,
   conversion: 0,
 }
-const INIT_DATA = {
-  google: { ...INIT_DATA_ITEM },
-  facebook: { ...INIT_DATA_ITEM },
-  kakao: { ...INIT_DATA_ITEM },
-  naver: { ...INIT_DATA_ITEM },
-  total: { ...INIT_DATA_ITEM },
+
+interface IInitData {
+  google: IMediaTotalByDateItem
+  facebook: IMediaTotalByDateItem
+  naver: IMediaTotalByDateItem
+  kakao: IMediaTotalByDateItem
+  total: IMediaTotalByDateItem
+
+  [key: string]: any
 }
 
 export const makeDateSumData = ({ google, kakao, naver, facebook }: IProps) => {
-  const newData: IMediaTotalByDate = INIT_DATA
+  const newData: IInitData = {
+    google: { ...INIT_DATA_ITEM },
+    facebook: { ...INIT_DATA_ITEM },
+    kakao: { ...INIT_DATA_ITEM },
+    naver: { ...INIT_DATA_ITEM },
+    total: { ...INIT_DATA_ITEM },
+  }
   for (let idx = 0; idx < google.length; idx += 1) {
     sumDateByChannel({ data: newData, channel: 'google', item: google[idx] })
     sumDateByChannel({ data: newData, channel: 'naver', item: naver[idx] })
@@ -57,44 +57,18 @@ export const makeDateSumData = ({ google, kakao, naver, facebook }: IProps) => {
 }
 
 interface IIProps {
-  data: IMediaTotalByDate
+  data: IInitData
   channel: string
   item: IMediaDataByDate
 }
 const sumDateByChannel = ({ data, channel, item }: IIProps) => {
-  if (channel === 'google') {
-    data.google.imp += item.imp
-    data.google.cost += item.cost
-    data.google.click += item.click
-    data.google.ctr += item.ctr
-    data.google.cpc += item.cpc
-    data.google.conversion += item.conversion
-    data.google.sales += item.sales
-  } else if (channel === 'naver') {
-    data.naver.imp += item.imp
-    data.naver.cost += item.cost
-    data.naver.click += item.click
-    data.naver.ctr += item.ctr
-    data.naver.cpc += item.cpc
-    data.naver.conversion += item.conversion
-    data.naver.sales += item.sales
-  } else if (channel === 'facebook') {
-    data.facebook.imp += item.imp
-    data.facebook.cost += item.cost
-    data.facebook.click += item.click
-    data.facebook.ctr += item.ctr
-    data.facebook.cpc += item.cpc
-    data.facebook.conversion += item.conversion
-    data.facebook.sales += item.sales
-  } else if (channel === 'kakao') {
-    data.kakao.imp += item.imp
-    data.kakao.cost += item.cost
-    data.kakao.click += item.click
-    data.kakao.ctr += item.ctr
-    data.kakao.cpc += item.cpc
-    data.kakao.conversion += item.conversion
-    data.kakao.sales += item.sales
-  }
+  data[channel].imp += item.imp
+  data[channel].cost += item.cost
+  data[channel].click += item.click
+  data[channel].ctr += item.ctr
+  data[channel].cpc += item.cpc
+  data[channel].conversion += item.conversion
+  data[channel].sales += item.sales
   data.total.imp += item.imp
   data.total.cost += item.cost
   data.total.click += item.click
