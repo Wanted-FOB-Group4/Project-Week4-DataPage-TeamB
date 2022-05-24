@@ -1,11 +1,13 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/constants/levels';
 @use '/src/styles/constants/sizes';
+@use '/src/styles/constants/levels';
 
 .lnb {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: levels.$LNB;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +48,7 @@
     .content {
       position: absolute;
       top: 100%;
-      z-index: levels.$DROPDOWN_BOTTOM;
+      z-index: levels.$LNB_DROPDOWN;
       width: 100%;
       margin-top: 4px;
       overflow: hidden;
@@ -88,10 +90,11 @@
       align-items: center;
       padding: 20px 22px;
       border-radius: 10px;
-      transition: 0.2s ease-in-out;
+      transition: 0.1s ease-in-out;
 
       svg {
         margin-right: 12px;
+        transition: 0.1s ease-in-out;
       }
 
       &.isActive {
@@ -119,6 +122,10 @@
       margin-right: 10px;
       background-color: colors.$PRIMARY;
       border-radius: 50%;
+
+      svg {
+        fill: colors.$WHITE;
+      }
     }
 
     .description {
