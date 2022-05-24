@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import { useState, Dispatch, FormEvent, ChangeEvent } from 'react'
 import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
-import cx from 'classnames'
 import store from 'store'
 
 import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
@@ -12,13 +11,13 @@ import { adsDataState } from 'states'
 import styles from './adsCreateContainer.module.scss'
 
 interface IProps {
-  isHidden: boolean
+  setIsHidden: Dispatch<React.SetStateAction<boolean>>
 }
 
-const AdsCreateContainer = ({ isHidden }: IProps) => {
+const AdsCreateContainer = ({ setIsHidden }: IProps) => {
   const today = dayjs().format('YYYY-MM-DD')
   const [adType, setAdType] = useState(false)
-  const [isDone, setIsActive] = useState(false)
+  const [isDone, setIsDone] = useState(false)
   const [startDate, setStartDate] = useState(today)
   const [endDate, setEndDate] = useState(today)
   const [budget, setBudget] = useState(0)
@@ -27,7 +26,7 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
   const [title, setTitle] = useState('')
   const [adsData, setAdsData] = useRecoilState(adsDataState)
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const newData: IAdData = {
       count: adsData.count + 1,
@@ -51,18 +50,19 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
     }
     setAdsData(newData)
     store.set('adsData', newData)
+    setIsHidden(true)
   }
 
-  const handleActiveChange = () => setIsActive((prevState) => !prevState)
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
-  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setStartDate(e.currentTarget.value)
-  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setEndDate(e.currentTarget.value)
-  const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => setBudget(Number(e.currentTarget.value))
-  const handleConvValueChange = (e: React.ChangeEvent<HTMLInputElement>) => setConvValue(Number(e.currentTarget.value))
-  const handleCostChange = (e: React.ChangeEvent<HTMLInputElement>) => setCost(Number(e.currentTarget.value))
+  const handleActiveChange = () => setIsDone((prevState) => !prevState)
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.currentTarget.value)
+  const handleStartDateChange = (e: ChangeEvent<HTMLInputElement>) => setStartDate(e.currentTarget.value)
+  const handleEndDateChange = (e: ChangeEvent<HTMLInputElement>) => setEndDate(e.currentTarget.value)
+  const handleBudgetChange = (e: ChangeEvent<HTMLInputElement>) => setBudget(Number(e.currentTarget.value))
+  const handleConvValueChange = (e: ChangeEvent<HTMLInputElement>) => setConvValue(Number(e.currentTarget.value))
+  const handleCostChange = (e: ChangeEvent<HTMLInputElement>) => setCost(Number(e.currentTarget.value))
 
   return (
-    <div className={cx(styles.createContainer, { [styles.isCreateBoxHidden]: isHidden })}>
+    <div className={styles.createContainer}>
       <h2>새 광고</h2>
       <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
         <ul>

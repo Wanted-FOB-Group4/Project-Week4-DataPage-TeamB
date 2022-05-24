@@ -23,7 +23,7 @@ const AdsCreateButton = () => {
       <button type='button' className={styles.createButton} onClick={handleButtonClick}>
         광고 만들기
       </button>
-      <AdsCreateContainer isHidden={isCreateBoxHidden} />
+      {!isCreateBoxHidden && <AdsCreateContainer setIsHidden={setIsCreateBoxHidden} />}
     </div>
   )
 }
