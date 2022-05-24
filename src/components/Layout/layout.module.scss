@@ -1,0 +1,58 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/sizes';
+
+.appContainer {
+  min-height: 100vh;
+  background-color: colors.$BACKGROUND;
+
+  .mainContainer {
+    padding: 0 40px 60px;
+    margin-left: sizes.$LNB_WIDTH;
+  }
+}
+
+.header {
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 80px;
+    border-bottom: 1px solid colors.$GRAY50;
+
+    li + li {
+      padding-left: 30px;
+    }
+  }
+
+  .notification {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 5px;
+      content: '';
+      background-color: colors.$SECONDARY_RED;
+      border-radius: 50%;
+    }
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 40px;
+    }
+
+    span {
+      margin-left: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      color: colors.$GRAY800;
+    }
+  }
+}
