@@ -1,7 +1,7 @@
 import trendData from 'data/trend-data-set.json'
 import dayjs from 'dayjs'
 
-import { ITrendDataByDate, ITrendDataItem } from 'types/types.d'
+import { ITrendDataByDate, ITrendDataItem } from 'types/chart'
 
 export const makeDataByTrend = (startDate: string, endDate: string) => {
   const init: ITrendDataByDate[] = []

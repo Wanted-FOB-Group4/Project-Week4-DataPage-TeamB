@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 
 import channelData from 'data/media-channel-data-set.json'
-import { IMediaDataItem, IMediaDataByDate } from 'types/types.d'
+import { IMediaDataItem, IMediaDataByDate } from 'types/chart'
 
 export const makeDataByDate = (startDate: string, endDate: string) => {
   const google: IMediaDataByDate[] = []

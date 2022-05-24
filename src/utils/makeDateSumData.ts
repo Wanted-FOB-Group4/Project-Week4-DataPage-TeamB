@@ -1,4 +1,4 @@
-import { IMediaDataByDate } from 'types/types.d'
+import { IMediaDataByDate } from 'types/chart'
 
 interface IProps {
   google: IMediaDataByDate[]
