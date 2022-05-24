@@ -1,0 +1,16 @@
+@use '/src/styles/constants/colors';
+
+.chartContainer {
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: block;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: colors.$GRAY100;
+    border-radius: 8px;
+  }
+}

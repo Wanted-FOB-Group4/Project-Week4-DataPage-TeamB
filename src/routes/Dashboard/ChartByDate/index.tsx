@@ -1,9 +1,11 @@
-import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer } from 'victory'
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer, VictoryLabel } from 'victory'
 import dayjs from 'dayjs'
 
+import styles from './chartByDate.module.scss'
 import { makeDataByTrend } from 'utils/makeDataByTrend'
 import { useRecoilValue } from 'recoil'
 import { selectorState } from 'states/dashBoard'
+import { shortenNumber } from './utils'
 
 interface ICOLOR {
   roas: string
@@ -24,12 +26,16 @@ const COLOR: ICOLOR = {
   conversion: '#3A474E',
 }
 
+type Position = 'left' | 'right'
+type Anchor = 'start' | 'end'
+
 const ChartByDate = () => {
   const selectors = useRecoilValue(selectorState)
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-11')
+  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-20')
   const maxs = [0, 0]
-  const offSet = [50, 1000]
+  const position: Position[] = ['left', 'right']
+  const textAnchor: Anchor[] = ['start', 'end']
   const datas = filteredSelectors.map((target: { name: string; title: string }, idx) =>
     totalDataByDate.map((item) => {
       maxs[idx] = Math.max(maxs[idx], item[target.name])
@@ -49,14 +55,15 @@ const ChartByDate = () => {
       <VictoryAxis
         key={key}
         dependentAxis
-        offsetX={offSet[idx]}
+        tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor={textAnchor[idx]} dy={5} dx={5} />}
+        orientation={position[idx]}
         tickValues={[0.25, 0.5, 0.75, 1]}
         tickFormat={(t) => {
-          return t * maxDatas[idx]
+          return shortenNumber(t * maxDatas[idx])
         }}
         style={{
           axis: { stroke: 'transparent' },
-          tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+          tickLabels: { fontSize: 10, padding: 0, fill: '#cccccc' },
           ticks: { stroke: '#eeeeee', size: 0 },
           grid: { stroke: '#eeeeee' },
         }}
@@ -81,13 +88,14 @@ const ChartByDate = () => {
     )
   })
   return (
-    <div style={{ height: '400px' }}>
+    <div className={styles.lineChartContainer}>
       <VictoryChart
-        domainPadding={{ x: 50, y: 30 }}
+        domainPadding={{ x: [80, 80], y: 60 }}
         height={400}
-        width={1000}
+        width={100 * totalDataByDate.length}
         containerComponent={
           <VictoryVoronoiContainer
+            responsive={false}
             labels={({ datum }) => {
               return datum.y
             }}
