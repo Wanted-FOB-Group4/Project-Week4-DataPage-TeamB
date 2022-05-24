@@ -1,12 +1,13 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/constants/sizes';
+@use '/src/styles/constants/levels';
 
 .appContainer {
   min-height: 100vh;
   background-color: colors.$BACKGROUND;
 
   .mainContainer {
-    padding: 0 40px 60px;
+    padding: sizes.$HEADER_HEIGHT 40px 60px;
     margin-left: sizes.$LNB_WIDTH;
   }
 
@@ -16,11 +17,20 @@
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: sizes.$LNB_WIDTH;
+  z-index: levels.$HEADER;
+  width: calc(100% - sizes.$LNB_WIDTH);
+  padding: 0 40px;
+  background-color: colors.$BACKGROUND;
+
   ul {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 80px;
+    height: sizes.$HEADER_HEIGHT;
     border-bottom: 1px solid colors.$GRAY50;
 
     li + li {
