@@ -4,9 +4,7 @@ import { useQuery } from 'react-query'
 import store from 'store'
 
 import { IAd, IAdData } from 'types/ads'
-import { setFetchDelayPromise } from 'utils'
 import { adsDataState, adsCurrentIndexState, adsFilterIndexState } from 'states'
-
 import { getAdListData } from 'routes/ManageAds/services'
 
 const STATUS = ['all', 'active', 'ended']
@@ -41,7 +39,7 @@ export const useFetchAdsQuery = () => {
       resolve(newData)
     })
 
-    filter.then(setFetchDelayPromise(500)).then((newData) => setFilteredData(newData))
+    filter.then((newData) => setFilteredData(newData))
   }, [data, adsFilterIndex])
 
   return filteredData
