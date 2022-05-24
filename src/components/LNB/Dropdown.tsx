@@ -22,7 +22,7 @@ const Dropdown = () => {
   useClickAway(dropdownRef, () => setIsOpen(false))
   return (
     <div className={cx(styles.dropdown, { [styles.open]: isOpen })} ref={dropdownRef}>
-      <button type='button' className={cx(styles.select, 'main-text')} onClick={() => setIsOpen((prev) => !prev)}>
+      <button type='button' className={cx(styles.select, 'mainText')} onClick={() => setIsOpen((prev) => !prev)}>
         {currentService}
         <ArrowDownIcon />
       </button>

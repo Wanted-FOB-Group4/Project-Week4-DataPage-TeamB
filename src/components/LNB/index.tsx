@@ -17,11 +17,11 @@ const LNB = () => {
           </Link>
         </div>
         <div className={styles.service}>
-          <div className={cx(styles.label, 'sub-text')}>서비스</div>
+          <div className={cx(styles.label, 'subText')}>서비스</div>
           <Dropdown />
         </div>
         <div>
-          <div className={cx(styles.label, 'sub-text')}>광고 센터</div>
+          <div className={cx(styles.label, 'subText')}>광고 센터</div>
           <Navigation />
         </div>
       </div>
@@ -31,13 +31,13 @@ const LNB = () => {
             <GuideIcon />
           </div>
           <div className={styles.description}>
-            <div className={styles.mainText}>레버 이용 가이드</div>
-            <div className='sub-text'>시작하기 전에 알아보기</div>
+            <div className='mainText'>레버 이용 가이드</div>
+            <div className='subText'>시작하기 전에 알아보기</div>
           </div>
         </button>
         <div className={styles.bottomText}>
-          <div className='sub-text'>레버는 함께 만들어갑니다.</div>
-          <Link to='#' className='sub-text'>
+          <div className='subText'>레버는 함께 만들어갑니다.</div>
+          <Link to='#' className='subText'>
             이용약관
           </Link>
         </div>

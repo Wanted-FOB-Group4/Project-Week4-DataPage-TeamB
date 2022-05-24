@@ -9,13 +9,13 @@ const Navigation = () => {
     <nav className={styles.navigation}>
       <ul>
         <li>
-          <NavLink to='/' className={({ isActive }) => cx('main-text', { [styles.isActive]: isActive })}>
+          <NavLink to='/' className={({ isActive }) => cx('mainText', { [styles.isActive]: isActive })}>
             <DashboardIcon />
             대시보드
           </NavLink>
         </li>
         <li>
-          <NavLink to='manage' className={({ isActive }) => cx('main-text', { [styles.isActive]: isActive })}>
+          <NavLink to='manage' className={({ isActive }) => cx('mainText', { [styles.isActive]: isActive })}>
             <ManageAdsIcon />
             광고관리
           </NavLink>
