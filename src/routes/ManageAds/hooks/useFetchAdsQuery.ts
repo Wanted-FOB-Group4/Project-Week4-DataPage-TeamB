@@ -1,8 +1,7 @@
-import { adsCurrentIndexState } from '../states/adsCurrentIndexState'
 import { useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import { adsFilterIndexState } from 'states'
+import { adsCurrentIndexState, adsFilterIndexState } from 'states'
 import { getAdListData } from 'services'
 import { IAdData } from 'types/ads'
 

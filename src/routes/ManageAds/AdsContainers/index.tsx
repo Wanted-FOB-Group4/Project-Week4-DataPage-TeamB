@@ -1,4 +1,4 @@
-import { useFetchAdsQuery } from 'hooks'
+import { useFetchAdsQuery } from 'routes/ManageAds/hooks'
 import AdsContainer from './AdsContainer'
 
 import styles from './adsContainers.module.scss'
