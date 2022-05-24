@@ -1,4 +1,5 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
 @use '/src/styles/constants/sizes';
 
 .lnb {
@@ -11,9 +12,9 @@
   width: sizes.$LNB_WIDTH;
   height: 100%;
   padding: 60px 40px;
-  background-color: colors.$WHITE;
-  box-shadow: 4px 0px 10px 0px rgba(0, 0, 0, 4%);
   overflow-y: scroll;
+  background-color: colors.$WHITE;
+  box-shadow: 4px 0 10px 0 rgba(0, 0, 0, 4%);
 
   .logoWrapper {
     padding-bottom: 60px;
@@ -45,14 +46,14 @@
     .content {
       position: absolute;
       top: 100%;
-      z-index: 1;
+      z-index: levels.$DROPDOWN_BOTTOM;
       width: 100%;
       margin-top: 4px;
       overflow: hidden;
       background-color: colors.$WHITE;
       border: 1px solid colors.$GRAY100;
       border-radius: 10px;
-      box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 20%);
+      box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 
       button {
         width: 100%;
@@ -75,8 +76,8 @@
       border-top: 1px solid colors.$GRAY50;
 
       svg {
-        fill: currentColor;
         margin-right: 4px;
+        fill: currentcolor;
       }
     }
   }
