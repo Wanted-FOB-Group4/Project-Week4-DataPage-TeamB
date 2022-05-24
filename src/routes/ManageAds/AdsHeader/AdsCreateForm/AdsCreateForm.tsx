@@ -6,6 +6,7 @@ import styles from './adsCreateForm.module.scss'
 import { IAd } from 'types/ads'
 import { useRecoilState } from 'recoil'
 import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
+import AdsCreateFormLi from './AdsCreateFormLi'
 
 const AD_TYPE_WEB = true
 const AD_TYPE_APP = false
@@ -31,16 +32,13 @@ const AdsCreateForm = () => {
   }
 
   const handleAdTypeWebChange = () => setAdType(AD_TYPE_WEB)
-
   const handleAdTypeAppChange = () => setAdType(AD_TYPE_APP)
-
   const handleActiveChange = () => setIsActive((prevState) => !prevState)
-
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setStartDate(e.currentTarget.value)
-
   const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setEndDate(e.currentTarget.value)
-
   const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => setBudget(Number(e.currentTarget.value))
+  const handleConvValueChange = (e: React.ChangeEvent<HTMLInputElement>) => setConvValue(Number(e.currentTarget.value))
+  const handleCostChange = (e: React.ChangeEvent<HTMLInputElement>) => setCost(Number(e.currentTarget.value))
 
   return (
     <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
@@ -69,30 +67,25 @@ const AdsCreateForm = () => {
           </div>
         </li>
         <li className={styles.createList}>
-          <label htmlFor='isActive'>진행중 여부</label>
-          <input name='isActive' type='checkbox' checked={isActive} onChange={handleActiveChange} />
+          <AdsCreateFormLi name='isActive' value={isActive} onChange={handleActiveChange} />
         </li>
         <li className={styles.createList}>
-          <label htmlFor='startDate'>시작 날짜</label>
-          <input name='startDate' type='date' value={startDate} onChange={handleStartDateChange} />
+          <AdsCreateFormLi name='startDate' value={startDate} onChange={handleStartDateChange} />
         </li>
         <li className={cx(styles.createList, { [styles.isInputHidden]: !isActive })}>
-          <label htmlFor='endDate'>종료 날짜</label>
-          <input name='endDate' type='date' min={startDate} value={endDate} onChange={handleEndDateChange} />
+          <AdsCreateFormLi name='endDate' value={endDate} onChange={handleEndDateChange} />
         </li>
         <li className={styles.createList}>
-          <label htmlFor='budget'>일 희망 예산</label>
-          <input name='budget' type='number' max='99999999999999' value={budget} onChange={handleBudgetChange} />
+          <AdsCreateFormLi name='budget' value={budget} onChange={handleBudgetChange} />
         </li>
         <li className={styles.createList}>
-          <label htmlFor='convValue'>매출</label>
-          <input name='convValue' type='number' max='99999999999999' value={budget} onChange={handleBudgetChange} />
+          <AdsCreateFormLi name='convValue' value={convValue} onChange={handleConvValueChange} />
         </li>
         <li className={styles.createList}>
-          <label htmlFor='cost'>광고 비용</label>
-          <input name='cost' type='number' max='99999999999999' value={budget} onChange={handleBudgetChange} />
+          <AdsCreateFormLi name='cost' value={cost} onChange={handleCostChange} />
         </li>
       </ul>
+      <button type='submit'>추가하기</button>
     </form>
   )
 }

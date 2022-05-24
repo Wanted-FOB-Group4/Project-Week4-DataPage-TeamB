@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { useClickAway } from 'react-use'
 import { cx } from 'styles'
 import styles from './adsCreateButton.module.scss'
-import AdsCreateForm from './AdsCreateForm'
+import AdsCreateForm from '../AdsCreateForm'
 
 const AdsCreateButton = () => {
   const [isCreateBoxHidden, setIsCreateBoxHidden] = useState(true)
