@@ -21,7 +21,9 @@ export const useFetchAdsQuery = (): IAdData => {
     cacheTime: Infinity,
     suspense: true,
     useErrorBoundary: true,
+    onSuccess: (successData) => {
+      setAdsCurrentIndex(successData.count)
+    },
   })
-  setAdsCurrentIndex(data.count)
   return data || INIT_DATA
 }
