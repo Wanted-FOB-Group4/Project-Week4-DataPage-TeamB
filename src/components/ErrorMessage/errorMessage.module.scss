@@ -14,8 +14,11 @@
   }
 
   h1 {
+    width: 100%;
+    overflow-x: hidden;
     font-size: 20px;
     font-weight: 700;
     color: colors.$GRAY800;
+    text-align: center;
   }
 }
