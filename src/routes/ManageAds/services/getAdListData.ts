@@ -7,9 +7,8 @@ import { setFetchDelay, setFetchDelayPromise } from 'utils'
 export const getAdListData = () => {
   const promise = new Promise((resolve: (value: IAdData) => void, reject) => {
     const data: IAdData = store.get('adsData')
-    if (!data) {
-      reject()
-    } else resolve(data)
+    if (!data) reject()
+    else resolve(data)
   })
   return promise
     .then(setFetchDelayPromise(500))
