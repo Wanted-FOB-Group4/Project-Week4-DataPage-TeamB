@@ -1,10 +1,5 @@
 import axios from 'axios'
-import dayjs from 'dayjs'
-
-const translateDate = (date: string) => {
-  const parseDate = dayjs(date, 'YYYY-MM-DD')
-  return parseDate.format('YYYY-MM-DD')
-}
+import { translateDate } from 'utils/translateDate'
 
 // wanted_FE_trend-data-set.json
 export const getFilterTrendData = (startDate: string, endDate: string) =>
