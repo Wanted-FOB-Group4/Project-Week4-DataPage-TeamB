@@ -75,7 +75,6 @@
       border-top: 1px solid colors.$GRAY50;
 
       svg {
-        fill: currentColor;
         margin-right: 4px;
       }
     }
@@ -87,10 +86,11 @@
       align-items: center;
       padding: 20px 22px;
       border-radius: 10px;
-      transition: 0.2s ease-in-out;
+      transition: 0.1s ease-in-out;
 
       svg {
         margin-right: 12px;
+        transition: 0.1s ease-in-out;
       }
 
       &.isActive {
@@ -118,6 +118,10 @@
       margin-right: 10px;
       background-color: colors.$PRIMARY;
       border-radius: 50%;
+
+      svg {
+        fill: colors.$WHITE;
+      }
     }
 
     .description {
