@@ -8,7 +8,6 @@ export const getAdListData = () => {
   const promise = new Promise((resolve: (value: IAdData) => void, reject) => {
     const data: IAdData = store.get('adsData')
     if (!data) {
-      console.log('data not found in local storage... fetch from axios')
       reject()
     } else resolve(data)
   })
