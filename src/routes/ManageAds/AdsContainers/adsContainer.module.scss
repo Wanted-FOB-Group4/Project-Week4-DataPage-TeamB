@@ -2,11 +2,10 @@
 @use 'styles/mixins/flexbox';
 
 .adsContainerWrapper {
-  @include flexbox.flexbox(center, start);
+  @include flexbox.flexbox(center, center);
   flex-direction: column;
   width: 300px;
-  height: 400px;
-  padding: 10px 20px 5px;
+  padding: 30px 20px 20px;
   margin-bottom: 30px;
   // border: 1px solid colors.$PRIMARY; // onFocus
   border: 1px solid colors.$GRAY100;
