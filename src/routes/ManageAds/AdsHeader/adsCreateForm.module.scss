@@ -28,6 +28,7 @@
     border-bottom: 1px solid colors.$GRAY50;
   }
 
+  input[type='radio'],
   input[type='checkbox'] {
     width: 20px;
     height: 20px;
@@ -39,7 +40,26 @@
     }
   }
 
+  input[type='date'],
   input[type='number'] {
     width: 120px;
+    color: colors.$GRAY300;
   }
+}
+
+.radioInput {
+  @include flexbox.flexbox(start, center);
+  flex-direction: row;
+  width: 140px;
+
+  label {
+    width: 40px;
+    margin: 0 5px;
+    line-height: 20px;
+    color: colors.$GRAY300;
+  }
+}
+
+.isInputHidden {
+  display: none;
 }
