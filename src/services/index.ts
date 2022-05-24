@@ -1,0 +1,1 @@
+export { getAdListData } from './getAdListData'
