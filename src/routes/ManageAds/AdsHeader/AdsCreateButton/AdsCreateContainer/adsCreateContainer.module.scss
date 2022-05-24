@@ -22,10 +22,6 @@
     color: colors.$GRAY800;
   }
 
-  .isCreateBoxHidden {
-    display: none;
-  }
-
   .createFormWrapper {
     @include flexbox.flexbox(center, center);
     flex-direction: column;
@@ -42,4 +38,8 @@
       border-radius: 10px;
     }
   }
+}
+
+.isCreateBoxHidden {
+  display: none;
 }
