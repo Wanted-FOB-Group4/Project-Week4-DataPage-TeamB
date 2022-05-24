@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import dayjs from 'dayjs'
-import cx from 'classnames'
-
-import styles from './adsCreateForm.module.scss'
-import { IAd } from 'types/ads'
 import { useRecoilState } from 'recoil'
+import dayjs from 'dayjs'
+
 import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
-import AdsCreateFormLi from './AdsCreateFormLi'
+
 import AdsCreateFormAdTypeLi from './AdsCreateFormAdTypeLi'
+import AdsCreateFormLi from './AdsCreateFormLi'
+import styles from './adsCreateForm.module.scss'
 
 const AdsCreateForm = () => {
   const today = dayjs().format('YYYY-MM-DD')
