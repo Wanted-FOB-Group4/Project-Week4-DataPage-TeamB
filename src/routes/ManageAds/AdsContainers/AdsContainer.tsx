@@ -17,7 +17,7 @@ const AdsContainer = ({ adData }: IProps) => {
   const roas = getPercentage(adData.report.roas)
 
   return (
-    <div className={styles.adsContainerWrapper}>
+    <li className={styles.adsContainerWrapper}>
       <h2>{title}</h2>
       <ul>
         <AdsListBlock dataKey='상태' dataValue={adData.status === 'active' ? '진행중' : '완료'} />
@@ -28,7 +28,7 @@ const AdsContainer = ({ adData }: IProps) => {
         <AdsListBlock dataKey='광고 비용' dataValue={cost} />
       </ul>
       <button type='button'>수정하기</button>
-    </div>
+    </li>
   )
 }
 

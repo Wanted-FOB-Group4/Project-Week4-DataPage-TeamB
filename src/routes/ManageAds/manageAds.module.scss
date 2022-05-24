@@ -7,10 +7,3 @@
   border: 1px solid black;
   line-break: auto;
 }
-
-.manageAdsBottom {
-  @include flexbox.flexbox(between, center);
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-}
