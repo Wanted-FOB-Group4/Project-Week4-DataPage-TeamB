@@ -5,13 +5,6 @@
   @include flexbox.flexbox(center, center);
   flex-direction: column;
 
-  label {
-    width: 100px;
-    margin-right: 10px;
-    font-size: 12px;
-    color: colors.$GRAY100;
-  }
-
   ul {
     width: 100%;
     margin: 20px 0;
