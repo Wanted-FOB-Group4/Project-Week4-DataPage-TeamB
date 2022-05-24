@@ -1,3 +1,6 @@
+import { Suspense } from 'react'
+import AdsContainers from './AdsContainers'
+
 const ManageAds = () => {
   return (
     <>
@@ -12,3 +15,7 @@ const ManageAds = () => {
 }
 
 export default ManageAds
+
+// <Suspense fallback={<div>Loading...</div>}>
+// <AdsContainers />
+// </Suspense>
