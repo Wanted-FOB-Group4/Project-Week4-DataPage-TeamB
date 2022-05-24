@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
-import { cx } from 'styles'
+import cx from 'classnames'
 
 import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
 
 import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
 import AdsCreateFormInput from './AdsCreateFormInput'
 import styles from './adsCreateContainer.module.scss'
+import { IAd } from 'types/ads'
 
 interface IProps {
   isHidden: boolean
@@ -16,7 +17,7 @@ interface IProps {
 const AdsCreateContainer = ({ isHidden }: IProps) => {
   const today = dayjs().format('YYYY-MM-DD')
   const [adType, setAdType] = useState(false)
-  const [isActive, setIsActive] = useState(false)
+  const [isDone, setIsActive] = useState(false)
   const [startDate, setStartDate] = useState(today)
   const [endDate, setEndDate] = useState(today)
   const [budget, setBudget] = useState(0)
@@ -27,10 +28,21 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // const data: IAd = {
-    //   id:
-    // }
-    console.log('잘했습니다')
+    const data: IAd = {
+      id: adsCurrentIndex + 1,
+      adType: adType ? 'app' : 'web',
+      title,
+      budget,
+      status: isDone ? 'ended' : 'active',
+      startDate,
+      endDate: isDone ? endDate : null,
+      report: {
+        cost,
+        convValue,
+        roas: Math.floor((convValue * 100) / cost),
+      },
+    }
+    console.log(data)
   }
 
   const handleActiveChange = () => setIsActive((prevState) => !prevState)
@@ -48,13 +60,13 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
         <ul>
           <AdsCreateFormInput name='title' value={title} onChange={handleTitleChange} />
           <AdsCreateFormAdTypeInput value={adType} setValue={setAdType} />
-          <AdsCreateFormInput name='isActive' value={isActive} onChange={handleActiveChange} />
+          <AdsCreateFormInput name='isDone' value={isDone} onChange={handleActiveChange} />
           <AdsCreateFormInput name='startDate' value={startDate} onChange={handleStartDateChange} />
           <AdsCreateFormInput
             name='endDate'
             value={endDate}
             onChange={handleEndDateChange}
-            isActive={isActive}
+            isDone={isDone}
             startDate={startDate}
           />
           <AdsCreateFormInput name='budget' value={budget} onChange={handleBudgetChange} />
