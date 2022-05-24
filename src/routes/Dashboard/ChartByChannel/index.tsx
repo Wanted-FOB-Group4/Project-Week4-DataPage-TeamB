@@ -19,14 +19,12 @@ const ChartByChannel = ({ data }: IProps) => {
   const colors = ['#2DB400', '#f9e000', '#AC8AF8', '#1778F2']
   const channels = ['naver', 'kakao', 'google', 'facebook']
   const containerRef = useRef<null | HTMLDivElement>(null)
-  const [width, setWidth] = useState(1000)
-  const [isResonsive, setIsResponsive] = useState(true)
+  const [width, setWidth] = useState(1400)
 
   useEffect(() => {
     const onResize = () => {
       const containerWidth = Number(containerRef.current?.offsetWidth)
       setWidth(containerWidth >= 1000 ? containerWidth : 1000)
-      setIsResponsive(false)
     }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
@@ -68,7 +66,7 @@ const ChartByChannel = ({ data }: IProps) => {
         width={width}
         containerComponent={
           <VictoryVoronoiContainer
-            responsive={isResonsive}
+            responsive={false}
             labels={({ datum }) => {
               return datum.y
             }}

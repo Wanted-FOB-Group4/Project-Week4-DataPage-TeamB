@@ -1,6 +1,7 @@
 @use '/src/styles/constants/colors';
 
 .chartContainer {
+  height: 400px;
   overflow-x: auto;
   overflow-y: hidden;
 
