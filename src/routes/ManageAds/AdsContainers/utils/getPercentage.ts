@@ -1,5 +1,3 @@
-import { addCommaToNumbers } from 'utils'
-
-const getPercentage = (roas: number) => `${addCommaToNumbers(roas)}%`
+const getPercentage = (roas: number) => `${roas.toLocaleString()}%`
 
 export default getPercentage
