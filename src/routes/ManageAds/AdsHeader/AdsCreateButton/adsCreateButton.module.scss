@@ -1,5 +1,4 @@
 @use 'styles/constants/colors';
-@use 'styles/constants/levels';
 @use 'styles/mixins/flexbox';
 
 .createWrapper {
@@ -12,29 +11,4 @@
   color: colors.$WHITE;
   background-color: colors.$PRIMARY;
   border-radius: 10px;
-}
-
-.createBox {
-  @include flexbox.flexbox(center, start);
-  position: absolute;
-  right: 0;
-  z-index: levels.$DROPDOWN_BOTTOM;
-  flex-direction: column;
-  width: 300px;
-  padding: 30px 20px 20px;
-  margin-top: 4px;
-  background-color: colors.$WHITE;
-  border: 2px solid colors.$PRIMARY;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
-}
-
-h2 {
-  font-size: 15px;
-  font-weight: 700;
-  color: colors.$GRAY800;
-}
-
-.isCreateBoxHidden {
-  display: none;
 }
