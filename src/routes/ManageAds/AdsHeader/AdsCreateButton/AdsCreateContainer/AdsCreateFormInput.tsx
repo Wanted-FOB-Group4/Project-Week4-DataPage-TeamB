@@ -4,7 +4,7 @@ import styles from './adsCreateFormInput.module.scss'
 
 interface IProps {
   name: string
-  value: number | string | boolean | undefined
+  value: number | string | boolean | null
   onChange?: React.ChangeEventHandler<HTMLInputElement>
   startDate?: string
   isDone?: boolean
