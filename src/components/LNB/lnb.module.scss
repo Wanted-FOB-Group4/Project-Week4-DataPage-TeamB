@@ -11,9 +11,9 @@
   width: sizes.$LNB_WIDTH;
   height: 100%;
   padding: 60px 40px;
-  background-color: colors.$WHITE;
-  box-shadow: 4px 0px 10px 0px rgba(0, 0, 0, 4%);
   overflow-y: scroll;
+  background-color: colors.$WHITE;
+  box-shadow: 4px 0 10px 0 rgba(0, 0, 0, 4%);
 
   .logoWrapper {
     padding-bottom: 60px;
@@ -75,8 +75,8 @@
       border-top: 1px solid colors.$GRAY50;
 
       svg {
-        fill: currentColor;
         margin-right: 4px;
+        fill: currentcolor;
       }
     }
   }
