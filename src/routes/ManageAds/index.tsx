@@ -1,11 +1,23 @@
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+
+import { Loading, ErrorMessage } from 'components'
+import AdsContainers from './AdsContainers'
+import AdsHeader from './AdsHeader'
+
 const ManageAds = () => {
+  const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />
+
   return (
     <>
       <h1 className='title'>광고관리</h1>
       <div className='container'>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque iure delectus doloribus commodi consectetur
-        minus optio fugiat corporis quos voluptates, facilis aspernatur inventore rerum impedit quia reprehenderit vitae
-        accusantium similique!
+        <AdsHeader />
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary fallbackRender={handleErrorFallback}>
+            <AdsContainers />
+          </ErrorBoundary>
+        </Suspense>
       </div>
     </>
   )

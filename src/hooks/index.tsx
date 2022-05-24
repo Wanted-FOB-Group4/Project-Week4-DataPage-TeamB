@@ -1,2 +1,0 @@
-
-export { useTimeoutFn } from './useTimeoutFn'
