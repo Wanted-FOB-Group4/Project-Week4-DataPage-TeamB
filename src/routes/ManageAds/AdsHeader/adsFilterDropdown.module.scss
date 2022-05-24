@@ -1,11 +1,12 @@
 @use 'styles/constants/colors';
+@use '/src/styles/constants/levels';
 @use 'styles/mixins/flexbox';
 
 .dropdownWrapper {
   position: relative;
 }
 
-.dropdownButton {
+.dropdownTop {
   @include flexbox.flexbox(between, center);
   width: 150px;
   height: 40px;
@@ -16,6 +17,7 @@
 
   span {
     padding: 0 10px;
+    font-weight: 700;
     color: colors.$GRAY800;
   }
 
@@ -26,12 +28,13 @@
 
 .dropdownBottom {
   position: absolute;
-  z-index: 10;
+  z-index: levels.$DROPDOWN_BOTTOM;
   width: 150px;
-  margin-top: 10px;
+  margin-top: 4px;
   background-color: colors.$WHITE;
   border: 1px solid colors.$GRAY100;
-  box-shadow: 0 0 5px colors.$GRAY100;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 
   li {
     width: 100%;
@@ -44,9 +47,11 @@
     button {
       width: 100%;
       padding: 10px 20px;
+      overflow: hidden;
+      font-weight: 500;
       color: colors.$GRAY800;
       text-align: left;
-      transition: background-color 0.2s;
+      transition: 0.1s ease-in-out;
 
       &:hover {
         background-color: colors.$GRAY50;

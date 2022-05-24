@@ -32,7 +32,7 @@ const AdsFilterDropdown = () => {
 
   return (
     <div className={styles.dropdownWrapper} ref={dropdownRef}>
-      <button type='button' className={styles.dropdownButton} onClick={handleButtonClick}>
+      <button type='button' className={styles.dropdownTop} onClick={handleButtonClick}>
         <span>{DROPDOWN_KEYWORDS[adsFilterIndex]}</span>
         <ArrowDown className={styles.dropdownIcon} />
       </button>
