@@ -18,6 +18,7 @@
     }
   },
   "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "arrow-body-style": "off",
     "semi": ["warn", "never"],
     "react/function-component-definition": ["warn", { "namedComponents": "arrow-function" }],
