@@ -5,7 +5,10 @@ import { selectorState } from 'states/dashBoard'
 import styles from './selectButton.module.scss'
 
 interface IProps {
-  data: string[]
+  data: {
+    name: string
+    title: string
+  }[]
   idx: number
   setIsDropdownOpen: Dispatch<SetStateAction<boolean[]>>
 }
@@ -13,10 +16,10 @@ interface IProps {
 const Dropdown = ({ data, idx, setIsDropdownOpen }: IProps) => {
   const setSelector = useSetRecoilState(selectorState)
   const handleDropdownClick = (e: MouseEvent<HTMLButtonElement>) => {
-    const { name } = e.currentTarget.dataset
+    const { name, title } = e.currentTarget.dataset
     setSelector((prev) => {
       return prev.map((item, index) => {
-        if (index === idx) return String(name)
+        if (index === idx) return { name: String(name), title: String(title) }
         return item
       })
     })
@@ -30,10 +33,10 @@ const Dropdown = ({ data, idx, setIsDropdownOpen }: IProps) => {
   return (
     <div className={styles.dropdownBottom}>
       <ul>
-        {data.map((item) => (
-          <li key={item}>
-            <button data-name={item} type='button' onClick={handleDropdownClick}>
-              {item}
+        {data.map((item: { name: string; title: string }) => (
+          <li key={item.name}>
+            <button data-name={item.name} data-title={item.title} type='button' onClick={handleDropdownClick}>
+              {item.title}
             </button>
           </li>
         ))}

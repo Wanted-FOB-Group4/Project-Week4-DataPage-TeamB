@@ -1,6 +1,15 @@
 import { atom } from 'recoil'
 
-export const selectorState = atom<string[]>({
+interface ISelectorItem {
+  name: string
+  title: string
+}
+
+const INIT = {
+  name: '',
+  title: '',
+}
+export const selectorState = atom<ISelectorItem[]>({
   key: 'selectorState',
-  default: ['', ''],
+  default: [{ name: 'click', title: '클릭 수' }, INIT],
 })

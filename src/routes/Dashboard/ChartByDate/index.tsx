@@ -2,6 +2,8 @@ import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiC
 import dayjs from 'dayjs'
 
 import { makeDataByTrend } from 'utils/makeDataByTrend'
+import { useRecoilValue } from 'recoil'
+import { selectorState } from 'states/dashBoard'
 
 interface ICOLOR {
   roas: string
@@ -23,14 +25,15 @@ const COLOR: ICOLOR = {
 }
 
 const ChartByDate = () => {
-  const targets = ['click', 'imp']
+  const selectors = useRecoilValue(selectorState)
+  const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
   const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-11')
   const maxs = [0, 0]
   const offSet = [50, 1000]
-  const datas = targets.map((target: string, idx) =>
+  const datas = filteredSelectors.map((target: { name: string; title: string }, idx) =>
     totalDataByDate.map((item) => {
-      maxs[idx] = Math.max(maxs[idx], item[target])
-      return { x: item.date, y: item[target] }
+      maxs[idx] = Math.max(maxs[idx], item[target.name])
+      return { x: item.date, y: item[target.name] }
     })
   )
   const maxDatas = maxs.map((maxData) => {
@@ -40,9 +43,8 @@ const ChartByDate = () => {
     }
     return (Math.floor(maxData / digit) + 1) * digit
   })
-
-  const axisesY = targets.map((target, idx) => {
-    const key = `Axis-${target}`
+  const axisesY = filteredSelectors.map((target: { name: string; title: string }, idx) => {
+    const key = `Axis-${target.name}`
     return (
       <VictoryAxis
         key={key}
@@ -61,7 +63,7 @@ const ChartByDate = () => {
       />
     )
   })
-  const lineChartes = targets.map((target, idx) => {
+  const lineChartes = filteredSelectors.map((target: { name: string; title: string }, idx) => {
     const key = `lineChart-${target}`
     return (
       <VictoryLine
@@ -69,7 +71,7 @@ const ChartByDate = () => {
         data={datas[idx]}
         style={{
           data: {
-            stroke: COLOR[target],
+            stroke: COLOR[target.name],
           },
           labels: { fontSize: 10 },
         }}
