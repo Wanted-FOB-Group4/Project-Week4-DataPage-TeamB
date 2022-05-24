@@ -1,9 +1,8 @@
-import { setFetchDelayPromise } from '../../../utils/setFetchDelay'
 import axios, { AxiosResponse } from 'axios'
 import store from 'store'
 
 import { IAd, IAdData } from 'types/ads'
-import { setFetchDelay } from 'utils'
+import { setFetchDelay, setFetchDelayPromise } from 'utils'
 
 const STATUS = ['all', 'active', 'ended']
 
