@@ -1,5 +1,3 @@
-import cx from 'classnames'
-
 import { IAd } from 'types/ads'
 import { addUnitToBudget } from 'utils'
 import { getCreateDate, getPercentage, getAdsTitle } from './utils'
