@@ -42,7 +42,7 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
   const handleCostChange = (e: React.ChangeEvent<HTMLInputElement>) => setCost(Number(e.currentTarget.value))
 
   return (
-    <div className={cx(styles.createBox, { [styles.isCreateBoxHidden]: isHidden })}>
+    <div className={cx(styles.createContainer, { [styles.isCreateBoxHidden]: isHidden })}>
       <h2>새 광고</h2>
       <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
         <ul>
