@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
+import { cx } from 'styles'
 
 import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
 
-import AdsCreateFormAdTypeLi from './AdsCreateFormAdTypeLi'
-import AdsCreateFormLi from './AdsCreateFormLi'
-import styles from './adsCreateForm.module.scss'
+import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
+import AdsCreateFormInput from './AdsCreateFormInput'
+import styles from './adsCreateContainer.module.scss'
 
-const AdsCreateForm = () => {
+interface IProps {
+  isHidden: boolean
+}
+
+const AdsCreateContainer = ({ isHidden }: IProps) => {
   const today = dayjs().format('YYYY-MM-DD')
   const [adType, setAdType] = useState(false)
   const [isActive, setIsActive] = useState(false)
@@ -37,26 +42,29 @@ const AdsCreateForm = () => {
   const handleCostChange = (e: React.ChangeEvent<HTMLInputElement>) => setCost(Number(e.currentTarget.value))
 
   return (
-    <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
-      <ul>
-        <AdsCreateFormLi name='title' value={title} onChange={handleTitleChange} />
-        <AdsCreateFormAdTypeLi value={adType} setValue={setAdType} />
-        <AdsCreateFormLi name='isActive' value={isActive} onChange={handleActiveChange} />
-        <AdsCreateFormLi name='startDate' value={startDate} onChange={handleStartDateChange} />
-        <AdsCreateFormLi
-          name='endDate'
-          value={endDate}
-          onChange={handleEndDateChange}
-          isActive={isActive}
-          startDate={startDate}
-        />
-        <AdsCreateFormLi name='budget' value={budget} onChange={handleBudgetChange} />
-        <AdsCreateFormLi name='convValue' value={convValue} onChange={handleConvValueChange} />
-        <AdsCreateFormLi name='cost' value={cost} onChange={handleCostChange} />
-      </ul>
-      <button type='submit'>추가하기</button>
-    </form>
+    <div className={cx(styles.createBox, { [styles.isCreateBoxHidden]: isHidden })}>
+      <h2>새 광고</h2>
+      <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
+        <ul>
+          <AdsCreateFormInput name='title' value={title} onChange={handleTitleChange} />
+          <AdsCreateFormAdTypeInput value={adType} setValue={setAdType} />
+          <AdsCreateFormInput name='isActive' value={isActive} onChange={handleActiveChange} />
+          <AdsCreateFormInput name='startDate' value={startDate} onChange={handleStartDateChange} />
+          <AdsCreateFormInput
+            name='endDate'
+            value={endDate}
+            onChange={handleEndDateChange}
+            isActive={isActive}
+            startDate={startDate}
+          />
+          <AdsCreateFormInput name='budget' value={budget} onChange={handleBudgetChange} />
+          <AdsCreateFormInput name='convValue' value={convValue} onChange={handleConvValueChange} />
+          <AdsCreateFormInput name='cost' value={cost} onChange={handleCostChange} />
+        </ul>
+        <button type='submit'>추가하기</button>
+      </form>{' '}
+    </div>
   )
 }
 
-export default AdsCreateForm
+export default AdsCreateContainer

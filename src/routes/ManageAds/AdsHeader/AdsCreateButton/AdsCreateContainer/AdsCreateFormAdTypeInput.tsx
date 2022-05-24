@@ -1,4 +1,4 @@
-import styles from './adsCreateFormLi.module.scss'
+import styles from './adsCreateFormInput.module.scss'
 
 interface IProps {
   value: boolean
@@ -8,7 +8,7 @@ interface IProps {
 const AD_TYPE_WEB = true
 const AD_TYPE_APP = false
 
-const AdsCreateFormAdTypeLi = ({ value, setValue }: IProps) => {
+const AdsCreateFormAdTypeIput = ({ value, setValue }: IProps) => {
   const handleAdTypeWebChange = () => setValue(AD_TYPE_WEB)
   const handleAdTypeAppChange = () => setValue(AD_TYPE_APP)
 
@@ -39,4 +39,4 @@ const AdsCreateFormAdTypeLi = ({ value, setValue }: IProps) => {
   )
 }
 
-export default AdsCreateFormAdTypeLi
+export default AdsCreateFormAdTypeIput

@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-import styles from './adsCreateFormLi.module.scss'
+import styles from './adsCreateFormInput.module.scss'
 
 interface IProps {
   name: string
@@ -10,7 +10,7 @@ interface IProps {
   isActive?: boolean
 }
 
-const AdsCreateFormLi = ({ name, value, onChange, startDate, isActive }: IProps) => {
+const AdsCreateFormInput = ({ name, value, onChange, startDate, isActive }: IProps) => {
   const inputTag = {
     title: <input name='title' type='text' value={value as string} onChange={onChange} />,
     isActive: <input name='isActive' type='checkBox' checked={value as boolean} onChange={onChange} />,
@@ -38,4 +38,4 @@ const AdsCreateFormLi = ({ name, value, onChange, startDate, isActive }: IProps)
   )
 }
 
-export default AdsCreateFormLi
+export default AdsCreateFormInput

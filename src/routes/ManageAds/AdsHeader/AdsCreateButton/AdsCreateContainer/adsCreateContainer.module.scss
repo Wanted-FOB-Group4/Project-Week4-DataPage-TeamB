@@ -1,0 +1,45 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.createBox {
+  @include flexbox.flexbox(center, start);
+  position: absolute;
+  right: 0;
+  z-index: levels.$DROPDOWN_BOTTOM;
+  flex-direction: column;
+  width: 300px;
+  padding: 30px 20px 20px;
+  margin-top: 4px;
+  background-color: colors.$WHITE;
+  border: 2px solid colors.$PRIMARY;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+  }
+
+  .isCreateBoxHidden {
+    display: none;
+  }
+
+  .createFormWrapper {
+    @include flexbox.flexbox(center, center);
+    flex-direction: column;
+
+    ul {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+    }
+  }
+}
