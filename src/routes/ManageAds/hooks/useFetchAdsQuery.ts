@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react'
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { useQuery } from 'react-query'
 import store from 'store'
 
 import { IAd, IAdData } from 'types/ads'
-import { adsDataState, adsCurrentIndexState, adsFilterIndexState } from 'states'
+import { adsDataState, adsFilterIndexState } from 'states'
 import { getAdListData } from 'routes/ManageAds/services'
 
 const STATUS = ['all', 'active', 'ended']
 
 export const useFetchAdsQuery = () => {
-  const [adsCurrentIndex, setAdsCurrentIndex] = useRecoilState(adsCurrentIndexState)
   const adsFilterIndex = useRecoilValue(adsFilterIndexState)
-  const setAdsData = useSetRecoilState(adsDataState)
+  const [adsData, setAdsData] = useRecoilState(adsDataState)
   const [filteredData, setFilteredData] = useState<IAdData>({ count: 0, ads: [] })
 
-  const { data } = useQuery(['#adsData', adsCurrentIndex], getAdListData, {
+  const { data } = useQuery(['#adsData', adsData.count], getAdListData, {
     refetchOnWindowFocus: false,
     cacheTime: 0,
     suspense: true,
@@ -23,7 +22,6 @@ export const useFetchAdsQuery = () => {
     onSuccess: (successData) => {
       store.set('adsData', successData)
       setAdsData(successData)
-      setAdsCurrentIndex(successData.count)
     },
   })
 
