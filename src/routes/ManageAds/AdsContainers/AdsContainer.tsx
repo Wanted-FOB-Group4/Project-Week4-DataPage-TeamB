@@ -1,6 +1,7 @@
 import { IAd } from 'types/ads'
 import AdsListBlock from './AdsListBlock'
-import { getCreateDate, getBudget, getPercentage, getAdsTitle } from './utils'
+import { getCreateDate, getPercentage, getAdsTitle } from './utils'
+import { addUnitToBudget } from 'utils'
 
 import styles from './adsContainer.module.scss'
 
@@ -11,9 +12,9 @@ interface IProps {
 const AdsContainer = ({ adData }: IProps) => {
   const title = getAdsTitle(adData.title, adData.adType)
   const date = getCreateDate(adData.startDate, adData.endDate, adData.status)
-  const budget = getBudget(adData.budget)
-  const convValue = getBudget(adData.report.convValue)
-  const cost = getBudget(adData.report.cost)
+  const budget = addUnitToBudget(adData.budget)
+  const convValue = addUnitToBudget(adData.report.convValue)
+  const cost = addUnitToBudget(adData.report.cost)
   const roas = getPercentage(adData.report.roas)
 
   return (

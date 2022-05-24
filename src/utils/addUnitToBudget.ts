@@ -1,6 +1,6 @@
-import addCommaToNumbers from './addCommaToNumbers'
+import { addCommaToNumbers } from './addCommaToNumbers'
 
-const getBudget = (budget: number) => {
+export const addUnitToBudget = (budget: number) => {
   if (budget < 1000) return `${budget}원`
   if (budget < 100000) {
     if (budget % 1000 > 0) return `${Math.floor(budget / 1000)}천 ${budget % 1000}원`
@@ -15,5 +15,3 @@ const getBudget = (budget: number) => {
   if (rest > 0) strArr.push(rest)
   return `${strArr.join(' ')}원`
 }
-
-export default getBudget

@@ -1,4 +1,4 @@
-import addCommaToNumbers from './addCommaToNumbers'
+import { addCommaToNumbers } from 'utils'
 
 const getPercentage = (roas: number) => `${addCommaToNumbers(roas)}%`
 
