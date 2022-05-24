@@ -1,4 +1,6 @@
 import { Suspense } from 'react'
+
+import Loading from 'components/Loading'
 import AdsContainers from './AdsContainers'
 import AdsHeader from './AdsHeader'
 
@@ -8,7 +10,7 @@ const ManageAds = () => {
       <h1 className='title'>광고관리</h1>
       <div className='container'>
         <AdsHeader />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <AdsContainers />
         </Suspense>
       </div>
