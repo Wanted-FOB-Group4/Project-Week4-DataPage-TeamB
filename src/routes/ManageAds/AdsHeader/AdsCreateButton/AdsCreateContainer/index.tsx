@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
 import cx from 'classnames'
-
-import { adsCurrentIndexState } from 'states/adsCurrentIndexState'
+import store from 'store'
 
 import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
 import AdsCreateFormInput from './AdsCreateFormInput'
+import { IAdData } from 'types/ads'
+import { adsDataState } from 'states'
+
 import styles from './adsCreateContainer.module.scss'
-import { IAd } from 'types/ads'
 
 interface IProps {
   isHidden: boolean
@@ -24,25 +25,32 @@ const AdsCreateContainer = ({ isHidden }: IProps) => {
   const [cost, setCost] = useState(0)
   const [convValue, setConvValue] = useState(0)
   const [title, setTitle] = useState('')
-  const [adsCurrentIndex, setAdsCurrentIndex] = useRecoilState(adsCurrentIndexState)
+  const [adsData, setAdsData] = useRecoilState(adsDataState)
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data: IAd = {
-      id: adsCurrentIndex + 1,
-      adType: adType ? 'app' : 'web',
-      title,
-      budget,
-      status: isDone ? 'ended' : 'active',
-      startDate,
-      endDate: isDone ? endDate : null,
-      report: {
-        cost,
-        convValue,
-        roas: Math.floor((convValue * 100) / cost),
-      },
+    const newData: IAdData = {
+      count: adsData.count + 1,
+      ads: [
+        ...adsData.ads,
+        {
+          id: adsData.count + 1,
+          adType: adType ? 'app' : 'web',
+          title,
+          budget,
+          status: isDone ? 'ended' : 'active',
+          startDate,
+          endDate: isDone ? endDate : null,
+          report: {
+            cost,
+            convValue,
+            roas: Math.floor((convValue * 100) / cost),
+          },
+        },
+      ],
     }
-    console.log(data)
+    setAdsData(newData)
+    store.set('adsData', newData)
   }
 
   const handleActiveChange = () => setIsActive((prevState) => !prevState)
