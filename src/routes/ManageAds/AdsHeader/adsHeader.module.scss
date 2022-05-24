@@ -1,15 +1,6 @@
 @use 'styles/mixins/flexbox';
-@use 'styles/constants/colors';
 
 .adsHeaderWrapper {
   @include flexbox.flexbox(between, center);
   padding-bottom: 30px;
-
-  .addAdsButton {
-    width: 100px;
-    height: 40px;
-    color: colors.$WHITE;
-    background-color: colors.$PRIMARY;
-    border-radius: 10px;
-  }
 }
