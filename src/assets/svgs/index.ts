@@ -1,3 +1,5 @@
+export { ReactComponent as IncreaseIcon } from './increaseIcon.svg'
+export { ReactComponent as DecreaseIcon } from './decreaseIcon.svg'
 export { ReactComponent as LogoImage } from './logo.svg'
 export { ReactComponent as NotiIcon } from './notification.svg'
 export { ReactComponent as SettingIcon } from './setting.svg'
