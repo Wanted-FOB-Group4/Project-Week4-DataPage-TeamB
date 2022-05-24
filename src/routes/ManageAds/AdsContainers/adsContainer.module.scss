@@ -2,17 +2,16 @@
 @use 'styles/mixins/flexbox';
 
 .adsContainerWrapper {
-  @include flexbox.flexbox(center, center);
+  @include flexbox.flexbox(center, start);
   flex-direction: column;
   width: 300px;
   padding: 30px 20px 20px;
   margin-bottom: 30px;
-  // border: 1px solid colors.$PRIMARY; // onFocus
   border: 1px solid colors.$GRAY100;
   border-radius: 10px;
 
   h2 {
-    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     font-size: 15px;
     font-weight: 700;
@@ -34,4 +33,8 @@
     border: 1px solid colors.$GRAY100;
     border-radius: 10px;
   }
+}
+
+.isContainerFocused {
+  border-color: colors.$PRIMARY;
 }
