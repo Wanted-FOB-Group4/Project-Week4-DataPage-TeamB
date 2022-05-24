@@ -1,0 +1,30 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+
+.createWrapper {
+  position: relative;
+}
+
+.createButton {
+  width: 100px;
+  height: 40px;
+  color: colors.$WHITE;
+  background-color: colors.$PRIMARY;
+  border-radius: 10px;
+}
+
+.createBox {
+  position: absolute;
+  right: 0;
+  z-index: levels.$DROPDOWN_BOTTOM;
+  width: 300px;
+  margin-top: 4px;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+}
+
+.isCreateBoxHidden {
+  display: none;
+}
