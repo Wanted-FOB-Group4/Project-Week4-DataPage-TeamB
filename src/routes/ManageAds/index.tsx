@@ -1,10 +1,9 @@
 import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 
-import Loading from 'components/Loading'
+import { Loading, ErrorMessage } from 'components'
 import AdsContainers from './AdsContainers'
 import AdsHeader from './AdsHeader'
-import { ErrorBoundary } from 'react-error-boundary'
-import ErrorMessage from 'components/ErrorMessage'
 
 const ManageAds = () => {
   const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />

@@ -1,5 +1,4 @@
 import { DeadFaceIcon } from 'assets/svgs'
-
 import styles from './errorMessage.module.scss'
 
 interface IProps {
