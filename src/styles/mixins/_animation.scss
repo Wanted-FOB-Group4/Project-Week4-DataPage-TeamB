@@ -14,5 +14,5 @@
 }
 
 @mixin rotateAnimation($duration) {
-  animation: rotation $duration ease-in-out;
+  animation: rotation $duration ease-in-out infinite;
 }
