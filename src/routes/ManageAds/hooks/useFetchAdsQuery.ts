@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { adsCurrentIndexState, adsFilterIndexState } from 'states'
-import { getAdListData } from 'services'
+import { getAdListData } from 'routes/ManageAds/services'
 import { IAdData } from 'types/ads'
 
 const INIT_DATA: IAdData = {

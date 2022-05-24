@@ -1,1 +1,1 @@
-export { getAdListData } from './getAdListData'
+export {}

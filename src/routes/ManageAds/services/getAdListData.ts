@@ -1,6 +1,6 @@
-import { IAd, IAdData } from 'types/ads'
-// wanted_FE_ad-list-data-set.json
 import axios, { AxiosResponse } from 'axios'
+
+import { IAd, IAdData } from 'types/ads'
 import { setFetchDelay } from 'utils'
 
 const STATUS = ['all', 'active', 'ended']
