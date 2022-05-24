@@ -23,35 +23,36 @@ const CardList = ({ date }: IDate) => {
   const { curDate, prevDate, term } = useCalculateDate(date)
   const [cardData, setCardData] = useState<IProps[]>([])
 
-  const { data: curData, isLoading } = useQuery(
+  const { data: curData } = useQuery(
     ['#trendData', curDate.start, curDate.end],
     () => getFilterTrendData(curDate.start, curDate.end),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
       cacheTime: Infinity,
+      suspense: true,
+      useErrorBoundary: true,
     }
   )
 
-  const { data: prevData, isLoading: prevIsLoading } = useQuery(
+  const { data: prevData } = useQuery(
     ['#prevTrendData', prevDate.start, prevDate.end],
     () => getFilterTrendData(prevDate.start, prevDate.end),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
       cacheTime: Infinity,
+      suspense: true,
+      useErrorBoundary: true,
     }
   )
 
   useEffect(() => {
-    if (!isLoading && !prevIsLoading) {
-      setCardData(translateData(curData, prevData))
-    }
-  }, [curData, isLoading, prevData, prevIsLoading])
+    setCardData(translateData(curData, prevData))
+  }, [curData, prevData])
 
   return (
     <ul className={styles.cardListWrapper}>
-      {isLoading && prevIsLoading && <div>로딩중...</div>}
       {cardData.map((item) => (
         <Card
           key={`card_${item.category}`}
