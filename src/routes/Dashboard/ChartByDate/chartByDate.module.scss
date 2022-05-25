@@ -4,6 +4,10 @@
   overflow-x: auto;
   overflow-y: hidden;
 
+  .chart {
+    transform: translate(-45px, 0);
+  }
+
   &::-webkit-scrollbar {
     display: block;
     height: 8px;

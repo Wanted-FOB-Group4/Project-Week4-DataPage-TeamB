@@ -30,14 +30,13 @@ const SelectDateTerm = () => {
   })
 
   return (
-    <div className={styles.dateTermContainer}>
+    <div ref={dropdownRef} className={styles.dateTermContainer}>
       <button type='button' className={styles.dropdownTop} onClick={handleClickDropdownTop}>
         {dateTerm.title}
         <ArrowDownIcon />
       </button>
       {isDropdownOpen && (
         <button
-          ref={dropdownRef}
           type='button'
           data-title={dropdownValue.title}
           data-value={dropdownValue.value}

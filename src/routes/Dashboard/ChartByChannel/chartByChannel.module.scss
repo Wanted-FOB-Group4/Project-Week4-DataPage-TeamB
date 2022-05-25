@@ -1,9 +1,13 @@
 @use '/src/styles/constants/colors';
 
 .chartContainer {
-  height: 400px;
+  height: 450px;
   overflow-x: auto;
   overflow-y: hidden;
+
+  .chart {
+    transform: translate(-45px, 0);
+  }
 
   &::-webkit-scrollbar {
     display: block;

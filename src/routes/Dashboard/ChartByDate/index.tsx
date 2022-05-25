@@ -95,6 +95,7 @@ const ChartByDate = () => {
         width={100 * totalDataByDate.length}
         containerComponent={
           <VictoryVoronoiContainer
+            className={styles.chart}
             responsive={false}
             labels={({ datum }) => {
               return datum.y

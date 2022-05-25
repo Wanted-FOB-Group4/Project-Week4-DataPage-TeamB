@@ -73,6 +73,7 @@ const ChartByChannel = ({ data }: IProps) => {
         width={width}
         containerComponent={
           <VictoryVoronoiContainer
+            className={styles.chart}
             responsive={false}
             labels={({ datum }) => {
               return datum.y

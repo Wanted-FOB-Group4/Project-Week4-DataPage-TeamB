@@ -19,9 +19,10 @@
     position: absolute;
     z-index: levels.$DROPDOWN_BOTTOM;
     width: 60px;
-    padding: 0 1px;
+    padding: 5px 1px;
     margin-top: 5px;
     font-size: 14px;
     text-align: start;
+    box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
   }
 }
