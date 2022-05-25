@@ -13,15 +13,14 @@
 }
 
 .editModal {
-  @include flexbox.flexbox(center, start);
+  @include flexbox.flexbox(start, center);
   position: fixed;
-  top: calc(50% - 250px);
+  top: calc(50% - 280px);
   left: calc(50% - 300px);
-  z-index: levels.$DROPDOWN_BOTTOM;
   flex-direction: column;
   width: 600px;
-  height: 500px;
-  padding: 20px 40px;
+  height: 560px;
+  padding: 30px 40px;
   margin-top: 4px;
   background-color: colors.$WHITE;
   border: 2px solid colors.$PRIMARY;

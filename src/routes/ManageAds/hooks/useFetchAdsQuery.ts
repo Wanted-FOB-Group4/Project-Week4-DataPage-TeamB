@@ -14,7 +14,7 @@ export const useFetchAdsQuery = () => {
   const [adsData, setAdsData] = useRecoilState(adsDataState)
   const [filteredData, setFilteredData] = useState<IAdData>({ count: 0, ads: [] })
 
-  const { data } = useQuery(['#adsData', adsData.count], getAdListData, {
+  const { data, refetch } = useQuery(['#adsData', adsData.count], getAdListData, {
     refetchOnWindowFocus: false,
     cacheTime: 0,
     suspense: true,
@@ -39,6 +39,10 @@ export const useFetchAdsQuery = () => {
 
     filter.then((newData) => setFilteredData(newData))
   }, [data, adsFilterIndex])
+
+  useEffect(() => {
+    refetch()
+  }, [adsData, refetch])
 
   return filteredData
 }
