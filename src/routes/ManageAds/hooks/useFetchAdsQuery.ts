@@ -1,13 +1,31 @@
 import { useState, useEffect } from 'react'
+import axios, { AxiosResponse } from 'axios'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useQuery } from 'react-query'
 import store from 'store'
 
 import { IAd, IAdData } from 'routes/ManageAds/types'
 import { adsDataState, adsFilterIndexState } from 'routes/ManageAds/states'
-import { getAdListData } from 'routes/ManageAds/services'
+import { setFetchDelay, setFetchDelayPromise } from 'utils'
 
 const STATUS = ['all', 'active', 'ended']
+
+const getAdListData = () => {
+  const promise = new Promise((resolve: (value: IAdData) => void, reject) => {
+    const data: IAdData = store.get('adsData')
+    if (!data) reject()
+    else resolve(data)
+  })
+  return promise
+    .then(setFetchDelayPromise(500))
+    .then((data: IAdData) => data)
+    .catch(() =>
+      axios
+        .get('/wanted_FE_ad-list-data-set.json')
+        .then(setFetchDelay(500))
+        .then((response: AxiosResponse) => response.data)
+    )
+}
 
 export const useFetchAdsQuery = () => {
   const adsFilterIndex = useRecoilValue(adsFilterIndexState)
