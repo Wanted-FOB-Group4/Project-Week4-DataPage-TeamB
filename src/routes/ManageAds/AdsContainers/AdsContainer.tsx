@@ -4,7 +4,7 @@ import { addUnitToBudget } from 'utils'
 import { getCreateDate, getPercentage, getAdsTitle } from './utils'
 import AdsListBlock from './AdsListBlock'
 import { IAd } from 'routes/ManageAds/types'
-import { AdsEditFormModal, AdsDeleteModal } from 'routes/ManageAds/_shared'
+import { AdsEditFormModal, AdsDeleteModal, Button } from 'routes/ManageAds/_shared'
 
 import styles from './adsContainer.module.scss'
 
@@ -42,12 +42,12 @@ const AdsContainer = ({ adData }: IProps) => {
         <AdsListBlock dataKey='광고 비용' dataValue={cost} />
       </ul>
       <div className={styles.adsContainerButtons}>
-        <button type='button' onClick={handleModifyClick}>
+        <Button type='button' onClick={handleModifyClick}>
           수정하기
-        </button>
-        <button type='button' onClick={handleDeleteClick}>
+        </Button>
+        <Button type='button' onClick={handleDeleteClick}>
           삭제하기
-        </button>
+        </Button>
       </div>
       {!isEditBoxHidden && <AdsEditFormModal prevData={adData} setIsHidden={setIsEditBoxHidden} />}
       {!isDeleteBoxHidden && <AdsDeleteModal id={adData.id} title={adData.title} setIsHidden={setIsDeleteBoxHidden} />}

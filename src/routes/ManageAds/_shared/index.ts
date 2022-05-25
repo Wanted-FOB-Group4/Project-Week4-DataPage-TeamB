@@ -2,4 +2,6 @@ import AdsDeleteModal from './AdsDeleteModal'
 
 import AdsEditFormModal from './AdsEditFormModal'
 
-export { AdsDeleteModal, AdsEditFormModal }
+import Button from './Button'
+
+export { AdsDeleteModal, AdsEditFormModal, Button }
