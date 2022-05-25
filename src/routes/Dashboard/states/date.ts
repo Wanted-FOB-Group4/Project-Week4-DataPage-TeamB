@@ -8,8 +8,8 @@ interface IDate {
 export const dateState = atom<IDate>({
   key: '#dateState',
   default: {
-    from: '2022-02-01',
-    to: '2022-02-05',
+    from: '2022-02-02',
+    to: '2022-02-04',
   },
 })
 

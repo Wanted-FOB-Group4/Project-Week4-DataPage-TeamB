@@ -21,8 +21,8 @@ export const useCalculateDate = (date: IProp) => {
 
   const [curDate, prevDate] = useMemo(() => {
     return [
-      { start: curStart.format('YYYY-MM-DD'), end: curEnd.format('YYYY-MM-DD') },
-      { start: prevStart.format('YYYY-MM-DD'), end: prevEnd.format('YYYY-MM-DD') },
+      { from: curStart.format('YYYY-MM-DD'), to: curEnd.format('YYYY-MM-DD') },
+      { from: prevStart.format('YYYY-MM-DD'), to: prevEnd.format('YYYY-MM-DD') },
     ]
   }, [curStart, curEnd, prevStart, prevEnd])
 

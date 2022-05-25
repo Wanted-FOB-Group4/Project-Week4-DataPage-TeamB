@@ -6,10 +6,11 @@ import Card from './Card'
 
 import { getFilterTrendData } from 'services/getTrendData'
 
-import styles from './cardList.module.scss'
 import { translateData } from '../utils/makeTrendData'
 import { useRecoilValue } from 'recoil'
 import { dateState } from '../states/date'
+
+import styles from './cardList.module.scss'
 
 interface IProps {
   category: string
@@ -23,9 +24,11 @@ const CardList = () => {
   const { curDate, prevDate, term } = useCalculateDate(date)
   const [cardData, setCardData] = useState<IProps[]>([])
 
+  // const [notValidPrev] = useState<boolean>(MINDATE > prevDate.from)
+
   const { data: curData } = useQuery(
-    ['#trendData', curDate.start, curDate.end],
-    () => getFilterTrendData(curDate.start, curDate.end),
+    ['#trendData', curDate.from, curDate.to],
+    () => getFilterTrendData(curDate.from, curDate.to),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
@@ -36,8 +39,8 @@ const CardList = () => {
   )
 
   const { data: prevData } = useQuery(
-    ['#prevTrendData', prevDate.start, prevDate.end],
-    () => getFilterTrendData(prevDate.start, prevDate.end),
+    ['#prevTrendData', prevDate.from, prevDate.to],
+    () => getFilterTrendData(prevDate.from, prevDate.to),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
