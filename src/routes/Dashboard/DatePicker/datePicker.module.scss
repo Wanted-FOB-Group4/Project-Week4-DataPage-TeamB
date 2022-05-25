@@ -7,19 +7,37 @@
   justify-content: space-between;
 }
 
-.datePicker {
+.datePickerWrapper {
   position: relative;
 
-  .selectButton {
+  .buttonsWrapper {
     display: flex;
     align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16px;
-    color: colors.$GRAY800;
 
-    svg {
-      margin-left: 10px;
+    button {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+    }
+
+    .confirmButton {
+      position: absolute;
+      left: -100px;
+      padding: 10px 16px;
+      margin-right: 16px;
+      color: colors.$WHITE;
+      background-color: colors.$PRIMARY;
+      border-radius: 10px;
+    }
+
+    .selectButton {
+      display: flex;
+      align-items: center;
+      color: colors.$GRAY800;
+
+      svg {
+        margin-left: 10px;
+      }
     }
   }
 
@@ -28,11 +46,10 @@
 
     .months {
       position: absolute;
-      top: 30px;
+      top: calc(100% + 14px);
       right: 0;
       z-index: levels.$DROPDOWN_BOTTOM;
       padding: 16px;
-      margin-top: 8px;
       user-select: none;
       background-color: colors.$WHITE;
       border-radius: 20px;

@@ -14,9 +14,18 @@ const FIRST_DAY = new Date('2022-02-01')
 const LAST_DAY = new Date('2022-04-20')
 
 const DatePicker = () => {
+  const [globalRange, setGlobalRange] = useRecoil(dateRangeState)
+  const [range, setRange] = useState(globalRange)
   const [isOpen, setIsOpen] = useState(false)
-  const [range, setRange] = useRecoil(dateRangeState)
   const datePickerRef = useRef<HTMLDivElement>(null)
+
+  const classNamesForStyle: ClassNames = {
+    root: styles.root,
+    months: styles.months,
+    button: styles.button,
+    day_range_start: styles.start,
+    day_selected: styles.selected,
+  }
 
   const formatStringToDate = (date: string) => new Date(date)
   const formatDateToString = (date: Date) => dayjs(date).format('YYYY-MM-DD')
@@ -29,35 +38,46 @@ const DatePicker = () => {
     }
   }
 
-  const handleDayClick: DayClickEventHandler = (day) => {
+  const rangeDisplayString = `${formatStringToKr(globalRange.from)} ~ ${formatStringToKr(globalRange.to)}`
+
+  const handleDayClick: DayClickEventHandler = (selectedDate) => {
+    const startDate = formatStringToDate(range.from)
+    const selectedDateString = formatDateToString(selectedDate)
+
+    if (startDate.getDate() === selectedDate.getDate()) return
+
     if (!range.to) {
       setRange({
-        from: day < formatStringToDate(range.from) ? formatDateToString(day) : range.from,
-        to: day > formatStringToDate(range.from) ? formatDateToString(day) : range.from,
+        from: selectedDate < startDate ? selectedDateString : range.from,
+        to: selectedDate > startDate ? selectedDateString : range.from,
       })
     } else {
-      setRange({ from: formatDateToString(day), to: '' })
+      setRange({ from: selectedDateString, to: '' })
     }
+  }
+
+  const handleConfirmClick = () => {
+    if (!range.to) return
+    setGlobalRange(range)
+    setIsOpen(false)
   }
 
   useClickAway(datePickerRef, () => setIsOpen(false))
 
-  const rangeDisplayString = `${formatStringToKr(range.from)} ~ ${formatStringToKr(range.to)}`
-
-  const classNamesForStyle: ClassNames = {
-    root: styles.root,
-    months: styles.months,
-    button: styles.button,
-    day_range_start: styles.start,
-    day_selected: styles.selected,
-  }
-
   return (
-    <div className={styles.datePicker} ref={datePickerRef}>
-      <button type='button' onClick={() => setIsOpen((prev) => !prev)} className={styles.selectButton}>
-        {rangeDisplayString}
-        <ArrowDownIcon />
-      </button>
+    <div className={styles.datePickerWrapper} ref={datePickerRef}>
+      <div className={styles.buttonsWrapper}>
+        {isOpen && (
+          <button type='button' onClick={handleConfirmClick} disabled={!range.to} className={styles.confirmButton}>
+            확인
+          </button>
+        )}
+        <button type='button' onClick={() => setIsOpen((prev) => !prev)} className={styles.selectButton}>
+          {rangeDisplayString}
+          <ArrowDownIcon />
+        </button>
+      </div>
+
       {isOpen && (
         <DayPicker
           mode='range'
