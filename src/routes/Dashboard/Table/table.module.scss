@@ -1,6 +1,7 @@
 .tableContainer {
   width: 100%;
   height: 100%;
+  overflow-x: scroll;
 
   .tableHeader {
     padding: 5px;
@@ -8,9 +9,21 @@
     border-bottom: 1px solid;
   }
 
-  .tableTitle {
-    width: 100px;
+  .totalRowWrapper {
+    color: #abb5fa;
+  }
 
+  .tablRowWrapper {
+    display: flex;
+    flex-direction: row;
+
+    th,
+    td {
+      flex-grow: 1;
+    }
+  }
+
+  .tableTitle {
     &::after {
       content: '';
     }
