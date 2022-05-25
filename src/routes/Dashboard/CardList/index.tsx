@@ -8,6 +8,8 @@ import { getFilterTrendData } from 'services/getTrendData'
 
 import styles from './cardList.module.scss'
 import { translateData } from '../utils/makeTrendData'
+import { useRecoilValue } from 'recoil'
+import { dateState } from '../states/date'
 
 interface IProps {
   category: string
@@ -15,11 +17,9 @@ interface IProps {
   prevValue: number[]
 }
 
-interface IDate {
-  date: { start: string; end: string }
-}
+const CardList = () => {
+  const date = useRecoilValue(dateState)
 
-const CardList = ({ date }: IDate) => {
   const { curDate, prevDate, term } = useCalculateDate(date)
   const [cardData, setCardData] = useState<IProps[]>([])
 
