@@ -15,12 +15,13 @@
 .editModal {
   @include flexbox.flexbox(center, start);
   position: fixed;
-  top: calc(50% - 7.5rem);
-  left: calc(50% - 15rem);
+  top: calc(50% - 250px);
+  left: calc(50% - 300px);
   z-index: levels.$DROPDOWN_BOTTOM;
   flex-direction: column;
-  width: 300px;
-  padding: 30px 20px 20px;
+  width: 600px;
+  height: 500px;
+  padding: 20px 40px;
   margin-top: 4px;
   background-color: colors.$WHITE;
   border: 2px solid colors.$PRIMARY;
@@ -28,14 +29,17 @@
   box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 
   h2 {
-    font-size: 15px;
+    width: 100%;
+    font-size: 20px;
     font-weight: 700;
     color: colors.$GRAY800;
+    text-align: center;
   }
 
   .editModalFormWrapper {
-    @include flexbox.flexbox(center, center);
     flex-direction: column;
+    width: 100%;
+    @include flexbox.flexbox(center, center);
 
     ul {
       width: 100%;
