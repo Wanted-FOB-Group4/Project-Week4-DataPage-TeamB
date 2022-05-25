@@ -11,13 +11,13 @@ const TableRow = ({ rowData, channel }: ITableRow) => {
   return (
     <tr className={cx(styles.tablRowWrapper, { [styles.totalRowWrapper]: isTotalRow })}>
       <td className={styles.tableTitle}>{channel}</td>
-      <td>{cost.toLocaleString()}</td>
-      <td>{sales.toLocaleString()}</td>
-      <td>{roas.toLocaleString()}</td>
-      <td>{imp.toLocaleString()}</td>
-      <td>{click.toLocaleString()}</td>
-      <td>{ctr.toLocaleString()}</td>
-      <td>{cpc.toLocaleString()}</td>
+      <td className={styles.tableCol}>{cost.toLocaleString()}</td>
+      <td className={styles.tableCol}>{sales.toLocaleString()}</td>
+      <td className={styles.tableCol}>{roas.toLocaleString()}</td>
+      <td className={styles.tableCol}>{imp.toLocaleString()}</td>
+      <td className={styles.tableCol}>{click.toLocaleString()}</td>
+      <td className={styles.tableCol}>{ctr.toLocaleString()}</td>
+      <td className={styles.tableCol}>{cpc.toLocaleString()}</td>
     </tr>
   )
 }

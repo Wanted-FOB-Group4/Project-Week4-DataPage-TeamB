@@ -1,29 +1,49 @@
-.tableContainer {
-  width: 100%;
-  height: 100%;
+@use 'styles/constants/colors';
+
+.tableWrapper {
   overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: block;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: colors.$GRAY100;
+    border-radius: 8px;
+  }
+}
+
+.table {
+  width: 1400px;
+  height: 100%;
 
   .tableHeader {
     padding: 5px;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
+    border-top: 1px solid colors.$TABLE_LINE;
   }
 
   .totalRowWrapper {
-    color: #abb5fa;
+    color: colors.$TABLE_SUM;
   }
 
   .tablRowWrapper {
     display: flex;
     flex-direction: row;
+    border-top: 1px solid colors.$TABLE_LINE;
 
-    th,
-    td {
-      flex-grow: 1;
+    .tableCol {
+      width: 190px;
+      padding: 5px;
+      text-align: center;
     }
   }
 
   .tableTitle {
+    width: 100px;
+    padding: 5px;
+
     &::after {
       content: '';
     }
