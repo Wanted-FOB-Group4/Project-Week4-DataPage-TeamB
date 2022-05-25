@@ -28,7 +28,23 @@ interface IMediaChannelData extends IApiData {
   date: string
 }
 
+interface ITableItem {
+  click: number
+  conversion: number
+  cost: number
+  cpc: number
+  ctr: number
+  imp: number
+  roas: number
+  sales: number
+}
+
 interface ITable extends IApiData {
+  channel: string
+}
+
+interface ITableRow {
+  rowData: ITableItem
   channel: string
 }
 
