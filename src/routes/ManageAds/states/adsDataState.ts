@@ -1,4 +1,5 @@
 import { atom } from 'recoil'
+
 import { IAdData } from 'types/ads'
 
 export const adsDataState = atom<IAdData>({

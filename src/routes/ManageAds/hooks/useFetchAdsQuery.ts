@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import store from 'store'
 
 import { IAd, IAdData } from 'types/ads'
-import { adsDataState, adsFilterIndexState } from 'states'
+import { adsDataState, adsFilterIndexState } from 'routes/ManageAds/states'
 import { getAdListData } from 'routes/ManageAds/services'
 
 const STATUS = ['all', 'active', 'ended']

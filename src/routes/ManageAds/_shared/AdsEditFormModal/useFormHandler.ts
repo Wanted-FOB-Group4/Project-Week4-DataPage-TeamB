@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
 import store from 'store'
 
-import { adsDataState } from 'states/adsDataState'
+import { adsDataState } from 'routes/ManageAds/states/adsDataState'
 import { IAdData, IAd } from 'types/ads'
 
 const today = dayjs().format('YYYY-MM-DD')

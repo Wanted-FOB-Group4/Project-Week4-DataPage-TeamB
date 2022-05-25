@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import { useClickAway } from 'react-use'
 import cx from 'classnames'
 
-import { adsFilterIndexState } from 'states'
+import { adsFilterIndexState } from 'routes/ManageAds/states'
 
 import { ArrowDown } from 'assets/svgs'
 import styles from './adsFilterDropdown.module.scss'
