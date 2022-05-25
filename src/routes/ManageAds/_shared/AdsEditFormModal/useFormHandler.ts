@@ -76,7 +76,11 @@ const useFormHandler = (setIsHidden: Dispatch<SetStateAction<boolean>>, prevData
     }
 
     const newAds: IAd[] = prevData
-      ? [...adsData.ads.slice(0, prevData.id - 1), newAd, ...adsData.ads.slice(prevData.id)]
+      ? adsData.ads.reduce((acc: IAd[], curr: IAd) => {
+          if (curr.id !== newAd.id) acc.push(curr)
+          else acc.push(newAd)
+          return acc
+        }, [])
       : [...adsData.ads, newAd]
 
     const newData: IAdData = {
