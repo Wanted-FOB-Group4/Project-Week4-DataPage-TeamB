@@ -16,12 +16,12 @@
 .editModal {
   @include flexbox.flexbox(start, center);
   position: fixed;
-  top: 15%;
-  left: 25%;
+  top: calc(50% - 275px);
+  left: calc(50% - 200px);
   z-index: levels.$MODALS;
   flex-direction: column;
-  width: 50%;
-  height: 70%;
+  width: 400px;
+  height: 550px;
   padding: 30px 40px;
   overflow: scroll;
   background-color: colors.$WHITE;
