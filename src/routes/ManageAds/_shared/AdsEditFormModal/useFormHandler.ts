@@ -70,7 +70,7 @@ const useFormHandler = (setIsHidden: Dispatch<SetStateAction<boolean>>, prevData
       endDate: formData.status === 'ended' ? formData.endDate : null,
       report: {
         ...formData.report,
-        roas: Math.floor((formData.report.convValue * 100) / formData.report.cost),
+        roas: formData.report.cost > 0 ? Math.floor((formData.report.convValue * 100) / formData.report.cost) : 0,
       },
     }
 

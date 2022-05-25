@@ -13,7 +13,7 @@ interface IProps {
 
 const AdsEditFormInput = ({ name, value, onChange, startDate, isDone }: IProps) => {
   const inputTag = {
-    title: <input name='title' type='text' value={value as string} onChange={onChange} />,
+    title: <input name='title' required type='text' value={value as string} onChange={onChange} />,
     isDone: <input name='isDone' type='checkBox' checked={value as boolean} onChange={onChange} />,
     startDate: <input name='startDate' type='date' value={value as string} onChange={onChange} />,
     endDate: <input name='endDate' type='date' min={startDate} value={value as string} onChange={onChange} />,
