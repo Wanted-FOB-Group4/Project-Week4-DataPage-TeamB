@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useClickAway } from 'react-use'
 
-import AdsCreateContainer from './AdsCreateContainer'
+import AdsCreateContainer from 'routes/ManageAds/_shared/AdsCreateContainer'
 
 import styles from './adsCreateButton.module.scss'
 

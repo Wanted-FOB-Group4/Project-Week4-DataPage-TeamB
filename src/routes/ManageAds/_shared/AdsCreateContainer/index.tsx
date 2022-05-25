@@ -5,16 +5,17 @@ import store from 'store'
 
 import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
 import AdsCreateFormInput from './AdsCreateFormInput'
-import { IAdData } from 'types/ads'
+import { IAd, IAdData } from 'types/ads'
 import { adsDataState } from 'states'
 
 import styles from './adsCreateContainer.module.scss'
 
 interface IProps {
+  prevData?: IAd
   setIsHidden: Dispatch<SetStateAction<boolean>>
 }
 
-const AdsCreateContainer = ({ setIsHidden }: IProps) => {
+const AdsCreateContainer = ({ prevData, setIsHidden }: IProps) => {
   const today = dayjs().format('YYYY-MM-DD')
   const [adType, setAdType] = useState(false)
   const [isDone, setIsDone] = useState(false)
