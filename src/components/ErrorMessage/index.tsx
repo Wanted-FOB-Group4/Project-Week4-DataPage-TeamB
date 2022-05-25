@@ -9,7 +9,7 @@ const ErrorMessage = ({ error }: IProps) => {
   return (
     <div className={styles.errorWrapper}>
       <DeadFaceIcon className={styles.errorIcon} />
-      <h1>{error.message}</h1>
+      <h3>{error.message}</h3>
     </div>
   )
 }
