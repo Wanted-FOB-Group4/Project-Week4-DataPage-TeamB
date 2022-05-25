@@ -3,7 +3,7 @@ import { useClickAway } from 'react-use'
 import { useSetRecoilState } from 'recoil'
 import cx from 'classnames'
 
-import { selectorState } from 'states/dashBoard'
+import { selectorState } from 'routes/Dashboard/states/dashBoard'
 import styles from './selectButton.module.scss'
 import { Circle } from 'assets/svgs'
 

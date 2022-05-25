@@ -6,6 +6,7 @@ import {
   VictoryBar,
   VictoryChart,
   VictoryLabel,
+  VictoryLegend,
   VictoryStack,
   VictoryTheme,
   VictoryVoronoiContainer,
@@ -79,6 +80,14 @@ const ChartByChannel = ({ data }: IProps) => {
           />
         }
       >
+        <VictoryLegend
+          x={width - 370}
+          y={380}
+          orientation='horizontal'
+          gutter={20}
+          colorScale={['#1778F2', '#AC8AF8', '#f9e000', '#2DB400']}
+          data={[{ name: 'facebook' }, { name: 'google' }, { name: 'kakao' }, { name: 'naver' }]}
+        />
         <VictoryAxis
           scale={{ x: 'time' }}
           tickFormat={(x) => x}

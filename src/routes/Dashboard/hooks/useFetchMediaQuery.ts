@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { useRecoilValue } from 'recoil'
 
 import { getMediaChannelData } from 'services/getMediaChannelData'
-import { dateState } from 'states/date'
+import { dateState } from '../states/date'
 import { IMediaTotalByDateItem, ITotalChannelData } from 'types/chart'
 
 const INIT_ITEM: IMediaTotalByDateItem = {

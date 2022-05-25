@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil'
 import cx from 'classnames'
 
 import styles from './selectButton.module.scss'
-import { selectorState } from 'states/dashBoard'
+import { selectorState } from 'routes/Dashboard/states/dashBoard'
 import Dropdown from './Dropdown'
 import { Circle, ArrowDownIcon } from 'assets/svgs'
 

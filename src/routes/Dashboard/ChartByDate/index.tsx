@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import styles from './chartByDate.module.scss'
 import { makeDataByTrend } from 'utils/makeDataByTrend'
 import { useRecoilValue } from 'recoil'
-import { selectorState } from 'states/dashBoard'
+import { selectorState } from 'routes/Dashboard/states/dashBoard'
 import { shortenNumber } from './utils'
 
 interface ICOLOR {

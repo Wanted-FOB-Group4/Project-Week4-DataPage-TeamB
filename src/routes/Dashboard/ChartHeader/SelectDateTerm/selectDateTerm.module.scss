@@ -1,0 +1,27 @@
+@use 'styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.dateTermContainer {
+  .dropdownTop {
+    @include flexbox.flexbox(between, center);
+    width: 60px;
+    height: 40px;
+    font-size: 14px;
+    color: colors.$GRAY800;
+
+    .dropdownIcon {
+      fill: colors.$GRAY800;
+    }
+  }
+
+  .dropdownBottom {
+    position: absolute;
+    z-index: levels.$DROPDOWN_BOTTOM;
+    width: 60px;
+    padding: 0 1px;
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: start;
+  }
+}

@@ -1,4 +1,4 @@
-import { useFetchMediaQuery } from 'hooks'
+import { useFetchMediaQuery } from './hooks'
 import ChartByChannel from './ChartByChannel'
 
 const MediaContainer = () => {
