@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react'
 import { useClickAway } from 'react-use'
 
-import AdsCreateContainer from 'routes/ManageAds/_shared/AdsCreateContainer'
+import AdsEditFormContainer from 'routes/ManageAds/_shared/AdsEditFormContainer'
 
 import styles from './adsCreateButton.module.scss'
 
-const AdsCreateButton = () => {
+const AdsEditButton = () => {
   const [isCreateBoxHidden, setIsCreateBoxHidden] = useState(true)
   const buttonRef = useRef(null)
 
@@ -23,9 +23,9 @@ const AdsCreateButton = () => {
       <button type='button' className={styles.createButton} onClick={handleButtonClick}>
         광고 만들기
       </button>
-      {!isCreateBoxHidden && <AdsCreateContainer setIsHidden={setIsCreateBoxHidden} />}
+      {!isCreateBoxHidden && <AdsEditFormContainer setIsHidden={setIsCreateBoxHidden} />}
     </div>
   )
 }
 
-export default AdsCreateButton
+export default AdsEditButton

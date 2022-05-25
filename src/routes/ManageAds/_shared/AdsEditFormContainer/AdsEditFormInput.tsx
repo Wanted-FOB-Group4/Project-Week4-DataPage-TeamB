@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react'
 import cx from 'classnames'
 
-import styles from './adsCreateFormInput.module.scss'
+import styles from './adsEditFormInput.module.scss'
 
 interface IProps {
   name: string
@@ -11,7 +11,7 @@ interface IProps {
   isDone?: boolean
 }
 
-const AdsCreateFormInput = ({ name, value, onChange, startDate, isDone }: IProps) => {
+const AdsEditFormInput = ({ name, value, onChange, startDate, isDone }: IProps) => {
   const inputTag = {
     title: <input name='title' type='text' value={value as string} onChange={onChange} />,
     isDone: <input name='isDone' type='checkBox' checked={value as boolean} onChange={onChange} />,
@@ -44,4 +44,4 @@ const AdsCreateFormInput = ({ name, value, onChange, startDate, isDone }: IProps
   )
 }
 
-export default AdsCreateFormInput
+export default AdsEditFormInput

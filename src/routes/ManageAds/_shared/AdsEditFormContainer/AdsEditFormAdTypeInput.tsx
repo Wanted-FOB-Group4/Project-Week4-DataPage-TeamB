@@ -1,6 +1,6 @@
 import { Dispatch } from 'react'
 
-import styles from './adsCreateFormInput.module.scss'
+import styles from './adsEditFormInput.module.scss'
 
 interface IProps {
   value: boolean
@@ -10,7 +10,7 @@ interface IProps {
 const AD_TYPE_WEB = false
 const AD_TYPE_APP = true
 
-const AdsCreateFormAdTypeIput = ({ value, setValue }: IProps) => {
+const AdsEditFormAdTypeIput = ({ value, setValue }: IProps) => {
   const handleAdTypeWebChange = () => setValue(AD_TYPE_WEB)
   const handleAdTypeAppChange = () => setValue(AD_TYPE_APP)
 
@@ -43,4 +43,4 @@ const AdsCreateFormAdTypeIput = ({ value, setValue }: IProps) => {
   )
 }
 
-export default AdsCreateFormAdTypeIput
+export default AdsEditFormAdTypeIput

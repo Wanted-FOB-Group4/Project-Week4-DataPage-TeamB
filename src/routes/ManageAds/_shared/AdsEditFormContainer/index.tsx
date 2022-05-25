@@ -3,19 +3,19 @@ import { useRecoilState } from 'recoil'
 import dayjs from 'dayjs'
 import store from 'store'
 
-import AdsCreateFormAdTypeInput from './AdsCreateFormAdTypeInput'
-import AdsCreateFormInput from './AdsCreateFormInput'
+import AdsEditFormAdTypeInput from './AdsEditFormAdTypeInput'
+import AdsEditFormInput from './AdsEditFormInput'
 import { IAd, IAdData } from 'types/ads'
 import { adsDataState } from 'states'
 
-import styles from './adsCreateContainer.module.scss'
+import styles from './adsEditFormContainer.module.scss'
 
 interface IProps {
   prevData?: IAd
   setIsHidden: Dispatch<SetStateAction<boolean>>
 }
 
-const AdsCreateContainer = ({ prevData, setIsHidden }: IProps) => {
+const AdsEditFormContainer = ({ prevData, setIsHidden }: IProps) => {
   const today = dayjs().format('YYYY-MM-DD')
   const [adType, setAdType] = useState(false)
   const [isDone, setIsDone] = useState(false)
@@ -67,20 +67,20 @@ const AdsCreateContainer = ({ prevData, setIsHidden }: IProps) => {
       <h2>새 광고</h2>
       <form onSubmit={handleFormSubmit} className={styles.createFormWrapper}>
         <ul>
-          <AdsCreateFormInput name='title' value={title} onChange={handleTitleChange} />
-          <AdsCreateFormAdTypeInput value={adType} setValue={setAdType} />
-          <AdsCreateFormInput name='isDone' value={isDone} onChange={handleActiveChange} />
-          <AdsCreateFormInput name='startDate' value={startDate} onChange={handleStartDateChange} />
-          <AdsCreateFormInput
+          <AdsEditFormInput name='title' value={title} onChange={handleTitleChange} />
+          <AdsEditFormAdTypeInput value={adType} setValue={setAdType} />
+          <AdsEditFormInput name='isDone' value={isDone} onChange={handleActiveChange} />
+          <AdsEditFormInput name='startDate' value={startDate} onChange={handleStartDateChange} />
+          <AdsEditFormInput
             name='endDate'
             value={endDate}
             onChange={handleEndDateChange}
             isDone={isDone}
             startDate={startDate}
           />
-          <AdsCreateFormInput name='budget' value={budget} onChange={handleBudgetChange} />
-          <AdsCreateFormInput name='convValue' value={convValue} onChange={handleConvValueChange} />
-          <AdsCreateFormInput name='cost' value={cost} onChange={handleCostChange} />
+          <AdsEditFormInput name='budget' value={budget} onChange={handleBudgetChange} />
+          <AdsEditFormInput name='convValue' value={convValue} onChange={handleConvValueChange} />
+          <AdsEditFormInput name='cost' value={cost} onChange={handleCostChange} />
         </ul>
         <button type='submit'>추가하기</button>
       </form>
@@ -88,4 +88,4 @@ const AdsCreateContainer = ({ prevData, setIsHidden }: IProps) => {
   )
 }
 
-export default AdsCreateContainer
+export default AdsEditFormContainer
