@@ -22,7 +22,9 @@
 
     .confirmButton {
       position: absolute;
-      left: -100px;
+      top: 370px;
+      right: 123px;
+      z-index: 10;
       padding: 10px 16px;
       margin-right: 16px;
       color: colors.$WHITE;
@@ -49,7 +51,7 @@
       top: calc(100% + 14px);
       right: 0;
       z-index: levels.$DROPDOWN_BOTTOM;
-      padding: 16px;
+      padding: 16px 16px 70px;
       user-select: none;
       background-color: colors.$WHITE;
       border-radius: 20px;
