@@ -1,15 +1,17 @@
 @use 'styles/constants/colors';
 @use 'styles/mixins/flexbox';
 
-.createList {
+.editList {
   @include flexbox.flexbox(start, center);
   flex-direction: row;
   width: 100%;
+  min-width: 300px;
   height: 50px;
   border-top: 1px solid colors.$GRAY50;
 
-  label {
-    width: 120px;
+  .inputLabel {
+    width: 100px;
+    min-width: 100px;
     margin-right: 10px;
     font-size: 15px;
     color: colors.$GRAY300;
@@ -22,7 +24,9 @@
   input[type='radio'],
   input[type='checkbox'] {
     width: 20px;
+    min-width: 20px;
     height: 20px;
+    min-height: 20px;
     border: 2px solid colors.$GRAY100;
     border-radius: 50%;
 
@@ -48,8 +52,9 @@
   }
 
   .checkBoxLabel {
-    width: 40px;
     margin: 0 10px;
+    margin-right: 10px;
+    font-size: 15px;
     line-height: 20px;
     color: colors.$GRAY800;
   }
@@ -59,10 +64,6 @@
   @include flexbox.flexbox(start, center);
   flex-direction: row;
   width: 200px;
-
-  input[id='radioApp'] {
-    margin-left: 20px;
-  }
 }
 
 .isInputHidden {

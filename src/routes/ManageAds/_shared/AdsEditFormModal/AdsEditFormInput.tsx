@@ -32,8 +32,10 @@ const AdsEditFormInput = ({ name, value, onChange, startDate, isDone }: IProps) 
   }[name]
 
   return (
-    <li className={cx(styles.createList, { [styles.isInputHidden]: name === 'endDate' && !isDone })}>
-      <label htmlFor={name}>{inputString}</label>
+    <li className={cx(styles.editList, { [styles.isInputHidden]: name === 'endDate' && !isDone })}>
+      <label htmlFor={name} className={styles.inputLabel}>
+        {inputString}
+      </label>
       {inputTag}
       {name === 'isDone' && (
         <label className={styles.checkBoxLabel} htmlFor={name}>

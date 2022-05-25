@@ -15,8 +15,10 @@ const AdsEditFormAdTypeIput = ({ value, setValue }: IProps) => {
   const handleAdTypeAppChange = () => setValue(AD_TYPE_APP)
 
   return (
-    <li className={styles.createList}>
-      <label htmlFor='adType'>광고 타입</label>
+    <li className={styles.editList}>
+      <label htmlFor='adType' className={styles.inputLabel}>
+        광고 타입
+      </label>
       <div className={styles.radioInput}>
         <input
           name='adType'
