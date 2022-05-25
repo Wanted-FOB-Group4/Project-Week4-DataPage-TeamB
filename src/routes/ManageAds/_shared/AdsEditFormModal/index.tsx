@@ -4,7 +4,7 @@ import { useClickAway } from 'react-use'
 import AdsEditFormAdTypeInput from './AdsEditFormAdTypeInput'
 import AdsEditFormInput from './AdsEditFormInput'
 import { IAd } from 'routes/ManageAds/types'
-import ModalPortal from './ModalPortal'
+import ModalPortal from '../ModalPortal'
 import useFormHandler from './useFormHandler'
 
 import styles from './adsEditFormModal.module.scss'
