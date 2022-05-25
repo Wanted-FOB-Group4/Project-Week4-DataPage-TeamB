@@ -1,8 +1,11 @@
-import { Dispatch, MouseEvent, SetStateAction } from 'react'
+import { Dispatch, MouseEvent, SetStateAction, useRef } from 'react'
+import { useClickAway } from 'react-use'
 import { useSetRecoilState } from 'recoil'
+import cx from 'classnames'
 
 import { selectorState } from 'states/dashBoard'
 import styles from './selectButton.module.scss'
+import { Circle } from 'assets/svgs'
 
 interface IProps {
   data: {
@@ -14,6 +17,7 @@ interface IProps {
 }
 
 const Dropdown = ({ data, idx, setIsDropdownOpen }: IProps) => {
+  const dropdownRef = useRef(null)
   const setSelector = useSetRecoilState(selectorState)
   const handleDropdownClick = (e: MouseEvent<HTMLButtonElement>) => {
     const { name, title } = e.currentTarget.dataset
@@ -30,13 +34,23 @@ const Dropdown = ({ data, idx, setIsDropdownOpen }: IProps) => {
       })
     })
   }
+  useClickAway(dropdownRef, () => {
+    setIsDropdownOpen((prev) => {
+      return prev.map((value, index) => {
+        if (idx === index) return !value
+        return value
+      })
+    })
+  })
+
   return (
-    <div className={styles.dropdownBottom}>
+    <div className={styles.dropdownBottom} ref={dropdownRef}>
       <ul>
         {data.map((item: { name: string; title: string }) => (
           <li key={item.name}>
             <button data-name={item.name} data-title={item.title} type='button' onClick={handleDropdownClick}>
-              {item.title}
+              <Circle className={cx(styles.colorCircle, styles[item.name])} />
+              <span>{item.title}</span>
             </button>
           </li>
         ))}

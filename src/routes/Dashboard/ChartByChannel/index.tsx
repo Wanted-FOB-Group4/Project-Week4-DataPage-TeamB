@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './chartByChannel.module.scss'
 import { ITotalChannelData } from 'types/chart'
 import {
@@ -10,6 +10,7 @@ import {
   VictoryTheme,
   VictoryVoronoiContainer,
 } from 'victory'
+import { useMount, useUnmount } from 'react-use'
 
 interface IProps {
   data: ITotalChannelData
@@ -20,14 +21,19 @@ const ChartByChannel = ({ data }: IProps) => {
   const channels = ['naver', 'kakao', 'google', 'facebook']
   const containerRef = useRef<null | HTMLDivElement>(null)
   const [width, setWidth] = useState(1400)
-
-  useEffect(() => {
-    const onResize = () => {
-      const containerWidth = Number(containerRef.current?.offsetWidth)
+  const onResize = () => {
+    const containerWidth = Number(containerRef.current?.offsetWidth)
+    setWidth(containerWidth >= 1000 ? containerWidth : 1000)
+  }
+  useMount(() => {
+    if (containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth
       setWidth(containerWidth >= 1000 ? containerWidth : 1000)
     }
     window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
+  })
+  useUnmount(() => {
+    window.removeEventListener('resize', onResize)
   })
   const barChart = channels.map((channel, idx) => {
     const key = `bar-${channel}`
@@ -77,7 +83,7 @@ const ChartByChannel = ({ data }: IProps) => {
           scale={{ x: 'time' }}
           tickFormat={(x) => x}
           style={{
-            axis: { stroke: 'black', strokeWidth: 0.5 },
+            axis: { stroke: '#cccccc', strokeWidth: 0.5 },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
             ticks: { size: 0 },
           }}

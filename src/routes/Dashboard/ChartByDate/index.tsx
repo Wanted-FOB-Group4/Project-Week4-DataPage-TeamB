@@ -106,9 +106,9 @@ const ChartByDate = () => {
           scale={{ x: 'time' }}
           tickFormat={(x) => `${dayjs(x).format('M')}월 ${dayjs(x).format('D')}일`}
           style={{
-            axis: { strokeWidth: 0.5, fill: 'black' },
+            axis: { strokeWidth: 0.5, stroke: '#cccccc' },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: 'grey', size: 0 },
+            ticks: { stroke: '#cccccc', size: 0 },
           }}
         />
         {axisesY}
