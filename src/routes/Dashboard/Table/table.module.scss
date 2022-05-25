@@ -34,6 +34,10 @@
     border-top: 1px solid colors.$TABLE_LINE;
 
     .tableCol {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       width: 190px;
       padding: 5px;
       text-align: center;
@@ -41,11 +45,19 @@
   }
 
   .tableTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 100px;
     padding: 5px;
 
     &::after {
       content: '';
+    }
+
+    .tableLogo {
+      margin-right: auto;
     }
   }
 
