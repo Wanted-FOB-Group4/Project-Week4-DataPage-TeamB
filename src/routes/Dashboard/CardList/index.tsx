@@ -5,9 +5,9 @@ import { useCalculateDate } from 'hooks/useCalculateDate'
 import Card from './Card'
 
 import { getFilterTrendData } from 'services/getTrendData'
-import { translateData } from './utils'
 
 import styles from './cardList.module.scss'
+import { translateData } from '../utils/makeTrendData'
 
 interface IProps {
   category: string
