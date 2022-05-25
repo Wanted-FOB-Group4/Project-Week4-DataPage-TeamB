@@ -20,9 +20,14 @@ const AdsContainer = ({ adData }: IProps) => {
   const cost = addUnitToBudget(adData.report.cost)
   const roas = getPercentage(adData.report.roas)
   const [isEditBoxHidden, setIsEditBoxHidden] = useState(true)
+  const [isDeleteBoxHidden, setIsDeleteBoxHidden] = useState(true)
 
-  const handleButtonClick = () => {
+  const handleModifyClick = () => {
     setIsEditBoxHidden((prevState) => !prevState)
+  }
+
+  const handleDeleteClick = () => {
+    setIsDeleteBoxHidden((prevState) => !prevState)
   }
 
   return (
@@ -36,9 +41,14 @@ const AdsContainer = ({ adData }: IProps) => {
         <AdsListBlock dataKey='매출' dataValue={convValue} />
         <AdsListBlock dataKey='광고 비용' dataValue={cost} />
       </ul>
-      <button type='button' onClick={handleButtonClick}>
-        수정하기
-      </button>
+      <div className={styles.adsContainerButtons}>
+        <button type='button' onClick={handleModifyClick}>
+          수정하기
+        </button>
+        <button type='button' onClick={handleDeleteClick}>
+          삭제하기
+        </button>
+      </div>
       {!isEditBoxHidden && <AdsEditFormModal prevData={adData} setIsHidden={setIsEditBoxHidden} />}
     </li>
   )
