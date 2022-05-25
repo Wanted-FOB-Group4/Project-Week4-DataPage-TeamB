@@ -2,10 +2,21 @@
 @use 'styles/constants/levels';
 @use 'styles/mixins/flexbox';
 
-.createContainer {
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(colors.$GRAY50, 50%);
+  backdrop-filter: blur(2px);
+}
+
+.editModal {
   @include flexbox.flexbox(center, start);
-  position: absolute;
-  right: 0;
+  position: fixed;
+  top: calc(50% - 7.5rem);
+  left: calc(50% - 15rem);
   z-index: levels.$DROPDOWN_BOTTOM;
   flex-direction: column;
   width: 300px;
@@ -22,7 +33,7 @@
     color: colors.$GRAY800;
   }
 
-  .createFormWrapper {
+  .editModalFormWrapper {
     @include flexbox.flexbox(center, center);
     flex-direction: column;
 
@@ -38,8 +49,4 @@
       border-radius: 10px;
     }
   }
-}
-
-.isCreateBoxHidden {
-  display: none;
 }
