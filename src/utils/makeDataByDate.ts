@@ -39,5 +39,6 @@ export const makeDataByDate = (startDate: string, endDate: string) => {
       })
     }
   })
+
   return { google, kakao, naver, facebook }
 }
