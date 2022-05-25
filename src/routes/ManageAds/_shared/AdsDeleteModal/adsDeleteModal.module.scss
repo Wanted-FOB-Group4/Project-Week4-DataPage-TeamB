@@ -1,0 +1,24 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: levels.$MODALS_BACKGROUND;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(colors.$GRAY50, 50%);
+  backdrop-filter: blur(2px);
+}
+
+.deleteModal {
+  @include flexbox.flexbox(start, center);
+  position: fixed;
+  top: calc(50% - 200px);
+  left: calc(50% - 150px);
+  width: 400px;
+  height: 300px;
+  background-color: colors.$WHITE;
+}

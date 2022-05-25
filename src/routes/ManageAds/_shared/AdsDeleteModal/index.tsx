@@ -3,11 +3,11 @@ import { useRecoilState } from 'recoil'
 import store from 'store'
 
 import { adsDataState } from 'routes/ManageAds/states'
-
 import ModalPortal from '../ModalPortal'
 
-import styles from './adsDeleteModal.scss'
+import styles from './adsDeleteModal.module.scss'
 import { IAd, IAdData } from 'routes/ManageAds/types'
+import { useClickAway } from 'react-use'
 
 interface IProps {
   id: number
@@ -18,6 +18,7 @@ interface IProps {
 const AdsDeleteModal = ({ id, title, setIsHidden }: IProps) => {
   const [adsData, setAdsData] = useRecoilState(adsDataState)
   const modalRef = useRef(null)
+  console.log('rendered')
 
   const handleConfirmDeleteClick = () => {
     const newData: IAdData = {
@@ -32,6 +33,8 @@ const AdsDeleteModal = ({ id, title, setIsHidden }: IProps) => {
   const handleCancelDeleteClick = () => {
     setIsHidden(true)
   }
+
+  useClickAway(modalRef, handleCancelDeleteClick)
 
   return (
     <ModalPortal>
