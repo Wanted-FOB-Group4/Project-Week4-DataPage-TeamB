@@ -65,6 +65,7 @@ const sumDateByChannel = ({ data, channel, item }: IIProps) => {
   data[channel].imp += item.imp
   data[channel].cost += item.cost
   data[channel].click += item.click
+  data[channel].roas += item.roas
   data[channel].ctr += item.ctr
   data[channel].cpc += item.cpc
   data[channel].conversion += item.conversion
@@ -72,6 +73,7 @@ const sumDateByChannel = ({ data, channel, item }: IIProps) => {
   data.total.imp += item.imp
   data.total.cost += item.cost
   data.total.click += item.click
+  data.total.roas += item.roas
   data.total.ctr += item.ctr
   data.total.cpc += item.cpc
   data.total.conversion += item.conversion
