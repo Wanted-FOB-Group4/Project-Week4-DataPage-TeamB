@@ -90,7 +90,7 @@ const AdsEditFormModal = ({ prevData, setIsHidden }: IProps) => {
               <AdsEditFormInput name='convValue' value={convValue} onChange={handleConvValueChange} />
               <AdsEditFormInput name='cost' value={cost} onChange={handleCostChange} />
             </ul>
-            <button type='submit'>추가하기</button>
+            <button type='submit'>{prevData ? '수정하기' : '추가하기'}</button>
           </form>
         </div>
       </div>
