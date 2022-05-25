@@ -5,10 +5,10 @@ export interface IAdData {
 
 export interface IAd {
   id: number
-  adType: string
+  adType: 'app' | 'web'
   title: string
   budget: number
-  status: string
+  status: 'active' | 'ended'
   startDate: string
   endDate: string | null
   report: {

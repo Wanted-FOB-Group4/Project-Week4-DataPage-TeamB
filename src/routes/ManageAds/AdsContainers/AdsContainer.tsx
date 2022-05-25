@@ -1,7 +1,10 @@
-import { IAd } from 'types/ads'
-import AdsListBlock from './AdsListBlock'
-import { getCreateDate, getPercentage, getAdsTitle } from './utils'
+import { useState } from 'react'
+
+import { IAd } from 'routes/ManageAds/types'
 import { addUnitToBudget } from 'utils'
+import { getCreateDate, getPercentage, getAdsTitle } from './utils'
+import AdsListBlock from './AdsListBlock'
+import AdsEditFormModal from 'routes/ManageAds/_shared/AdsEditFormModal'
 
 import styles from './adsContainer.module.scss'
 
@@ -16,6 +19,11 @@ const AdsContainer = ({ adData }: IProps) => {
   const convValue = addUnitToBudget(adData.report.convValue)
   const cost = addUnitToBudget(adData.report.cost)
   const roas = getPercentage(adData.report.roas)
+  const [isEditBoxHidden, setIsEditBoxHidden] = useState(true)
+
+  const handleButtonClick = () => {
+    setIsEditBoxHidden((prevState) => !prevState)
+  }
 
   return (
     <li className={styles.adsContainerWrapper}>
@@ -28,7 +36,10 @@ const AdsContainer = ({ adData }: IProps) => {
         <AdsListBlock dataKey='매출' dataValue={convValue} />
         <AdsListBlock dataKey='광고 비용' dataValue={cost} />
       </ul>
-      <button type='button'>수정하기</button>
+      <button type='button' onClick={handleButtonClick}>
+        수정하기
+      </button>
+      {!isEditBoxHidden && <AdsEditFormModal prevData={adData} setIsHidden={setIsEditBoxHidden} />}
     </li>
   )
 }

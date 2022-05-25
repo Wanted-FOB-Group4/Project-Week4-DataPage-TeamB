@@ -1,0 +1,56 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(colors.$GRAY50, 50%);
+  backdrop-filter: blur(2px);
+}
+
+.editModal {
+  @include flexbox.flexbox(start, center);
+  position: fixed;
+  top: 15%;
+  left: 25%;
+  flex-direction: column;
+  width: 50%;
+  height: 70%;
+  padding: 30px 40px;
+  margin-top: 4px;
+  overflow: scroll;
+  background-color: colors.$WHITE;
+  border: 2px solid colors.$PRIMARY;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+  h2 {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+    text-align: center;
+  }
+
+  .editModalFormWrapper {
+    @include flexbox.flexbox(center, center);
+    flex-direction: column;
+    width: 100%;
+
+    ul {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    button {
+      width: 100px;
+      height: 40px;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+    }
+  }
+}

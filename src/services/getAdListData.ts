@@ -1,21 +1,22 @@
-import { IAd, IAdData } from 'types/ads'
-// wanted_FE_ad-list-data-set.json
 import axios, { AxiosResponse } from 'axios'
-import { setFetchDelay } from 'utils'
+import store from 'store'
 
-const STATUS = ['all', 'active', 'ended']
+import { setFetchDelay, setFetchDelayPromise } from 'utils'
+import { IAdData } from 'routes/ManageAds/types'
 
-export const getAdListData = (adsFilterIndex: number) =>
-  axios
-    .get('/wanted_FE_ad-list-data-set.json')
-    .then(setFetchDelay(500))
-    .then((response: AxiosResponse) => {
-      if (adsFilterIndex === 0) return response.data
-      const newData: IAdData = {
-        count: 0,
-        ads: [],
-      }
-      newData.ads = response.data.ads.filter((ad: IAd) => ad.status === STATUS[adsFilterIndex])
-      newData.count = newData.ads.length
-      return newData
-    })
+export const getAdListData = () => {
+  const promise = new Promise((resolve: (value: IAdData) => void, reject) => {
+    const data: IAdData = store.get('adsData')
+    if (!data) reject()
+    else resolve(data)
+  })
+  return promise
+    .then(setFetchDelayPromise(500))
+    .then((data: IAdData) => data)
+    .catch(() =>
+      axios
+        .get('/wanted_FE_ad-list-data-set.json')
+        .then(setFetchDelay(500))
+        .then((response: AxiosResponse) => response.data)
+    )
+}
