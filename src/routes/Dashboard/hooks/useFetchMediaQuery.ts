@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useRecoilValue } from 'recoil'
 
-import { dateState } from '../states/date'
+import { dateRangeState } from '../states/date'
 import { IMediaTotalByDateItem, ITotalChannelData } from 'types/chart'
 import { getMediaChannelData } from 'services/getMediaChannalData'
 
@@ -24,9 +24,9 @@ const INIT: ITotalChannelData = {
   total: INIT_ITEM,
 }
 export const useFetchMediaQuery = (): ITotalChannelData => {
-  const date = useRecoilValue(dateState)
+  const { from, to } = useRecoilValue(dateRangeState)
 
-  const { data } = useQuery(['#totalChannelData', date], () => getMediaChannelData(date.from, date.to), {
+  const { data } = useQuery(['#totalChannelData', [from, to]], () => getMediaChannelData(from, to), {
     refetchOnWindowFocus: false,
     staleTime: 60000,
     cacheTime: Infinity,

@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import LNB from '../LNB'
+import LNB from './LNB'
 import Header from './Header'
 
 import styles from './layout.module.scss'

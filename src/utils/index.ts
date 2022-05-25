@@ -1,2 +1,2 @@
 export { addUnitToBudget } from './addUnitToBudget'
-export { setFetchDelay } from './setFetchDelay'
+export { setFetchDelay, setFetchDelayPromise } from './setFetchDelay'

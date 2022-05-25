@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { useRecoilValue } from 'recoil'
-import { dateState } from '../states/date'
+import { dateRangeState } from '../states/date'
 import { getMediaChannelData } from 'services/getMediaChannalData'
 
 import TableRow from './TableRow'
@@ -8,7 +8,7 @@ import TableRow from './TableRow'
 import styles from './table.module.scss'
 
 const Table = () => {
-  const date = useRecoilValue(dateState)
+  const date = useRecoilValue(dateRangeState)
 
   const { data: tableData } = useQuery(['#mediaChannelData', date], () => getMediaChannelData(date.from, date.to), {
     refetchOnWindowFocus: false,

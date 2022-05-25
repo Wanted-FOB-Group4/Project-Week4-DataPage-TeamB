@@ -9,14 +9,14 @@ const Header = () => {
     <header className={styles.header}>
       <ul>
         <li>
-          <button type='button' className={styles.notification}>
+          <button type='button' className={styles.notification} aria-label='notification'>
             <NotiIcon />
           </button>
         </li>
         <li>
-          <Link to='#'>
+          <button type='button' aria-label='notification'>
             <SettingIcon />
-          </Link>
+          </button>
         </li>
         <li>
           <Link to='#' className={styles.profile}>

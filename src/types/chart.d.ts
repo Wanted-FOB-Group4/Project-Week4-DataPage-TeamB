@@ -39,7 +39,7 @@ export interface ITrendDataItem {
   cpc: number
   cpa: number
   roas: number
-  date: string
+  date?: string
 }
 
 export interface ITrendDataByDate extends ITrendDataItem {

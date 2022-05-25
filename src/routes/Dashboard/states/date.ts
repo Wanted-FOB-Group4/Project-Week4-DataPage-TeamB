@@ -1,15 +1,15 @@
 import { atom } from 'recoil'
 
-interface IDate {
+export interface IStringDateRange {
   from: string
   to: string
 }
 
-export const dateState = atom<IDate>({
-  key: '#dateState',
+export const dateRangeState = atom<IStringDateRange>({
+  key: 'dateRangeState',
   default: {
-    from: '2022-02-02',
-    to: '2022-02-04',
+    from: '2022-02-01',
+    to: '2022-02-05',
   },
 })
 

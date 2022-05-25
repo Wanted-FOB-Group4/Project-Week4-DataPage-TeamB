@@ -77,18 +77,18 @@ const ChartByChannel = ({ data }: IProps) => {
             className={styles.chart}
             responsive={false}
             labels={({ datum }) => {
-              return datum.y
+              return datum.y.toLocaleString()
             }}
           />
         }
       >
         <VictoryLegend
-          x={width - 370}
+          x={width - 380}
           y={380}
           orientation='horizontal'
-          gutter={20}
+          gutter={40}
           colorScale={['#1778F2', '#AC8AF8', '#f9e000', '#2DB400']}
-          data={[{ name: 'facebook' }, { name: 'google' }, { name: 'kakao' }, { name: 'naver' }]}
+          data={[{ name: '페이스북' }, { name: '구글' }, { name: '카카오' }, { name: '네이버' }]}
         />
         <VictoryAxis
           scale={{ x: 'time' }}

@@ -1,0 +1,49 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: levels.$MODALS_BACKGROUND;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(colors.$GRAY50, 50%);
+  backdrop-filter: blur(2px);
+}
+
+.deleteModal {
+  @include flexbox.flexbox(center, center);
+  position: fixed;
+  top: calc(50% - 180px);
+  left: calc(50% - 120px);
+  flex-direction: column;
+  width: 360px;
+  height: 240px;
+  padding: 30px 40px;
+  overflow: scroll;
+  background-color: colors.$WHITE;
+  border: 2px solid colors.$PRIMARY;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+  h2 {
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+  }
+
+  h3 {
+    margin-bottom: 30px;
+    font-size: 15px;
+    color: colors.$GRAY800;
+  }
+
+  .deleteModalButtons {
+    @include flexbox.flexbox(between, center);
+    flex-direction: row;
+    width: 100%;
+  }
+}
