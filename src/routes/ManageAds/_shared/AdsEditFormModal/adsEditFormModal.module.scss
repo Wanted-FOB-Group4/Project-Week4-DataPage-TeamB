@@ -6,6 +6,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: levels.$MODALS_BACKGROUND;
   width: 100vw;
   height: 100vh;
   background-color: rgba(colors.$GRAY50, 50%);
@@ -17,6 +18,7 @@
   position: fixed;
   top: 15%;
   left: 25%;
+  z-index: levels.$MODALS;
   flex-direction: column;
   width: 50%;
   height: 70%;
