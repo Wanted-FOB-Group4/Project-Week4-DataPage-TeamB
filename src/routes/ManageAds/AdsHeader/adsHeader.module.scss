@@ -4,9 +4,8 @@
 .adsHeaderWrapper {
   @include flexbox.flexbox(between, center);
   padding-bottom: 30px;
-  overflow-x: scroll;
 
-  button:last-child {
+  .dropdownButton {
     color: colors.$WHITE;
     background-color: colors.$PRIMARY;
     border: none;

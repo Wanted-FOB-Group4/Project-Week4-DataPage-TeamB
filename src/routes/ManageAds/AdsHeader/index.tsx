@@ -15,7 +15,7 @@ const AdsHeader = () => {
   return (
     <div className={styles.adsHeaderWrapper}>
       <AdsFilterDropdown />
-      <Button type='button' onClick={handleButtonClick}>
+      <Button type='button' className={styles.dropdownButton} onClick={handleButtonClick}>
         광고 만들기
       </Button>
       {!isCreateBoxHidden && <AdsEditFormModal setIsHidden={setIsCreateBoxHidden} />}
