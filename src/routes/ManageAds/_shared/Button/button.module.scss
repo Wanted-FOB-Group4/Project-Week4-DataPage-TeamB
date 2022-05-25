@@ -7,4 +7,9 @@
   color: colors.$GRAY800;
   border: 1px solid colors.$GRAY100;
   border-radius: 10px;
+  transition: 0.1s ease-in;
+
+  &:hover {
+    border: 2px solid colors.$GRAY300;
+  }
 }
