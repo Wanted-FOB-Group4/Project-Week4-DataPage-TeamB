@@ -21,4 +21,7 @@
   width: 400px;
   height: 300px;
   background-color: colors.$WHITE;
+  border: 2px solid colors.$PRIMARY;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 }
