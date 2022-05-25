@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import AdsEditFormModal from 'routes/ManageAds/_shared/AdsEditFormModal'
-
 import AdsFilterDropdown from './AdsFilterDropdown'
 
 import styles from './adsHeader.module.scss'
