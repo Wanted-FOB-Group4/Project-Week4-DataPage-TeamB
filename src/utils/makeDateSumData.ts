@@ -1,21 +1,10 @@
-import { IMediaDataByDate } from 'types/chart'
+import { IMediaDataByDate, IMediaTotalByDateItem, ITotalChannelData } from 'types/chart'
 
 interface IProps {
   google: IMediaDataByDate[]
   naver: IMediaDataByDate[]
   kakao: IMediaDataByDate[]
   facebook: IMediaDataByDate[]
-}
-
-interface IMediaTotalByDateItem {
-  cost: number
-  sales: number
-  roas: number
-  click: number
-  ctr: number
-  cpc: number
-  imp: number
-  conversion: number
 }
 
 const INIT_DATA_ITEM: IMediaTotalByDateItem = {
@@ -29,18 +18,8 @@ const INIT_DATA_ITEM: IMediaTotalByDateItem = {
   conversion: 0,
 }
 
-interface IInitData {
-  google: IMediaTotalByDateItem
-  facebook: IMediaTotalByDateItem
-  naver: IMediaTotalByDateItem
-  kakao: IMediaTotalByDateItem
-  total: IMediaTotalByDateItem
-
-  [key: string]: any
-}
-
 export const makeDateSumData = ({ google, kakao, naver, facebook }: IProps) => {
-  const newData: IInitData = {
+  const newData: ITotalChannelData = {
     google: { ...INIT_DATA_ITEM },
     facebook: { ...INIT_DATA_ITEM },
     kakao: { ...INIT_DATA_ITEM },
@@ -57,7 +36,7 @@ export const makeDateSumData = ({ google, kakao, naver, facebook }: IProps) => {
 }
 
 interface IIProps {
-  data: IInitData
+  data: ITotalChannelData
   channel: string
   item: IMediaDataByDate
 }

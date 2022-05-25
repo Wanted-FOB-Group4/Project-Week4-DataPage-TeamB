@@ -1,13 +1,8 @@
 import { ErrorMessage, Loading } from 'components'
 import { Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
-import ChartByChannel from './ChartByChannel'
-import ChartByDate from './ChartByDate'
-import SelectButton from './SelectButton'
-import CardList from './CardList'
-import Table from './Table'
-
-const TMP_DATE = { start: '2022-02-07', end: '2022-02-08' }
+import AdsCombineContainer from './AdsCombineContainer'
+import MediaContainer from './MediaContainer'
 
 const Dashboard = () => {
   const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />
@@ -19,16 +14,17 @@ const Dashboard = () => {
       <div className='container'>
         <Suspense fallback={<Loading />}>
           <ErrorBoundary fallbackRender={handleErrorFallback}>
-            <CardList date={TMP_DATE} />
+            <AdsCombineContainer />
           </ErrorBoundary>
         </Suspense>
-        <SelectButton />
-        <ChartByDate />
       </div>
       <h2 className='subtitle'>매체 현황</h2>
       <div className='container'>
-        <ChartByChannel />
-        <Table date={TMP_DATE} />
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary fallbackRender={handleErrorFallback}>
+            <MediaContainer />
+          </ErrorBoundary>
+        </Suspense>
       </div>
     </>
   )
