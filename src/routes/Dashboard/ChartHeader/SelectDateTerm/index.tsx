@@ -1,10 +1,10 @@
 import { useState, MouseEvent, useRef } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useClickAway } from 'react-use'
 
 import styles from './selectDateTerm.module.scss'
 import { dateTermState } from '../../states/date'
 import { ArrowDownIcon } from 'assets/svgs'
-import { useClickAway } from 'react-use'
 import { isChartViewState } from 'routes/Dashboard/states/dashBoard'
 
 const SelectDateTerm = () => {

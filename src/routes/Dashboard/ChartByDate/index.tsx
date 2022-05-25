@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer, VictoryLabel } from 'victory'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
@@ -7,7 +8,6 @@ import { dateTermState } from '../states/date'
 import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import styles from './chartByDate.module.scss'
-import { useEffect, useRef, useState } from 'react'
 import NeedMoreDate from './NeedForDate'
 
 interface ICOLOR {
