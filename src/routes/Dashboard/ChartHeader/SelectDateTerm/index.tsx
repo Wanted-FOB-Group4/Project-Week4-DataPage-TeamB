@@ -1,14 +1,16 @@
 import { useState, MouseEvent, useRef } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import styles from './selectDateTerm.module.scss'
 import { dateTermState } from '../../states/date'
 import { ArrowDownIcon } from 'assets/svgs'
 import { useClickAway } from 'react-use'
+import { isChartViewState } from 'routes/Dashboard/states/dashBoard'
 
 const SelectDateTerm = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [dateTerm, setDateTerm] = useRecoilState(dateTermState)
+  const setIsChartView = useSetRecoilState(isChartViewState)
   const dropdownRef = useRef(null)
   const dropdownValue = dateTerm.title === '주간' ? { title: '일간', value: 1 } : { title: '주간', value: 7 }
 
@@ -19,6 +21,7 @@ const SelectDateTerm = () => {
       value: Number(value),
     })
     setIsDropdownOpen(false)
+    setIsChartView(false)
   }
 
   const handleClickDropdownTop = () => {

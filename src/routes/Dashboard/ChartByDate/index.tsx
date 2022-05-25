@@ -1,12 +1,14 @@
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer, VictoryLabel } from 'victory'
-import dayjs from 'dayjs'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
-import styles from './chartByDate.module.scss'
 import { makeDataByTrend } from 'utils/makeDataByTrend'
-
-import { selectorState } from '../states/dashBoard'
+import { isChartViewState, selectorState } from '../states/dashBoard'
+import { dateTermState } from '../states/date'
 import { shortenNumber } from './utils'
+import { rearrangeByTerm } from './utils/rearrangeByTerm'
+import styles from './chartByDate.module.scss'
+import dayjs from 'dayjs'
+import { useEffect, useRef, useState } from 'react'
 
 interface ICOLOR {
   roas: string
@@ -32,17 +34,43 @@ type Anchor = 'start' | 'end'
 
 const ChartByDate = () => {
   const selectors = useRecoilValue(selectorState)
+  const dateTerm = useRecoilValue(dateTermState)
+  const containerRef = useRef<null | HTMLDivElement>(null)
+  const [width, setWidth] = useState(0)
+  const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
+
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-20')
+  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-04-01')
+  const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
   const maxs = [0, 0]
   const position: Position[] = ['left', 'right']
   const textAnchor: Anchor[] = ['start', 'end']
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth
+      setWidth(() => {
+        if (containerWidth >= 100 * chartData.length) return containerWidth
+        return 100 * chartData.length
+      })
+      const curWidth = containerWidth >= 100 * chartData.length ? containerWidth : 100 * chartData.length
+      if (curWidth === width) {
+        setIsChartView(true)
+      }
+    }
+  }, [chartData.length, setIsChartView, width])
+
+  const dateFormat = (date: string) => {
+    if (dateTerm.title === '주간') return date
+    return `${dayjs(date).format('M')}월 ${dayjs(date).format('D')}일`
+  }
   const datas = filteredSelectors.map((target: { name: string; title: string }, idx) =>
-    totalDataByDate.map((item) => {
+    chartData.map((item) => {
       maxs[idx] = Math.max(maxs[idx], item[target.name])
       return { x: item.date, y: item[target.name] }
     })
   )
+
   const maxDatas = maxs.map((maxData) => {
     let digit = 1
     while (digit * 10 < maxData) {
@@ -89,33 +117,35 @@ const ChartByDate = () => {
     )
   })
   return (
-    <div className={styles.lineChartContainer}>
-      <VictoryChart
-        domainPadding={{ x: [80, 80], y: 60 }}
-        height={400}
-        width={100 * totalDataByDate.length}
-        containerComponent={
-          <VictoryVoronoiContainer
-            className={styles.chart}
-            responsive={false}
-            labels={({ datum }) => {
-              return datum.y
+    <div className={styles.lineChartContainer} ref={containerRef}>
+      {isChartView && (
+        <VictoryChart
+          domainPadding={{ x: [80, 80], y: 60 }}
+          height={400}
+          width={width}
+          containerComponent={
+            <VictoryVoronoiContainer
+              className={styles.chart}
+              responsive={false}
+              labels={({ datum }) => {
+                return datum.y
+              }}
+            />
+          }
+        >
+          <VictoryAxis
+            scale={{ x: 'time' }}
+            tickFormat={(x) => dateFormat(x)}
+            style={{
+              axis: { strokeWidth: 0.5, stroke: '#cccccc' },
+              tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+              ticks: { stroke: '#cccccc', size: 0 },
             }}
           />
-        }
-      >
-        <VictoryAxis
-          scale={{ x: 'time' }}
-          tickFormat={(x) => `${dayjs(x).format('M')}월 ${dayjs(x).format('D')}일`}
-          style={{
-            axis: { strokeWidth: 0.5, stroke: '#cccccc' },
-            tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: '#cccccc', size: 0 },
-          }}
-        />
-        {axisesY}
-        {lineChartes}
-      </VictoryChart>
+          {axisesY}
+          {lineChartes}
+        </VictoryChart>
+      )}
     </div>
   )
 }
