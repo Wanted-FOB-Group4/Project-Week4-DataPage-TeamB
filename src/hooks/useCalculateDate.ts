@@ -2,13 +2,13 @@ import { useMemo } from 'react'
 import dayjs from 'dayjs'
 
 interface IProp {
-  start: string
-  end: string
+  from: string
+  to: string
 }
 
 export const useCalculateDate = (date: IProp) => {
   const [curStart, curEnd] = useMemo(() => {
-    return [dayjs(date.start, 'YYYY-MM-DD'), dayjs(date.end, 'YYYY-MM-DD')]
+    return [dayjs(date.from, 'YYYY-MM-DD'), dayjs(date.to, 'YYYY-MM-DD')]
   }, [date])
 
   const term = useMemo(() => {

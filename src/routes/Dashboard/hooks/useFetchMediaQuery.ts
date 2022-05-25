@@ -26,7 +26,7 @@ const INIT: ITotalChannelData = {
 export const useFetchMediaQuery = (): ITotalChannelData => {
   const date = useRecoilValue(dateState)
 
-  const { data } = useQuery(['#totalChannelData', date], () => getMediaChannelData(date[0], date[1]), {
+  const { data } = useQuery(['#totalChannelData', date], () => getMediaChannelData(date.from, date.to), {
     refetchOnWindowFocus: false,
     staleTime: 60000,
     cacheTime: Infinity,

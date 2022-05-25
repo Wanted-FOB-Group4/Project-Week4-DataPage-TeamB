@@ -1,8 +1,16 @@
 import { atom } from 'recoil'
 
-export const dateState = atom<string[]>({
+interface IDate {
+  from: string
+  to: string
+}
+
+export const dateState = atom<IDate>({
   key: '#dateState',
-  default: ['2022-02-01', '2022-02-05'],
+  default: {
+    from: '2022-02-01',
+    to: '2022-02-05',
+  },
 })
 
 export const dateTermState = atom<{ title: string; value: number }>({
