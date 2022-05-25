@@ -48,3 +48,24 @@ export interface ITrendDataByDate extends ITrendDataItem {
 
   [prop: string]: any
 }
+
+export interface IMediaTotalByDateItem {
+  cost: number
+  sales: number
+  roas: number
+  click: number
+  ctr: number
+  cpc: number
+  imp: number
+  conversion: number
+}
+
+export interface ITotalChannelData {
+  google: IMediaTotalByDateItem
+  facebook: IMediaTotalByDateItem
+  naver: IMediaTotalByDateItem
+  kakao: IMediaTotalByDateItem
+  total: IMediaTotalByDateItem
+
+  [key: string]: any
+}

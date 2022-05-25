@@ -1,0 +1,1 @@
+export { shortenNumber } from './shortenNumber'

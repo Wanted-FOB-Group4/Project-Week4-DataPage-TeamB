@@ -2,10 +2,10 @@ import { useState, MouseEvent } from 'react'
 import { useRecoilValue } from 'recoil'
 import cx from 'classnames'
 
-import styles from './selectButton.module.scss'
-import { selectorState } from 'states/dashBoard'
+import { selectorState } from '../../states/dashBoard'
 import Dropdown from './Dropdown'
 import { Circle, ArrowDownIcon } from 'assets/svgs'
+import styles from './selectButton.module.scss'
 
 const MENU = [
   { name: 'roas', title: 'ROAS' },

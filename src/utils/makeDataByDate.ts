@@ -1,9 +1,8 @@
 import dayjs from 'dayjs'
 
-import channelData from 'data/media-channel-data-set.json'
 import { IMediaDataItem, IMediaDataByDate } from 'types/chart'
 
-export const makeDataByDate = (startDate: string, endDate: string) => {
+export const makeDataByDate = (startDate: string, endDate: string, data: IMediaDataItem[]) => {
   const google: IMediaDataByDate[] = []
   const naver: IMediaDataByDate[] = []
   const kakao: IMediaDataByDate[] = []
@@ -11,7 +10,7 @@ export const makeDataByDate = (startDate: string, endDate: string) => {
 
   const startUnix = dayjs(startDate).unix()
   const endUnix = dayjs(endDate).unix()
-  channelData.forEach((item: IMediaDataItem) => {
+  data.forEach((item: IMediaDataItem) => {
     if (dayjs(item.date).unix() < startUnix || dayjs(item.date).unix() > endUnix) return
     if (item.channel === 'google') {
       google.push({
