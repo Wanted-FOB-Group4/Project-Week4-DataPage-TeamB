@@ -4,10 +4,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { makeDataByTrend } from 'utils/makeDataByTrend'
 import { isChartViewState, selectorState } from '../states/dashBoard'
 import { dateTermState } from '../states/date'
-import { shortenNumber } from './utils'
+import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import styles from './chartByDate.module.scss'
-import dayjs from 'dayjs'
 import { useEffect, useRef, useState } from 'react'
 
 interface ICOLOR {
@@ -42,7 +41,6 @@ const ChartByDate = () => {
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
   const totalDataByDate = makeDataByTrend('2022-02-01', '2022-04-01')
   const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
-  const maxs = [0, 0]
   const position: Position[] = ['left', 'right']
   const textAnchor: Anchor[] = ['start', 'end']
 
@@ -60,24 +58,9 @@ const ChartByDate = () => {
     }
   }, [chartData.length, setIsChartView, width])
 
-  const dateFormat = (date: string) => {
-    if (dateTerm.title === '주간') return date
-    return `${dayjs(date).format('M')}월 ${dayjs(date).format('D')}일`
-  }
-  const datas = filteredSelectors.map((target: { name: string; title: string }, idx) =>
-    chartData.map((item) => {
-      maxs[idx] = Math.max(maxs[idx], item[target.name])
-      return { x: item.date, y: item[target.name] }
-    })
-  )
+  const { newData: datas, maxs } = makeDataForChart({ selectors: filteredSelectors, data: chartData, maxs: [0, 0] })
+  const maxDatas = makeMaxDatas(maxs)
 
-  const maxDatas = maxs.map((maxData) => {
-    let digit = 1
-    while (digit * 10 < maxData) {
-      digit *= 10
-    }
-    return (Math.floor(maxData / digit) + 1) * digit
-  })
   const axisesY = filteredSelectors.map((target: { name: string; title: string }, idx) => {
     const key = `Axis-${target.name}`
     return (
@@ -135,7 +118,7 @@ const ChartByDate = () => {
         >
           <VictoryAxis
             scale={{ x: 'time' }}
-            tickFormat={(x) => dateFormat(x)}
+            tickFormat={(x) => conditionalDateFormat(x, dateTerm.title)}
             style={{
               axis: { strokeWidth: 0.5, stroke: '#cccccc' },
               tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
