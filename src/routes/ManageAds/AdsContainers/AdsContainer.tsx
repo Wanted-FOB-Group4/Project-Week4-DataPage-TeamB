@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-import { IAd } from 'routes/ManageAds/types'
 import { addUnitToBudget } from 'utils'
 import { getCreateDate, getPercentage, getAdsTitle } from './utils'
 import AdsListBlock from './AdsListBlock'
-import AdsEditFormModal from 'routes/ManageAds/_shared/AdsEditFormModal'
+import { IAd } from 'routes/ManageAds/types'
+import { AdsEditFormModal, AdsDeleteModal, Button } from 'routes/ManageAds/_shared'
 
 import styles from './adsContainer.module.scss'
 
@@ -20,9 +20,14 @@ const AdsContainer = ({ adData }: IProps) => {
   const cost = addUnitToBudget(adData.report.cost)
   const roas = getPercentage(adData.report.roas)
   const [isEditBoxHidden, setIsEditBoxHidden] = useState(true)
+  const [isDeleteBoxHidden, setIsDeleteBoxHidden] = useState(true)
 
-  const handleButtonClick = () => {
+  const handleModifyClick = () => {
     setIsEditBoxHidden((prevState) => !prevState)
+  }
+
+  const handleDeleteClick = () => {
+    setIsDeleteBoxHidden((prevState) => !prevState)
   }
 
   return (
@@ -36,10 +41,16 @@ const AdsContainer = ({ adData }: IProps) => {
         <AdsListBlock dataKey='매출' dataValue={convValue} />
         <AdsListBlock dataKey='광고 비용' dataValue={cost} />
       </ul>
-      <button type='button' onClick={handleButtonClick}>
-        수정하기
-      </button>
+      <div className={styles.adsContainerButtons}>
+        <Button type='button' onClick={handleModifyClick}>
+          수정하기
+        </Button>
+        <Button type='button' onClick={handleDeleteClick}>
+          삭제하기
+        </Button>
+      </div>
       {!isEditBoxHidden && <AdsEditFormModal prevData={adData} setIsHidden={setIsEditBoxHidden} />}
+      {!isDeleteBoxHidden && <AdsDeleteModal id={adData.id} title={adData.title} setIsHidden={setIsDeleteBoxHidden} />}
     </li>
   )
 }

@@ -13,15 +13,14 @@
   backdrop-filter: blur(2px);
 }
 
-.editModal {
-  @include flexbox.flexbox(start, center);
+.deleteModal {
+  @include flexbox.flexbox(center, center);
   position: fixed;
-  top: 15%;
-  left: 25%;
-  z-index: levels.$MODALS;
+  top: calc(50% - 180px);
+  left: calc(50% - 120px);
   flex-direction: column;
-  width: 50%;
-  height: 70%;
+  width: 360px;
+  height: 240px;
   padding: 30px 40px;
   overflow: scroll;
   background-color: colors.$WHITE;
@@ -30,21 +29,21 @@
   box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 
   h2 {
-    width: 100%;
-    font-size: 20px;
+    margin-bottom: 30px;
+    font-size: 18px;
     font-weight: 700;
     color: colors.$GRAY800;
-    text-align: center;
   }
 
-  .editModalFormWrapper {
-    @include flexbox.flexbox(center, center);
-    flex-direction: column;
-    width: 100%;
+  h3 {
+    margin-bottom: 30px;
+    font-size: 15px;
+    color: colors.$GRAY800;
+  }
 
-    ul {
-      width: 100%;
-      margin: 20px 0;
-    }
+  .deleteModalButtons {
+    @include flexbox.flexbox(between, center);
+    flex-direction: row;
+    width: 100%;
   }
 }

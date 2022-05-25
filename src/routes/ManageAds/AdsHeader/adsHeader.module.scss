@@ -4,14 +4,10 @@
 .adsHeaderWrapper {
   @include flexbox.flexbox(between, center);
   padding-bottom: 30px;
-  overflow-x: scroll;
-}
 
-.createButton {
-  width: 100px;
-  min-width: 100px;
-  height: 40px;
-  color: colors.$WHITE;
-  background-color: colors.$PRIMARY;
-  border-radius: 10px;
+  .dropdownButton {
+    color: colors.$WHITE;
+    background-color: colors.$PRIMARY;
+    border: none;
+  }
 }

@@ -4,8 +4,9 @@ import { useClickAway } from 'react-use'
 import AdsEditFormAdTypeInput from './AdsEditFormAdTypeInput'
 import AdsEditFormInput from './AdsEditFormInput'
 import { IAd } from 'routes/ManageAds/types'
-import ModalPortal from './ModalPortal'
+import ModalPortal from '../ModalPortal'
 import useFormHandler from './useFormHandler'
+import { Button } from 'routes/ManageAds/_shared'
 
 import styles from './adsEditFormModal.module.scss'
 
@@ -51,7 +52,7 @@ const AdsEditFormModal = ({ prevData, setIsHidden }: IProps) => {
               <AdsEditFormInput name='convValue' value={formData.report.convValue} onChange={handleFormReportChange} />
               <AdsEditFormInput name='cost' value={formData.report.cost} onChange={handleFormReportChange} />
             </ul>
-            <button type='submit'>{prevData ? '수정하기' : '추가하기'}</button>
+            <Button type='submit'>{prevData ? '수정하기' : '추가하기'}</Button>
           </form>
         </div>
       </div>
