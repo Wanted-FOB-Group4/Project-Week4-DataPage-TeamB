@@ -114,7 +114,7 @@ const ChartByDate = () => {
               className={styles.chart}
               responsive={false}
               labels={({ datum }) => {
-                return datum.y
+                return datum.y.toLocaleString()
               }}
             />
           }
