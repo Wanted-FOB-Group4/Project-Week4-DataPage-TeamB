@@ -1,4 +1,4 @@
-import { IAdData } from 'types/ads'
+import { IAdData } from 'routes/ManageAds/types'
 import { AxiosResponse } from 'axios'
 
 export const setFetchDelay = (ms: number) => {

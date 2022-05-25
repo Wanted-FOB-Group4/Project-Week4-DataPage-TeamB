@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { IAd } from 'types/ads'
+import { IAd } from 'routes/ManageAds/types'
 import { addUnitToBudget } from 'utils'
 import { getCreateDate, getPercentage, getAdsTitle } from './utils'
 import AdsListBlock from './AdsListBlock'

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import store from 'store'
 
 import { adsDataState } from 'routes/ManageAds/states/adsDataState'
-import { IAdData, IAd } from 'types/ads'
+import { IAdData, IAd } from 'routes/ManageAds/types'
 
 const today = dayjs().format('YYYY-MM-DD')
 const INIT_DATA: IAd = {

@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { IAdData } from 'types/ads'
+import { IAdData } from 'routes/ManageAds/types'
 
 export const adsDataState = atom<IAdData>({
   key: '#adsDataState',

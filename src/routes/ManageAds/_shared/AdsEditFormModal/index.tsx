@@ -3,11 +3,11 @@ import { useClickAway } from 'react-use'
 
 import AdsEditFormAdTypeInput from './AdsEditFormAdTypeInput'
 import AdsEditFormInput from './AdsEditFormInput'
-import { IAd } from 'types/ads'
-
-import styles from './adsEditFormModal.module.scss'
+import { IAd } from 'routes/ManageAds/types'
 import ModalPortal from './ModalPortal'
 import useFormHandler from './useFormHandler'
+
+import styles from './adsEditFormModal.module.scss'
 
 interface IProps {
   prevData?: IAd

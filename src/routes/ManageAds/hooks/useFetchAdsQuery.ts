@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { useQuery } from 'react-query'
 import store from 'store'
 
-import { IAd, IAdData } from 'types/ads'
+import { IAd, IAdData } from 'routes/ManageAds/types'
 import { adsDataState, adsFilterIndexState } from 'routes/ManageAds/states'
 import { getAdListData } from 'routes/ManageAds/services'
 

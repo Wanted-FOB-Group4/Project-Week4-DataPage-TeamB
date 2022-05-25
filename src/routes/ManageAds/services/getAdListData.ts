@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import store from 'store'
 
-import { IAdData } from 'types/ads'
+import { IAdData } from 'routes/ManageAds/types'
 import { setFetchDelay, setFetchDelayPromise } from 'utils'
 
 export const getAdListData = () => {
