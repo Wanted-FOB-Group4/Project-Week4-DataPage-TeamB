@@ -1,9 +1,14 @@
-import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer } from 'victory'
-import dayjs from 'dayjs'
+import { useEffect, useRef, useState } from 'react'
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer, VictoryLabel } from 'victory'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { makeDataByTrend } from 'utils/makeDataByTrend'
-import { useRecoilValue } from 'recoil'
-import { selectorState } from 'states/dashBoard'
+import { isChartViewState, selectorState } from '../states/dashBoard'
+import { dateTermState } from '../states/date'
+import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
+import { rearrangeByTerm } from './utils/rearrangeByTerm'
+import styles from './chartByDate.module.scss'
+import NeedMoreDate from './NeedForDate'
 
 interface ICOLOR {
   roas: string
@@ -24,39 +29,56 @@ const COLOR: ICOLOR = {
   conversion: '#3A474E',
 }
 
+type Position = 'left' | 'right'
+type Anchor = 'start' | 'end'
+
 const ChartByDate = () => {
   const selectors = useRecoilValue(selectorState)
+  const dateTerm = useRecoilValue(dateTermState)
+  const containerRef = useRef<null | HTMLDivElement>(null)
+  const [width, setWidth] = useState(0)
+  const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
+
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-11')
-  const maxs = [0, 0]
-  const offSet = [50, 1000]
-  const datas = filteredSelectors.map((target: { name: string; title: string }, idx) =>
-    totalDataByDate.map((item) => {
-      maxs[idx] = Math.max(maxs[idx], item[target.name])
-      return { x: item.date, y: item[target.name] }
-    })
-  )
-  const maxDatas = maxs.map((maxData) => {
-    let digit = 1
-    while (digit * 10 < maxData) {
-      digit *= 10
+  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-20')
+  const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
+  const position: Position[] = ['left', 'right']
+  const textAnchor: Anchor[] = ['start', 'end']
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth
+      setWidth(() => {
+        if (containerWidth >= 100 * chartData.length) return containerWidth
+        return 100 * chartData.length
+      })
+      const curWidth = containerWidth >= 100 * chartData.length ? containerWidth : 100 * chartData.length
+      if (curWidth === width) {
+        setIsChartView(true)
+      }
     }
-    return (Math.floor(maxData / digit) + 1) * digit
-  })
+  }, [chartData.length, setIsChartView, width])
+
+  if (totalDataByDate.length < 21 && dateTerm.title === '주간') return <NeedMoreDate />
+
+  const { newData: datas, maxs } = makeDataForChart({ selectors: filteredSelectors, data: chartData, maxs: [0, 0] })
+  const maxDatas = makeMaxDatas(maxs)
+
   const axisesY = filteredSelectors.map((target: { name: string; title: string }, idx) => {
     const key = `Axis-${target.name}`
     return (
       <VictoryAxis
         key={key}
         dependentAxis
-        offsetX={offSet[idx]}
+        tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor={textAnchor[idx]} dy={5} dx={5} />}
+        orientation={position[idx]}
         tickValues={[0.25, 0.5, 0.75, 1]}
         tickFormat={(t) => {
-          return t * maxDatas[idx]
+          return shortenNumber(t * maxDatas[idx])
         }}
         style={{
           axis: { stroke: 'transparent' },
-          tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+          tickLabels: { fontSize: 10, padding: 0, fill: '#cccccc' },
           ticks: { stroke: '#eeeeee', size: 0 },
           grid: { stroke: '#eeeeee' },
         }}
@@ -81,31 +103,35 @@ const ChartByDate = () => {
     )
   })
   return (
-    <div style={{ height: '400px' }}>
-      <VictoryChart
-        domainPadding={{ x: 50, y: 30 }}
-        height={400}
-        width={1000}
-        containerComponent={
-          <VictoryVoronoiContainer
-            labels={({ datum }) => {
-              return datum.y
+    <div className={styles.lineChartContainer} ref={containerRef}>
+      {isChartView && (
+        <VictoryChart
+          domainPadding={{ x: [80, 80], y: 60 }}
+          height={400}
+          width={width}
+          containerComponent={
+            <VictoryVoronoiContainer
+              className={styles.chart}
+              responsive={false}
+              labels={({ datum }) => {
+                return datum.y
+              }}
+            />
+          }
+        >
+          <VictoryAxis
+            scale={{ x: 'time' }}
+            tickFormat={(x) => conditionalDateFormat(x, dateTerm.title)}
+            style={{
+              axis: { strokeWidth: 0.5, stroke: '#cccccc' },
+              tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
+              ticks: { stroke: '#cccccc', size: 0 },
             }}
           />
-        }
-      >
-        <VictoryAxis
-          scale={{ x: 'time' }}
-          tickFormat={(x) => `${dayjs(x).format('M')}월 ${dayjs(x).format('D')}일`}
-          style={{
-            axis: { strokeWidth: 0.5, fill: 'black' },
-            tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
-            ticks: { stroke: 'grey', size: 0 },
-          }}
-        />
-        {axisesY}
-        {lineChartes}
-      </VictoryChart>
+          {axisesY}
+          {lineChartes}
+        </VictoryChart>
+      )}
     </div>
   )
 }

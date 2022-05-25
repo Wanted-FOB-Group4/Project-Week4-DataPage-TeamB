@@ -1,29 +1,32 @@
-import ChartByChannel from './ChartByChannel'
-import ChartByDate from './ChartByDate'
-import SelectButton from './SelectButton'
-import CardList from './CardList'
-import Picker from './DatePicker'
+import { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+
+import DatePicker from './DatePicker'
+import AdsCombineContainer from './AdsCombineContainer'
+import MediaContainer from './MediaContainer'
+import { ErrorMessage, Loading } from 'components'
 
 import styles from './DatePicker/datePicker.module.scss'
 
-const TMP_DATE = { start: '2022-02-06', end: '2022-02-07' }
-
 const Dashboard = () => {
+  const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />
   return (
     <>
       <div className={styles.titleWithDate}>
         <h1 className='title'>대시보드</h1>
-        <Picker />
+        <DatePicker />
       </div>
       <h2 className='subtitle'>통합 광고 현황</h2>
       <div className='container'>
-        <CardList date={TMP_DATE} />
-        <SelectButton />
-        <ChartByDate />
+        <AdsCombineContainer />
       </div>
       <h2 className='subtitle'>매체 현황</h2>
       <div className='container'>
-        <ChartByChannel />
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary fallbackRender={handleErrorFallback}>
+            <MediaContainer />
+          </ErrorBoundary>
+        </Suspense>
       </div>
     </>
   )

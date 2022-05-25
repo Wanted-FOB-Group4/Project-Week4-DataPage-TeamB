@@ -13,7 +13,7 @@ import styles from './datePicker.module.scss'
 const FIRST_DAY = new Date('2022-02-01')
 const LAST_DAY = new Date('2022-04-20')
 
-const Picker = () => {
+const DatePicker = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [range, setRange] = useRecoil(dateRangeState)
   const datePickerRef = useRef<HTMLDivElement>(null)
@@ -73,4 +73,4 @@ const Picker = () => {
   )
 }
 
-export default Picker
+export default DatePicker

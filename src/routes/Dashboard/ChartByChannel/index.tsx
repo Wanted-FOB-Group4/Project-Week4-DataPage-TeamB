@@ -1,10 +1,42 @@
-import { makeDataByDate, makeDateSumData } from 'utils'
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from 'victory'
+import { useRef, useState } from 'react'
+import { ITotalChannelData } from 'types/chart'
+import {
+  VictoryAxis,
+  VictoryBar,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLegend,
+  VictoryStack,
+  VictoryTheme,
+  VictoryVoronoiContainer,
+} from 'victory'
+import { useMount, useUnmount } from 'react-use'
 
-const ChartByChannel = () => {
-  const data = makeDateSumData(makeDataByDate('2022-02-01', '2022-02-20'))
+import styles from './chartByChannel.module.scss'
+
+interface IProps {
+  data: ITotalChannelData
+}
+
+const ChartByChannel = ({ data }: IProps) => {
   const colors = ['#2DB400', '#f9e000', '#AC8AF8', '#1778F2']
   const channels = ['naver', 'kakao', 'google', 'facebook']
+  const containerRef = useRef<null | HTMLDivElement>(null)
+  const [width, setWidth] = useState(1400)
+  const onResize = () => {
+    const containerWidth = Number(containerRef.current?.offsetWidth)
+    setWidth(containerWidth >= 1000 ? containerWidth : 1000)
+  }
+  useMount(() => {
+    if (containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth
+      setWidth(containerWidth >= 1000 ? containerWidth : 1000)
+    }
+    window.addEventListener('resize', onResize)
+  })
+  useUnmount(() => {
+    window.removeEventListener('resize', onResize)
+  })
   const barChart = channels.map((channel, idx) => {
     const key = `bar-${channel}`
     return (
@@ -13,29 +45,63 @@ const ChartByChannel = () => {
         barWidth={30}
         style={{ data: { fill: colors[idx] } }}
         data={[
-          { x: '광고비', y: (data[channel].cost / data.total.cost) * 100 },
-          { x: '매출', y: (data[channel].sales / data.total.sales) * 100 },
-          { x: '노출수', y: (data[channel].imp / data.total.imp) * 100 },
-          { x: '클릭 수', y: (data[channel].click / data.total.click) * 100 },
-          { x: '전환수', y: (data[channel].conversion / data.total.conversion) * 100 },
+          { x: '광고비', y: data[channel].cost },
+          { x: '매출', y: data[channel].sales },
+          { x: '노출수', y: data[channel].imp },
+          { x: '클릭수', y: data[channel].click },
+          { x: '전환수', y: data[channel].conversion },
         ]}
+        y={(datum) => {
+          const target = String(datum.x)
+          const symbol = {
+            광고비: data.total.cost,
+            매출: data.total.sales,
+            노출수: data.total.imp,
+            클릭수: data.total.click,
+            전환수: data.total.conversion,
+          }[target]
+          return (datum.y / Number(symbol)) * 100
+        }}
       />
     )
   })
   return (
-    <div>
-      <VictoryChart theme={VictoryTheme.material} domainPadding={{ x: 50, y: 30 }} width={950}>
+    <div className={styles.chartContainer} ref={containerRef}>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        domainPadding={{ x: 80, y: 30 }}
+        height={400}
+        width={width}
+        containerComponent={
+          <VictoryVoronoiContainer
+            className={styles.chart}
+            responsive={false}
+            labels={({ datum }) => {
+              return datum.y
+            }}
+          />
+        }
+      >
+        <VictoryLegend
+          x={width - 370}
+          y={380}
+          orientation='horizontal'
+          gutter={20}
+          colorScale={['#1778F2', '#AC8AF8', '#f9e000', '#2DB400']}
+          data={[{ name: 'facebook' }, { name: 'google' }, { name: 'kakao' }, { name: 'naver' }]}
+        />
         <VictoryAxis
           scale={{ x: 'time' }}
           tickFormat={(x) => x}
           style={{
-            axis: { stroke: 'black', strokeWidth: 0.5 },
+            axis: { stroke: '#cccccc', strokeWidth: 0.5 },
             tickLabels: { fontSize: 12, padding: 10, fill: '#cccccc' },
             ticks: { size: 0 },
           }}
         />
         <VictoryAxis
           dependentAxis
+          tickLabelComponent={<VictoryLabel verticalAnchor='start' textAnchor='start' dy={5} dx={8} />}
           tickFormat={(y) => `${y}%`}
           style={{
             axis: { stroke: 'transparent' },

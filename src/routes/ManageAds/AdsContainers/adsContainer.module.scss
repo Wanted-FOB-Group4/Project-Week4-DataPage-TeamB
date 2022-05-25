@@ -5,15 +5,17 @@
   @include flexbox.flexbox(center, start);
   flex-direction: column;
   width: 300px;
-  height: 400px;
-  padding: 10px 20px 5px;
+  min-width: 300px;
+  padding: 30px 20px 20px;
+  margin-right: 30px;
   margin-bottom: 30px;
-  // border: 1px solid colors.$PRIMARY; // onFocus
+  user-select: none;
   border: 1px solid colors.$GRAY100;
   border-radius: 10px;
+  transition: 0.1s ease-in;
 
   h2 {
-    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     font-size: 15px;
     font-weight: 700;
@@ -34,5 +36,9 @@
     color: colors.$GRAY800;
     border: 1px solid colors.$GRAY100;
     border-radius: 10px;
+  }
+
+  &:hover {
+    border-color: colors.$PRIMARY;
   }
 }

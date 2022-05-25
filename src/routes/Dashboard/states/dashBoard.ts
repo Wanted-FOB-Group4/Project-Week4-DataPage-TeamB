@@ -10,6 +10,11 @@ const INIT = {
   title: '',
 }
 export const selectorState = atom<ISelectorItem[]>({
-  key: 'selectorState',
+  key: '#selectorState',
   default: [{ name: 'click', title: '클릭 수' }, INIT],
+})
+
+export const isChartViewState = atom<boolean>({
+  key: '#isChartViewState',
+  default: true,
 })
