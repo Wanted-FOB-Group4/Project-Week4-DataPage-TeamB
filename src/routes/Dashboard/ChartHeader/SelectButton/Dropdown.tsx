@@ -3,9 +3,9 @@ import { useClickAway } from 'react-use'
 import { useSetRecoilState } from 'recoil'
 import cx from 'classnames'
 
-import { selectorState } from 'routes/Dashboard/states/dashBoard'
-import styles from './selectButton.module.scss'
+import { selectorState } from '../../states/dashBoard'
 import { Circle } from 'assets/svgs'
+import styles from './selectButton.module.scss'
 
 interface IProps {
   data: {

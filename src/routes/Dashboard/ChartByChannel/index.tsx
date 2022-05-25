@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import styles from './chartByChannel.module.scss'
 import { ITotalChannelData } from 'types/chart'
 import {
   VictoryAxis,
@@ -12,6 +11,8 @@ import {
   VictoryVoronoiContainer,
 } from 'victory'
 import { useMount, useUnmount } from 'react-use'
+
+import styles from './chartByChannel.module.scss'
 
 interface IProps {
   data: ITotalChannelData

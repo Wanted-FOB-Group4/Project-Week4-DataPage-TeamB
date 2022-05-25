@@ -1,6 +1,6 @@
-import styles from './chartHeader.module.scss'
 import SelectButton from './SelectButton'
 import SelectDateTerm from './SelectDateTerm'
+import styles from './chartHeader.module.scss'
 
 const ChartHeader = () => {
   return (
