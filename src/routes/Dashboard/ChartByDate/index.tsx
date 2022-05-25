@@ -8,6 +8,7 @@ import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } 
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import styles from './chartByDate.module.scss'
 import { useEffect, useRef, useState } from 'react'
+import NeedMoreDate from './NeedForDate'
 
 interface ICOLOR {
   roas: string
@@ -39,7 +40,7 @@ const ChartByDate = () => {
   const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
 
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-04-01')
+  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-20')
   const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
   const position: Position[] = ['left', 'right']
   const textAnchor: Anchor[] = ['start', 'end']
@@ -57,6 +58,8 @@ const ChartByDate = () => {
       }
     }
   }, [chartData.length, setIsChartView, width])
+
+  if (totalDataByDate.length < 21 && dateTerm.title === '주간') return <NeedMoreDate />
 
   const { newData: datas, maxs } = makeDataForChart({ selectors: filteredSelectors, data: chartData, maxs: [0, 0] })
   const maxDatas = makeMaxDatas(maxs)
