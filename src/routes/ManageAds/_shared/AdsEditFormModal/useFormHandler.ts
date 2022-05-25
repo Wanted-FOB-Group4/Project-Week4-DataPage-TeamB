@@ -63,6 +63,7 @@ const useFormHandler = (setIsHidden: Dispatch<SetStateAction<boolean>>, prevData
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (adsData.count >= 2647483647) setIsHidden(true)
     const newAd: IAd = {
       ...formData,
       id: prevData ? prevData.id : adsData.count + 1,
