@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import { IncreaseIcon, DecreaseIcon } from 'assets/svgs'
+import { useEffect, useMemo } from 'react'
+import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 
 import styles from './cardList.module.scss'
 import { transformNum } from 'utils/transformNum'
@@ -35,6 +35,7 @@ const Card = ({ cardTitle, cardValue, cardPrevValue, term }: ICardData) => {
 
   const Icon = (rate: number) => {
     return useMemo(() => {
+      if (cardPrevValue.length === 0) return <MinusIcon />
       return rate < 0 ? <DecreaseIcon /> : <IncreaseIcon />
     }, [rate])
   }
