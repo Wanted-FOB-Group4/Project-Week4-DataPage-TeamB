@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-import { IAd } from 'routes/ManageAds/types'
 import { addUnitToBudget } from 'utils'
 import { getCreateDate, getPercentage, getAdsTitle } from './utils'
 import AdsListBlock from './AdsListBlock'
-import AdsEditFormModal from 'routes/ManageAds/_shared/AdsEditFormModal'
+import { IAd } from 'routes/ManageAds/types'
+import { AdsEditFormModal, AdsDeleteModal } from 'routes/ManageAds/_shared'
 
 import styles from './adsContainer.module.scss'
 
@@ -50,6 +50,7 @@ const AdsContainer = ({ adData }: IProps) => {
         </button>
       </div>
       {!isEditBoxHidden && <AdsEditFormModal prevData={adData} setIsHidden={setIsEditBoxHidden} />}
+      {!isDeleteBoxHidden && <AdsDeleteModal id={adData.id} title={adData.title} setIsHidden={setIsDeleteBoxHidden} />}
     </li>
   )
 }

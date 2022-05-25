@@ -1,0 +1,12 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(colors.$GRAY50, 50%);
+  backdrop-filter: blur(2px);
+}
