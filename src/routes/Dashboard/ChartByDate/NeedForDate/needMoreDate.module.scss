@@ -1,0 +1,22 @@
+@use '/src/styles/constants/colors';
+
+.needMoreDateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 420px;
+
+  .errorIcon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .errorMessage {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    color: colors.$GRAY300;
+  }
+}
