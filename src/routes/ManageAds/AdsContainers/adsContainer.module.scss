@@ -5,7 +5,9 @@
   @include flexbox.flexbox(center, start);
   flex-direction: column;
   width: 300px;
+  min-width: 300px;
   padding: 30px 20px 20px;
+  margin-right: 30px;
   margin-bottom: 30px;
   user-select: none;
   border: 1px solid colors.$GRAY100;
