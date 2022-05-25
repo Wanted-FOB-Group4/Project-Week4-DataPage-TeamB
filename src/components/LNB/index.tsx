@@ -12,7 +12,7 @@ const LNB = () => {
     <aside className={styles.lnb}>
       <div>
         <div className={styles.logoWrapper}>
-          <Link to='/'>
+          <Link to='/' aria-label='logo'>
             <LogoImage />
           </Link>
         </div>
