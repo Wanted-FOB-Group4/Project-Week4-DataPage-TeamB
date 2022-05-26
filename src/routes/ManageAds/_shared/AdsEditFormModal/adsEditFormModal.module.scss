@@ -9,7 +9,7 @@
   z-index: levels.$MODALS_BACKGROUND;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(colors.$GRAY50, 50%);
+  background-color: rgba(colors.$BLACK, 80%);
   backdrop-filter: blur(2px);
 }
 
@@ -25,7 +25,6 @@
   padding: 30px 40px;
   overflow: scroll;
   background-color: colors.$WHITE;
-  border: 2px solid colors.$PRIMARY;
   border-radius: 10px;
   box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
 

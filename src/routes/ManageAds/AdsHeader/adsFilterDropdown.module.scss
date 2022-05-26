@@ -31,6 +31,7 @@
   z-index: levels.$DROPDOWN_BOTTOM;
   width: 150px;
   margin-top: 4px;
+  overflow: hidden;
   background-color: colors.$WHITE;
   border: 1px solid colors.$GRAY100;
   border-radius: 10px;
