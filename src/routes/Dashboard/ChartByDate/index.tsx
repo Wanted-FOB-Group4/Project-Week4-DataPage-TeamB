@@ -12,6 +12,7 @@ import NeedMoreDate from './NeedForDate'
 import { getFilterTrendData } from 'services'
 
 import styles from './chartByDate.module.scss'
+import { makeDataByTrend } from './utils/makeDate'
 
 const COLOR: ICOLOR = {
   roas: '#4FADF7',
@@ -27,7 +28,7 @@ type Anchor = 'start' | 'end'
 
 const ChartByDate = () => {
   const { from, to } = useRecoilValue(dateRangeState)
-  const { data: totalDataByDate } = useQuery(['#trendData', from, to], () => getFilterTrendData(from, to), {
+  const { data } = useQuery(['#trendData', from, to], () => getFilterTrendData(from, to), {
     refetchOnWindowFocus: false,
     staleTime: 60000,
     cacheTime: Infinity,
@@ -36,6 +37,7 @@ const ChartByDate = () => {
   })
   const selectors = useRecoilValue(selectorState)
   const dateTerm = useRecoilValue(dateTermState)
+  const totalDataByDate = makeDataByTrend(data)
   const containerRef = useRef<null | HTMLDivElement>(null)
   const [width, setWidth] = useState(0)
   const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
