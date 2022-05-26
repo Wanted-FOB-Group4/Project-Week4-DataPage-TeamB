@@ -11,6 +11,7 @@ import styles from './chartByDate.module.scss'
 import NeedMoreDate from './NeedForDate'
 
 import { getFilterTrendData } from 'services/getTrendData'
+import { makeDataByTrend } from 'utils/makeDataByTrend'
 
 interface ICOLOR {
   roas: string
@@ -36,7 +37,7 @@ type Anchor = 'start' | 'end'
 
 const ChartByDate = () => {
   const { from, to } = useRecoilValue(dateRangeState)
-  const { data: totalDataByDate } = useQuery(['#trendData', from, to], () => getFilterTrendData(from, to), {
+  const { data } = useQuery(['#trendData', from, to], () => getFilterTrendData(from, to), {
     refetchOnWindowFocus: false,
     staleTime: 60000,
     cacheTime: Infinity,
@@ -49,6 +50,7 @@ const ChartByDate = () => {
   const [width, setWidth] = useState(0)
   const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
 
+  const totalDataByDate = makeDataByTrend(data)
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
   const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
   const position: Position[] = ['left', 'right']
@@ -72,7 +74,6 @@ const ChartByDate = () => {
 
   const { newData: datas, maxs } = makeDataForChart({ selectors: filteredSelectors, data: chartData, maxs: [0, 0] })
   const maxDatas = makeMaxDatas(maxs)
-
   const axisesY = filteredSelectors.map((target: { name: string; title: string }, idx) => {
     const key = `Axis-${target.name}`
     return (
