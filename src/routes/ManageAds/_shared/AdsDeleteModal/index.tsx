@@ -19,7 +19,6 @@ interface IProps {
 const AdsDeleteModal = ({ id, title, setIsHidden }: IProps) => {
   const [adsData, setAdsData] = useRecoilState(adsDataState)
   const modalRef = useRef(null)
-  console.log('rendered')
 
   const handleConfirmDeleteClick = () => {
     const newData: IAdData = {

@@ -1,8 +1,9 @@
 import { useMemo } from 'react'
-import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 
+import { transformNum } from 'utils'
+
+import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 import styles from './cardList.module.scss'
-import { transformNum } from 'utils/transformNum'
 
 interface IUnit {
   category: string
