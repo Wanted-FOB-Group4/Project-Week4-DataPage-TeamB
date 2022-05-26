@@ -1,5 +1,19 @@
 @use 'styles/constants/colors';
 
+.tableGradient {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    content: '';
+    background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
+  }
+}
+
 .tableWrapper {
   overflow-x: scroll;
   overflow-y: hidden;
