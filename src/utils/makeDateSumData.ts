@@ -41,6 +41,7 @@ interface IIProps {
   item: IMediaDataByDate
 }
 const sumDateByChannel = ({ data, channel, item }: IIProps) => {
+  if (item === undefined) return
   data[channel].imp += item.imp
   data[channel].cost += item.cost
   data[channel].click += item.click
