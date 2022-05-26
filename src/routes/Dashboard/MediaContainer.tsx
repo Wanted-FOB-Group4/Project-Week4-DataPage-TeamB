@@ -7,7 +7,7 @@ const MediaContainer = () => {
   return (
     <>
       <ChartByChannel data={data} />
-      <Table />
+      <Table data={data} />
     </>
   )
 }

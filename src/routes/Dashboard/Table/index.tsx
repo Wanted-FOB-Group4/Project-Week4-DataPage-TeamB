@@ -1,23 +1,13 @@
-import { useQuery } from 'react-query'
-import { useRecoilValue } from 'recoil'
-import { dateRangeState } from '../states/date'
-import { getMediaChannelData } from 'services/getMediaChannalData'
-
 import TableRow from './TableRow'
 
 import styles from './table.module.scss'
+import { ITotalChannelData } from 'types/chart'
 
-const Table = () => {
-  const date = useRecoilValue(dateRangeState)
+interface IProps {
+  data: ITotalChannelData
+}
 
-  const { data: tableData } = useQuery(['#mediaChannelData', date], () => getMediaChannelData(date.from, date.to), {
-    refetchOnWindowFocus: false,
-    staleTime: 60000,
-    cacheTime: Infinity,
-    suspense: true,
-    useErrorBoundary: true,
-  })
-
+const Table = ({ data: tableData }: IProps) => {
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 
 import styles from './cardList.module.scss'
@@ -35,12 +35,15 @@ const Card = ({ cardTitle, cardValue, cardPrevValue, term }: ICardData) => {
 
   const Icon = (rate: number) => {
     return useMemo(() => {
-      if (cardPrevValue.length === 0) return <MinusIcon />
+      if (cardPrevValue.length !== cardValue.length) return <MinusIcon />
       return rate < 0 ? <DecreaseIcon /> : <IncreaseIcon />
     }, [rate])
   }
 
   const unit = UNIT.find((item) => item.category === cardTitle)!.value
+
+  const diffString =
+    cardPrevValue.length === cardValue.length ? `${Math.abs(diffRate).toFixed(1) + cardRateUnit + unit}` : ''
 
   return (
     <li className={styles.cardWrapper}>
@@ -48,7 +51,7 @@ const Card = ({ cardTitle, cardValue, cardPrevValue, term }: ICardData) => {
       <div className={styles.carContent}>
         <span className={styles.cardValue}>{`${Math.abs(curRate).toFixed(1) + curRateUnit + unit}`}</span>
         <div className={styles.cardRateWrapper}>
-          <span className={styles.cardRate}>{`${Math.abs(diffRate).toFixed(1) + cardRateUnit + unit}`}</span>
+          <span className={styles.cardRate}>{diffString}</span>
           <span className={styles.cardIcon}>{Icon(diffRate)}</span>
         </div>
       </div>
