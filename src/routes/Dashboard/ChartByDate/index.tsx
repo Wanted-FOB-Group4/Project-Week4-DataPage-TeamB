@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiContainer, VictoryLabel } from 'victory'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { useQuery } from 'react-query'
 
-import { makeDataByTrend } from 'utils/makeDataByTrend'
 import { isChartViewState, selectorState } from '../states/dashBoard'
 import { dateRangeState, dateTermState } from '../states/date'
 import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import styles from './chartByDate.module.scss'
 import NeedMoreDate from './NeedForDate'
+
+import { getFilterTrendData } from 'services/getTrendData'
 
 interface ICOLOR {
   roas: string
@@ -33,7 +35,14 @@ type Position = 'left' | 'right'
 type Anchor = 'start' | 'end'
 
 const ChartByDate = () => {
-  const date = useRecoilValue(dateRangeState)
+  const { from, to } = useRecoilValue(dateRangeState)
+  const { data: totalDataByDate } = useQuery(['#trendData', from, to], () => getFilterTrendData(from, to), {
+    refetchOnWindowFocus: false,
+    staleTime: 60000,
+    cacheTime: Infinity,
+    suspense: true,
+    useErrorBoundary: true,
+  })
   const selectors = useRecoilValue(selectorState)
   const dateTerm = useRecoilValue(dateTermState)
   const containerRef = useRef<null | HTMLDivElement>(null)
@@ -41,7 +50,6 @@ const ChartByDate = () => {
   const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
 
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend(date.from, date.to)
   const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
   const position: Position[] = ['left', 'right']
   const textAnchor: Anchor[] = ['start', 'end']
