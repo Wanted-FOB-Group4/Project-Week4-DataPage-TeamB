@@ -4,17 +4,15 @@ interface IProps {
   prevValue: number[]
 }
 
-const dataStructure: IProps[] = [
-  { category: 'ROAS', value: [], prevValue: [] },
-  { category: '광고비', value: [], prevValue: [] },
-  { category: '노출수', value: [], prevValue: [] },
-  { category: '클릭수', value: [], prevValue: [] },
-  { category: '전환수', value: [], prevValue: [] },
-  { category: '매출', value: [], prevValue: [] },
-]
-
 export const translateData = (DATA: ITrendData[], PAST_DATA: ITrendData[]) => {
-  const data = dataStructure
+  const data: IProps[] = [
+    { category: 'ROAS', value: [], prevValue: [] },
+    { category: '광고비', value: [], prevValue: [] },
+    { category: '노출수', value: [], prevValue: [] },
+    { category: '클릭수', value: [], prevValue: [] },
+    { category: '전환수', value: [], prevValue: [] },
+    { category: '매출', value: [], prevValue: [] },
+  ]
   DATA.forEach((d) => {
     data.find((item) => item.category === 'ROAS')!.value.push(d.roas)
     data.find((item) => item.category === '광고비')!.value.push(d.cost)
@@ -32,6 +30,5 @@ export const translateData = (DATA: ITrendData[], PAST_DATA: ITrendData[]) => {
     data.find((item) => item.category === '전환수')!.prevValue.push(d.conv)
     data.find((item) => item.category === '매출')!.prevValue.push(d.convValue)
   })
-
   return data
 }

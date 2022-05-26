@@ -1,5 +1,19 @@
 @use 'styles/constants/colors';
 
+.tableGradient {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    content: '';
+    background: linear-gradient(to right, rgba(colors.$WHITE, 0%), rgba(colors.$WHITE, 100%));
+  }
+}
+
 .tableWrapper {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -45,24 +59,33 @@
     }
   }
 
-  .tableTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    padding: 5px;
+  th {
+    padding: 10px 0;
+  }
+}
 
-    &::after {
-      content: '';
-    }
+.tableTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  width: 120px;
+  padding: 5px;
 
-    .tableLogo {
-      margin-right: auto;
+  &::after {
+    content: '';
+  }
+
+  .tableLogo {
+    width: 30px;
+    margin-right: 10px;
+
+    svg {
+      width: 30px;
     }
   }
 
-  th {
-    padding: 10px 0;
+  .tableTitleText {
+    width: 100px;
   }
 }

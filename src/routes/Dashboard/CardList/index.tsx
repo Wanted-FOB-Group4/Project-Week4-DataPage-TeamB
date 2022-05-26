@@ -24,8 +24,6 @@ const CardList = () => {
   const { curDate, prevDate, term } = useCalculateDate(date)
   const [cardData, setCardData] = useState<IProps[]>([])
 
-  // const [notValidPrev] = useState<boolean>(MINDATE > prevDate.from)
-
   const { data: curData } = useQuery(
     ['#trendData', curDate.from, curDate.to],
     () => getFilterTrendData(curDate.from, curDate.to),
