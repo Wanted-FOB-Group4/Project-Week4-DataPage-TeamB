@@ -1,26 +1,17 @@
 import { useRef } from 'react'
-import { useQuery } from 'react-query'
-import { useRecoilValue } from 'recoil'
 import cx from 'classnames'
-
-import { dateRangeState } from '../states/date'
-import { getMediaChannelData } from 'services/getMediaChannalData'
 import TableRow from './TableRow'
 
 import styles from './table.module.scss'
+import { ITotalChannelData } from 'types/chart'
 
-const Table = () => {
-  const date = useRecoilValue(dateRangeState)
+interface IProps {
+  data: ITotalChannelData
+}
+
+const Table = ({ data: tableData }: IProps) => {
   const divRef = useRef<HTMLDivElement>(null)
   const tableRef = useRef<HTMLTableElement>(null)
-
-  const { data: tableData } = useQuery(['#mediaChannelData', date], () => getMediaChannelData(date.from, date.to), {
-    refetchOnWindowFocus: false,
-    staleTime: 60000,
-    cacheTime: Infinity,
-    suspense: true,
-    useErrorBoundary: true,
-  })
 
   const isTableScrolled = () => {
     if (divRef.current && tableRef.current) return divRef.current.offsetWidth < tableRef.current.offsetWidth
