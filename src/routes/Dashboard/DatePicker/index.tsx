@@ -3,7 +3,7 @@ import { useClickAway } from 'react-use'
 import dayjs from 'dayjs'
 import { ClassNames, DateRange, DayClickEventHandler, DayPicker } from 'react-day-picker'
 
-import { useRecoil } from 'hooks/state'
+import { useRecoil } from 'hooks'
 import { dateRangeState, IStringDateRange } from '../states/date'
 
 import { ArrowDownIcon } from 'assets/svgs'

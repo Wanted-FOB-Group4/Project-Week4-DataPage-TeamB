@@ -3,25 +3,16 @@ import { VictoryChart, VictoryLine, VictoryAxis, VictoryTooltip, VictoryVoronoiC
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useQuery } from 'react-query'
 
-import { isChartViewState, selectorState } from '../states/dashBoard'
-import { dateRangeState, dateTermState } from '../states/date'
+import { isChartViewState, selectorState } from 'routes/Dashboard/states/dashBoard'
+import { dateRangeState, dateTermState } from 'routes/Dashboard/states/date'
+import { ICOLOR } from 'routes/Dashboard/ChartByDate/colors'
 import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
-import styles from './chartByDate.module.scss'
 import NeedMoreDate from './NeedForDate'
 
 import { getFilterTrendData } from 'services/getTrendData'
+import styles from './chartByDate.module.scss'
 
-interface ICOLOR {
-  roas: string
-  click: string
-  cost: string
-  imp: string
-  sales: string
-  conversion: string
-
-  [key: string]: any
-}
 const COLOR: ICOLOR = {
   roas: '#4FADF7',
   click: '#85DA47',

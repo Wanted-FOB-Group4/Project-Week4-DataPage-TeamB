@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { useCalculateDate } from 'hooks/useCalculateDate'
+import { useRecoilValue } from 'recoil'
 
 import Card from './Card'
-
+import { useCalculateDate } from 'hooks/useCalculateDate'
 import { getFilterTrendData } from 'services/getTrendData'
-
-import { translateData } from '../utils/makeTrendData'
-import { useRecoilValue } from 'recoil'
-import { dateRangeState } from '../states/date'
+import { translateData } from 'routes/Dashboard/utils/makeTrendData'
+import { dateRangeState } from 'routes/Dashboard/states/date'
 
 import styles from './cardList.module.scss'
 

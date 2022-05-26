@@ -2,7 +2,7 @@ import { MouseEvent, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
 import cx from 'classnames'
 
-import { useRecoil } from 'hooks/state'
+import { useRecoil } from 'hooks'
 import { currentServiceState, serviceListState } from 'states/service'
 
 import { AddIcon, ArrowDownIcon } from 'assets/svgs'
