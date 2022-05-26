@@ -21,7 +21,7 @@ npm start
 ## 폴더 구조
 
 ```
-.
+src
 ├── assets
 │   ├── images
 │   │   └── profile.png
