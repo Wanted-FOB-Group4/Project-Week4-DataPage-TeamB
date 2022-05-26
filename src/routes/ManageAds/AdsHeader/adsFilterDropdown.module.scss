@@ -1,0 +1,66 @@
+@use 'styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.dropdownTop {
+  @include flexbox.flexbox(between, center);
+  width: 150px;
+  height: 40px;
+  padding: 0 10px;
+  color: colors.$GRAY800;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+
+  span {
+    padding: 0 10px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+  }
+
+  .dropdownIcon {
+    fill: colors.$GRAY800;
+  }
+}
+
+.dropdownBottom {
+  position: absolute;
+  z-index: levels.$DROPDOWN_BOTTOM;
+  width: 150px;
+  margin-top: 4px;
+  overflow: hidden;
+  background-color: colors.$WHITE;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+  li {
+    width: 100%;
+    border-bottom: 1px solid colors.$GRAY100;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px 20px;
+      overflow: hidden;
+      font-weight: 500;
+      color: colors.$GRAY800;
+      text-align: left;
+      transition: 0.1s ease-in-out;
+
+      &:hover {
+        background-color: colors.$GRAY50;
+      }
+    }
+  }
+}
+
+.isDropdownHidden {
+  display: none;
+}

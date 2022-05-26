@@ -1,0 +1,148 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/constants/sizes';
+
+.lnb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: levels.$LNB;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: sizes.$LNB_WIDTH;
+  height: 100%;
+  padding: 60px 40px;
+  overflow-y: scroll;
+  background-color: colors.$WHITE;
+  box-shadow: 4px 0 10px 0 rgba(0, 0, 0, 4%);
+
+  .logoWrapper {
+    padding-bottom: 60px;
+    border-bottom: 1px solid colors.$GRAY50;
+  }
+
+  .service {
+    margin: 40px 0;
+  }
+
+  .label {
+    padding: 13px 20px;
+    font-weight: 700;
+  }
+
+  .dropdown {
+    position: relative;
+
+    .select {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 20px;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+    }
+
+    .content {
+      position: absolute;
+      top: 100%;
+      z-index: levels.$LNB_DROPDOWN;
+      width: 100%;
+      margin-top: 4px;
+      overflow: hidden;
+      background-color: colors.$WHITE;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+      button {
+        width: 100%;
+        padding: 18px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        color: colors.$GRAY800;
+        text-align: left;
+        transition: 0.1s ease-in-out;
+
+        &:hover {
+          background-color: colors.$GRAY50;
+        }
+      }
+    }
+
+    .addButton {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid colors.$GRAY50;
+
+      svg {
+        margin-right: 4px;
+        fill: currentcolor;
+      }
+    }
+  }
+
+  .navigation {
+    a {
+      display: flex;
+      align-items: center;
+      padding: 20px 22px;
+      border-radius: 10px;
+      transition: 0.1s ease-in-out;
+
+      svg {
+        margin-right: 12px;
+        transition: 0.1s ease-in-out;
+      }
+
+      &.isActive {
+        color: colors.$PRIMARY;
+        background-color: colors.$GRAY50;
+      }
+    }
+  }
+
+  .guide {
+    display: flex;
+    width: 100%;
+    padding: 30px 20px;
+    margin: 40px 0;
+    text-align: left;
+    background-color: colors.$SECONDARY;
+    border-radius: 10px;
+
+    .iconWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      background-color: colors.$PRIMARY;
+      border-radius: 50%;
+
+      svg {
+        fill: colors.$WHITE;
+      }
+    }
+
+    .description {
+      :first-child {
+        margin-bottom: 7px;
+      }
+    }
+  }
+
+  .bottomText {
+    padding: 0 20px;
+
+    :first-child {
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use 'styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.dateTermContainer {
+  position: relative;
+
+  .dropdownTop {
+    @include flexbox.flexbox(between, center);
+    width: 60px;
+    height: 40px;
+    font-size: 14px;
+    color: colors.$GRAY800;
+
+    .dropdownIcon {
+      fill: colors.$GRAY800;
+    }
+  }
+
+  .dropdownBottom {
+    position: absolute;
+    top: 100%;
+    left: -14px;
+    z-index: levels.$DROPDOWN_BOTTOM;
+    width: 80px;
+    padding: 10px 14px;
+    font-size: 14px;
+    text-align: start;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+    transition: 0.1s ease-in-out;
+
+    &:hover {
+      background-color: colors.$GRAY50;
+    }
+  }
+}

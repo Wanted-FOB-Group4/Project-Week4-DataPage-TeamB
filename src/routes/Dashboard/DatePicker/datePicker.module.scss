@@ -1,0 +1,93 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+
+.titleWithDate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.datePickerWrapper {
+  position: relative;
+
+  .buttonsWrapper {
+    display: flex;
+    align-items: center;
+
+    button {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+    }
+
+    .confirmButton {
+      position: absolute;
+      top: 370px;
+      right: 123px;
+      z-index: 10;
+      padding: 10px 16px;
+      margin-right: 16px;
+      color: colors.$WHITE;
+      background-color: colors.$PRIMARY;
+      border-radius: 10px;
+
+      &:disabled {
+        background-color: colors.$GRAY100;
+      }
+    }
+
+    .selectButton {
+      display: flex;
+      align-items: center;
+      color: colors.$GRAY800;
+
+      svg {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .root {
+    margin: 0;
+
+    .months {
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      z-index: levels.$DROPDOWN_BOTTOM;
+      padding: 16px 16px 70px;
+      user-select: none;
+      background-color: colors.$WHITE;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+    }
+
+    .selected,
+    .start {
+      color: colors.$WHITE;
+      background-color: colors.$PRIMARY;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .button {
+      margin: 2px;
+      cursor: pointer;
+
+      &:focus,
+      &:active {
+        border: none;
+      }
+
+      &:not(.selected):not(.start):hover {
+        background-color: colors.$SECONDARY;
+      }
+
+      &[aria-disabled='true'] {
+        color: colors.$GRAY100;
+        pointer-events: none;
+      }
+    }
+  }
+}

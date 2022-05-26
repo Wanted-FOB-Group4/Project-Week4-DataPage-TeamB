@@ -1,0 +1,64 @@
+@use 'styles/constants/_colors.scss';
+
+.cardListWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 70px;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-width: 200px;
+  height: 80px;
+  padding: 18px 40px;
+  border: 1px solid colors.$TABLE_LINE;
+  border-radius: 10px;
+
+  .cardTitle {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 14px;
+    color: colors.$CARD_FONT;
+  }
+
+  .carContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .cardValue {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 19px;
+    }
+
+    .cardRateWrapper {
+      color: colors.$CARD_FONT;
+
+      .cardRate {
+        font-size: 13px;
+      }
+
+      .cardIcon {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .cardListWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  .cardWrapper {
+    flex: 1;
+  }
+}

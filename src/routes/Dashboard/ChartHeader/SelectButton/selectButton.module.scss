@@ -1,0 +1,146 @@
+@use 'styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.selectBtnContainer {
+  display: flex;
+  flex-direction: row;
+  width: 256px;
+
+  .selectBtnBox {
+    position: relative;
+    flex: 1;
+    width: 123px;
+
+    + .selectBtnBox {
+      margin-left: 10px;
+    }
+
+    .dropdownTop {
+      @include flexbox.flexbox(between, center);
+      width: 123px;
+      height: 40px;
+      padding: 0 10px;
+      color: colors.$GRAY800;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+
+      .colorCircle {
+        width: 15px;
+        height: 15px;
+        margin: 0 8px;
+        fill: transparent;
+
+        &.click {
+          fill: colors.$CLICK;
+        }
+
+        &.sales {
+          fill: colors.$SALES;
+        }
+
+        &.roas {
+          fill: colors.$ROAS;
+        }
+
+        &.cost {
+          fill: colors.$COST;
+        }
+
+        &.imp {
+          fill: colors.$IMP;
+        }
+
+        &.conversion {
+          fill: colors.$CONVERSION;
+        }
+      }
+
+      .contentWrapper {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-weight: 700;
+          color: colors.$GRAY800;
+        }
+      }
+
+      .dropdownIcon {
+        fill: colors.$GRAY800;
+      }
+    }
+
+    .dropdownBottom {
+      position: absolute;
+      z-index: levels.$DROPDOWN_BOTTOM;
+      width: 123px;
+      margin-top: 4px;
+      overflow: hidden;
+      background-color: colors.$WHITE;
+      border: 1px solid colors.$GRAY100;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px 0 colors.$BOX_SHADOW;
+
+      li {
+        width: 100%;
+        border-bottom: 1px solid colors.$GRAY100;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: 10px;
+          overflow: hidden;
+          font-weight: 500;
+          color: colors.$GRAY800;
+          text-align: left;
+          transition: 0.1s ease-in-out;
+
+          .colorCircle {
+            width: 15px;
+            height: 15px;
+            margin: 0 8px;
+            fill: transparent;
+
+            &.click {
+              fill: colors.$CLICK;
+            }
+
+            &.sales {
+              fill: colors.$SALES;
+            }
+
+            &.roas {
+              fill: colors.$ROAS;
+            }
+
+            &.cost {
+              fill: colors.$COST;
+            }
+
+            &.imp {
+              fill: colors.$IMP;
+            }
+
+            &.conversion {
+              fill: colors.$CONVERSION;
+            }
+          }
+
+          &:hover {
+            background-color: colors.$GRAY50;
+          }
+        }
+      }
+    }
+
+    .isDropdownHidden {
+      display: none;
+    }
+  }
+}

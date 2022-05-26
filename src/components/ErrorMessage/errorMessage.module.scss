@@ -1,0 +1,24 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
+
+.errorWrapper {
+  @include flexbox.flexbox(center, center);
+  flex-direction: column;
+  height: 600px;
+
+  .errorIcon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    fill: colors.$GRAY100;
+  }
+
+  h3 {
+    width: 100%;
+    overflow-x: hidden;
+    font-size: 20px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+    text-align: center;
+  }
+}

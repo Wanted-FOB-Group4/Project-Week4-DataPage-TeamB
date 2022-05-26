@@ -1,0 +1,40 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  width: 100%;
+  padding: 40px;
+  margin-bottom: 20px;
+  background-color: colors.$WHITE;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 4%);
+}
+
+.title {
+  padding: 25px 0;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 30px;
+  color: colors.$GRAY800;
+}
+
+.subtitle {
+  padding: 20px 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: colors.$GRAY800;
+}
+
+.mainText {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: colors.$GRAY800;
+}
+
+.subText {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: colors.$GRAY300;
+}
