@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 
 import Card from './Card'
 import { useCalculateDate } from 'hooks/useCalculateDate'
-import { getFilterTrendData } from 'services/getTrendData'
+import { getFilterTrendData } from 'services'
 import { translateData } from 'routes/Dashboard/utils/makeTrendData'
 import { dateRangeState } from 'routes/Dashboard/states/date'
 

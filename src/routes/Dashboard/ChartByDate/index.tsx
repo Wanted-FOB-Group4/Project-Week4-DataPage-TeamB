@@ -9,8 +9,8 @@ import { ICOLOR } from 'routes/Dashboard/ChartByDate/colors'
 import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import NeedMoreDate from './NeedForDate'
+import { getFilterTrendData } from 'services'
 
-import { getFilterTrendData } from 'services/getTrendData'
 import styles from './chartByDate.module.scss'
 
 const COLOR: ICOLOR = {

@@ -1,9 +1,10 @@
 import { useRef } from 'react'
 import cx from 'classnames'
+
 import TableRow from './TableRow'
+import { ITotalChannelData } from 'types/chart'
 
 import styles from './table.module.scss'
-import { ITotalChannelData } from 'types/chart'
 
 interface IProps {
   data: ITotalChannelData

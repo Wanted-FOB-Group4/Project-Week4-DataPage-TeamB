@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { transformNum } from 'utils/transformNum'
+import { transformNum } from 'utils'
 
 import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 import styles from './cardList.module.scss'

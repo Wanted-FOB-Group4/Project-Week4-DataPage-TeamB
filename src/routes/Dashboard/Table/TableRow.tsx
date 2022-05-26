@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import cx from 'classnames'
 
-import styles from './table.module.scss'
 import { FacebookIcon, GoogleIcon, KakaoIcon, NaverIcon } from 'assets/svgs'
+import styles from './table.module.scss'
 
 interface IInitData {
   페이스북: JSX.Element
