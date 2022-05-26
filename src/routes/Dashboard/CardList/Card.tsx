@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
-import { IncreaseIcon, DecreaseIcon } from 'assets/svgs'
-
-import { transformNum } from './utils'
+import { useEffect, useMemo } from 'react'
+import { IncreaseIcon, DecreaseIcon, MinusIcon } from 'assets/svgs'
 
 import styles from './cardList.module.scss'
+import { transformNum } from 'utils/transformNum'
 
 interface IUnit {
   category: string
@@ -27,15 +26,16 @@ const Card = ({ cardTitle, cardValue, cardPrevValue, term }: ICardData) => {
     return transformNum(rate, cardTitle)
   }, [cardTitle, cardValue, term])
 
-  const { unitCnt: cardRate, unitWord: cardRateUnit } = useMemo(() => {
-    const rate =
+  const { unitCnt: diffRate, unitWord: cardRateUnit } = useMemo(() => {
+    const dRate =
       Math.floor(cardValue.reduce((acc, current) => acc + current, 0) / term) -
       Math.floor(cardPrevValue.reduce((acc, current) => acc + current, 0) / term)
-    return transformNum(rate, cardTitle)
+    return transformNum(dRate, cardTitle)
   }, [cardPrevValue, cardTitle, cardValue, term])
 
   const Icon = (rate: number) => {
     return useMemo(() => {
+      if (cardPrevValue.length === 0) return <MinusIcon />
       return rate < 0 ? <DecreaseIcon /> : <IncreaseIcon />
     }, [rate])
   }
@@ -46,10 +46,10 @@ const Card = ({ cardTitle, cardValue, cardPrevValue, term }: ICardData) => {
     <li className={styles.cardWrapper}>
       <div className={styles.cardTitle}>{cardTitle}</div>
       <div className={styles.carContent}>
-        <span className={styles.cardValue}>{`${curRate + curRateUnit + unit}`}</span>
+        <span className={styles.cardValue}>{`${Math.abs(curRate).toFixed(1) + curRateUnit + unit}`}</span>
         <div className={styles.cardRateWrapper}>
-          <span className={styles.cardRate}>{`${Math.abs(cardRate) + cardRateUnit + unit}`}</span>
-          <span className={styles.cardIcon}>{Icon(cardRate)}</span>
+          <span className={styles.cardRate}>{`${Math.abs(diffRate).toFixed(1) + cardRateUnit + unit}`}</span>
+          <span className={styles.cardIcon}>{Icon(diffRate)}</span>
         </div>
       </div>
     </li>

@@ -1,0 +1,67 @@
+@use 'styles/constants/colors';
+
+.tableWrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: block;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: colors.$GRAY100;
+    border-radius: 8px;
+  }
+}
+
+.table {
+  width: 1400px;
+  height: 100%;
+
+  .tableHeader {
+    padding: 5px;
+    border-top: 1px solid colors.$TABLE_LINE;
+  }
+
+  .totalRowWrapper {
+    color: colors.$TABLE_SUM;
+  }
+
+  .tablRowWrapper {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid colors.$TABLE_LINE;
+
+    .tableCol {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 190px;
+      padding: 5px;
+      text-align: center;
+    }
+  }
+
+  .tableTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    padding: 5px;
+
+    &::after {
+      content: '';
+    }
+
+    .tableLogo {
+      margin-right: auto;
+    }
+  }
+
+  th {
+    padding: 10px 0;
+  }
+}

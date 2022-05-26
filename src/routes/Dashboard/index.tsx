@@ -10,6 +10,7 @@ import styles from './DatePicker/datePicker.module.scss'
 
 const Dashboard = () => {
   const handleErrorFallback = ({ error }: { error: Error }) => <ErrorMessage error={error} />
+
   return (
     <>
       <div className={styles.titleWithDate}>
@@ -18,7 +19,11 @@ const Dashboard = () => {
       </div>
       <h2 className='subtitle'>통합 광고 현황</h2>
       <div className='container'>
-        <AdsCombineContainer />
+        <Suspense fallback={<Loading />}>
+          <ErrorBoundary fallbackRender={handleErrorFallback}>
+            <AdsCombineContainer />
+          </ErrorBoundary>
+        </Suspense>
       </div>
       <h2 className='subtitle'>매체 현황</h2>
       <div className='container'>

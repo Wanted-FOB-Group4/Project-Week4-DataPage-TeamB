@@ -1,2 +1,2 @@
 export { getAdListData } from './getAdListData'
-export { getMediaChannelData } from './getMediaChannelData'
+export { getMediaChannelData } from './getMediaChannalData'

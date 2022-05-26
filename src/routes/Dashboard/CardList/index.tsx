@@ -5,7 +5,10 @@ import { useCalculateDate } from 'hooks/useCalculateDate'
 import Card from './Card'
 
 import { getFilterTrendData } from 'services/getTrendData'
-import { translateData } from './utils'
+
+import { translateData } from '../utils/makeTrendData'
+import { useRecoilValue } from 'recoil'
+import { dateRangeState } from '../states/date'
 
 import styles from './cardList.module.scss'
 
@@ -15,43 +18,44 @@ interface IProps {
   prevValue: number[]
 }
 
-interface IDate {
-  date: { start: string; end: string }
-}
+const CardList = () => {
+  const date = useRecoilValue(dateRangeState)
 
-const CardList = ({ date }: IDate) => {
   const { curDate, prevDate, term } = useCalculateDate(date)
   const [cardData, setCardData] = useState<IProps[]>([])
 
-  const { data: curData, isLoading } = useQuery(
-    ['#trendData', curDate.start, curDate.end],
-    () => getFilterTrendData(curDate.start, curDate.end),
+  // const [notValidPrev] = useState<boolean>(MINDATE > prevDate.from)
+
+  const { data: curData } = useQuery(
+    ['#trendData', curDate.from, curDate.to],
+    () => getFilterTrendData(curDate.from, curDate.to),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
       cacheTime: Infinity,
+      suspense: true,
+      useErrorBoundary: true,
     }
   )
 
-  const { data: prevData, isLoading: prevIsLoading } = useQuery(
-    ['#prevTrendData', prevDate.start, prevDate.end],
-    () => getFilterTrendData(prevDate.start, prevDate.end),
+  const { data: prevData } = useQuery(
+    ['#prevTrendData', prevDate.from, prevDate.to],
+    () => getFilterTrendData(prevDate.from, prevDate.to),
     {
       refetchOnWindowFocus: false,
       staleTime: 60000,
       cacheTime: Infinity,
+      suspense: true,
+      useErrorBoundary: true,
     }
   )
 
   useEffect(() => {
-    if (!isLoading && !prevIsLoading) {
-      setCardData(translateData(curData, prevData))
-    }
-  }, [curData, isLoading, prevData, prevIsLoading])
+    setCardData(translateData(curData, prevData))
+  }, [curData, prevData])
 
   return (
     <ul className={styles.cardListWrapper}>
-      {isLoading && prevIsLoading && <div>로딩중...</div>}
       {cardData.map((item) => (
         <Card
           key={`card_${item.category}`}

@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { makeDataByTrend } from 'utils/makeDataByTrend'
 import { isChartViewState, selectorState } from '../states/dashBoard'
-import { dateTermState } from '../states/date'
+import { dateRangeState, dateTermState } from '../states/date'
 import { shortenNumber, makeMaxDatas, conditionalDateFormat, makeDataForChart } from './utils'
 import { rearrangeByTerm } from './utils/rearrangeByTerm'
 import styles from './chartByDate.module.scss'
@@ -33,6 +33,7 @@ type Position = 'left' | 'right'
 type Anchor = 'start' | 'end'
 
 const ChartByDate = () => {
+  const date = useRecoilValue(dateRangeState)
   const selectors = useRecoilValue(selectorState)
   const dateTerm = useRecoilValue(dateTermState)
   const containerRef = useRef<null | HTMLDivElement>(null)
@@ -40,7 +41,7 @@ const ChartByDate = () => {
   const [isChartView, setIsChartView] = useRecoilState(isChartViewState)
 
   const filteredSelectors = selectors.filter((target: { name: string; title: string }) => target.name !== '')
-  const totalDataByDate = makeDataByTrend('2022-02-01', '2022-02-20')
+  const totalDataByDate = makeDataByTrend(date.from, date.to)
   const chartData = dateTerm.title === '일간' ? totalDataByDate : rearrangeByTerm(totalDataByDate)
   const position: Position[] = ['left', 'right']
   const textAnchor: Anchor[] = ['start', 'end']
