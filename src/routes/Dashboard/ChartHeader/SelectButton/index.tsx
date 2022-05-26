@@ -35,14 +35,20 @@ const SelectButton = () => {
     <div className={styles.selectBtnContainer}>
       <div className={styles.selectBtnBox}>
         <button className={styles.dropdownTop} data-id={0} type='button' onClick={handleClick}>
-          <Circle className={cx(styles.colorCircle, styles[selectors[0].name])} /> {selectors[0].title || '선택'}{' '}
+          <div className={styles.contentWrapper}>
+            <Circle className={cx(styles.colorCircle, styles[selectors[0].name])} />
+            <span>{selectors[0].title || '선택'}</span>
+          </div>
           <ArrowDownIcon />
         </button>
         {isDropdownOpen[0] && <Dropdown data={firstMenu} idx={0} setIsDropdownOpen={setIsDropdownOpen} />}
       </div>
       <div className={styles.selectBtnBox}>
         <button className={styles.dropdownTop} data-id={1} type='button' onClick={handleClick} disabled={!selectors[0]}>
-          <Circle className={cx(styles.colorCircle, styles[selectors[1].name])} /> {selectors[1].title || '선택'}{' '}
+          <div className={styles.contentWrapper}>
+            <Circle className={cx(styles.colorCircle, styles[selectors[1].name])} />
+            <span>{selectors[1].title || '선택'}</span>
+          </div>
           <ArrowDownIcon />
         </button>
         {isDropdownOpen[1] && <Dropdown data={secondMenu} idx={1} setIsDropdownOpen={setIsDropdownOpen} />}

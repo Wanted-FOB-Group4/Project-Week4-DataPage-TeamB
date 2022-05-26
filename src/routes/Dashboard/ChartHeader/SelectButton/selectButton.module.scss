@@ -28,6 +28,7 @@
       .colorCircle {
         width: 15px;
         height: 15px;
+        margin: 0 8px;
         fill: transparent;
 
         &.click {
@@ -55,10 +56,14 @@
         }
       }
 
-      span {
-        padding: 0 10px;
-        font-weight: 700;
-        color: colors.$GRAY800;
+      .contentWrapper {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-weight: 700;
+          color: colors.$GRAY800;
+        }
       }
 
       .dropdownIcon {
@@ -71,6 +76,7 @@
       z-index: levels.$DROPDOWN_BOTTOM;
       width: 123px;
       margin-top: 4px;
+      overflow: hidden;
       background-color: colors.$WHITE;
       border: 1px solid colors.$GRAY100;
       border-radius: 10px;
@@ -86,9 +92,9 @@
 
         button {
           display: flex;
-          justify-content: space-between;
+          align-items: center;
           width: 100%;
-          padding: 10px 5px;
+          padding: 10px;
           overflow: hidden;
           font-weight: 500;
           color: colors.$GRAY800;
@@ -96,9 +102,9 @@
           transition: 0.1s ease-in-out;
 
           .colorCircle {
-            flex: 1;
             width: 15px;
             height: 15px;
+            margin: 0 8px;
             fill: transparent;
 
             &.click {
@@ -124,11 +130,6 @@
             &.conversion {
               fill: colors.$CONVERSION;
             }
-          }
-
-          span {
-            flex: 1;
-            text-align: start;
           }
 
           &:hover {

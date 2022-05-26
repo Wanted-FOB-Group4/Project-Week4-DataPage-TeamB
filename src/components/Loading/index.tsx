@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className={styles.loadingWrapper}>
       <LoadingIcon className={styles.loadingIcon} />
-      <h1>로딩중...</h1>
+      <h3>로딩중...</h3>
     </div>
   )
 }

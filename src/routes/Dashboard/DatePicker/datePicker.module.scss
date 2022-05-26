@@ -30,6 +30,10 @@
       color: colors.$WHITE;
       background-color: colors.$PRIMARY;
       border-radius: 10px;
+
+      &:disabled {
+        background-color: colors.$GRAY100;
+      }
     }
 
     .selectButton {
@@ -63,7 +67,7 @@
       color: colors.$WHITE;
       background-color: colors.$PRIMARY;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       outline: none;
     }
 
