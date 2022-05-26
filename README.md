@@ -17,43 +17,45 @@
 
 ### 대시보드
 
-{ 대시보드 탭 이미지 }
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/37893979/170393240-b3d7a7d5-2ff3-486b-9542-633be0505055.png">
 
 - 대시보드에서 그래프와 수익률, 클릭수 등의 통계 데이터를 볼 수 있습니다.
 
-{ 대시보드 날짜 변경 }
+![May-26-2022 09-57-36](https://user-images.githubusercontent.com/37893979/170393385-652865cf-329b-489c-92cf-e32fb62b1650.gif)
 
 - 대시보드에서 날짜를 변경하면, 각 수치들이 업데이트되면서 화면에 변화가 생깁니다.
 
-{ 카드의 증감 }
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/37893979/170393423-0dc81a95-b7ef-4053-bc50-352ec4134d11.png">
+
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/37893979/170393462-a919eff6-bfb3-41d8-8029-0ce9adf20710.png">
 
 - 특정 기간 동안 변동된 수치가 있다면, 우측 아이콘을 통해 증감을 나타냅니다.
 
-{ 그래프 드롭다운으로 카테고리 선택 }
+![May-26-2022 10-00-24](https://user-images.githubusercontent.com/37893979/170393646-5048df29-b695-4769-81bd-0a3615146a91.gif)
 
 - 그래프 좌측 두개의 드롭다운으로 카테고리를 변경하면, 선택한 카테고리에 맞는 그래프가 출력됩니다.
 
 - 두 개의 카테고리를 선택하여 그래프를 비교할 수 있습니다.
 
-{ 일간 / 주간 드롭다운 선택 }
+![May-26-2022 10-01-39](https://user-images.githubusercontent.com/37893979/170393756-5be3f012-f29c-4d78-99da-6eb61716f5c2.gif)
 
 - 그래프의 X축 기준을 일간 / 주간으로 변경할 수 있습니다.
 
 - 주간 데이터는 7일치를 묶어서 계산합니다.
 
-{ 막대 그래프 이미지 }
+<img width="640" alt="image" src="https://user-images.githubusercontent.com/37893979/170393772-e230c6d1-587e-4204-b0c5-1ed6a897fd35.png">
 
 - 기업별 수익을 막대 그래프와 테이블로 확인할 수 있습니다.
 
 - 기업별 로고를 다르게 적용하여 가독성을 높였습니다.
 
-{ 툴팁 }
+<img width="244" alt="image" src="https://user-images.githubusercontent.com/37893979/170393813-bb94ecc2-2b76-4aa8-97d4-9977265686e0.png">
 
 - 그래프 위에 마우스를 올리면 툴팁이 표시됩니다.
 
 ### 광고관리 페이지
 
-{ 광고관리 탭 이미지 }
+![May-26-2022 10-04-07](https://user-images.githubusercontent.com/37893979/170393938-884a6b10-4486-4b7e-aa5b-45ff8fbeb4b9.gif)
 
 - json 파일로부터 데이터를 받아, 각각을 컨테이너에 담아 렌더링합니다
 
@@ -61,25 +63,26 @@
 
 - 광고 추가, 수정, 삭제를 구현하기 위해 로컬 스토리지 라이브러리 (`store`) 를 사용하였으며, 추가 / 수정 / 삭제 시마다 로컬 스토리지에 값을 저장하고 불러옵니다.
 
-{ 광고 필터링 이미지 }
+![May-26-2022 10-05-23](https://user-images.githubusercontent.com/37893979/170394047-09cbc654-a471-41d2-8779-db5480c357fb.gif)
 
 - 좌상단의 드롭다운으로 '진행중', '완료' 에 해당하는 광고들을 필터링하여 볼 수 있습니다.
 
 - 필터링된 데이터만 화면에 렌더링됩니다.
 
-{ 광고 추가 이미지 }
+![May-26-2022 10-06-38](https://user-images.githubusercontent.com/37893979/170394166-0fae4595-5492-434d-9942-70a965833fc2.gif)
 
 - 광고 추가 버튼을 누르면 모달이 렌더링되고, Form을 작성하여 제출하면 그에 맞는 광고가 새로 생성됩니다.
 
 - 로컬 스토리지와 전역 상태값에 모든 데이터가 저장되므로, 새로고침해도 남아 있습니다.
 
-{ 광고 수정 이미지 }
+![May-26-2022 10-07-44](https://user-images.githubusercontent.com/37893979/170394270-643a5fdb-1c30-468c-b309-98854a2db411.gif)
 
 - 광고 수정 버튼을 누르면 광고를 추가할 때와 같은 모달이 렌더링되고, Form을 작성하여 제출하면 선택한 광고의 내용물이 수정되어 저장됩니다.
 
-{ 광고 삭제 이미지 }
+![May-26-2022 10-08-28](https://user-images.githubusercontent.com/37893979/170394338-e6b86254-5032-4b15-b18c-18b166d4a7c6.gif)
 
 - 광고 삭제 버튼을 누르면 광고가 삭제되고, 나머지 광고들이 리렌더링됩니다.
+
 ## 구현 방법과 이유, 사용한 기술
 
 ### 대시보드 - 카드, 표
