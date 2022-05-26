@@ -21,7 +21,189 @@ npm start
 ## 폴더 구조
 
 ```
-아직 없음
+.
+├── assets
+│   ├── images
+│   │   └── profile.png
+│   └── svgs
+│       ├── add.svg
+│       ├── arrow-down.svg
+│       ├── arrowDown.svg
+│       ├── circle.svg
+│       ├── deadFace.svg
+│       ├── decreaseIcon.svg
+│       ├── error.svg
+│       ├── facebookIcon.svg
+│       ├── googleIcon.svg
+│       ├── increaseIcon.svg
+│       ├── index.ts
+│       ├── kakaoIcon.svg
+│       ├── lightbulb.svg
+│       ├── loadingIcon.svg
+│       ├── logo.svg
+│       ├── menu01.svg
+│       ├── menu02.svg
+│       ├── minusIcon.svg
+│       ├── naverIcon.svg
+│       ├── notification.svg
+│       └── setting.svg
+├── components
+│   ├── ErrorMessage
+│   │   ├── errorMessage.module.scss
+│   │   └── index.tsx
+│   ├── Layout
+│   │   ├── Header.tsx
+│   │   ├── LNB
+│   │   │   ├── Dropdown.tsx
+│   │   │   ├── Navigation.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── lnb.module.scss
+│   │   ├── index.tsx
+│   │   └── layout.module.scss
+│   ├── Loading
+│   │   ├── index.tsx
+│   │   └── loading.module.scss
+│   └── index.ts
+├── constants
+│   └── basic.ts
+├── global.d.ts
+├── hooks
+│   ├── index.ts
+│   └── useCalculateDate.ts
+├── index.tsx
+├── react-app-env.d.ts
+├── reportWebVitals.ts
+├── routes
+│   ├── Dashboard
+│   │   ├── AdsCombineContainer.tsx
+│   │   ├── CardList
+│   │   │   ├── Card.tsx
+│   │   │   ├── cardList.module.scss
+│   │   │   └── index.tsx
+│   │   ├── ChartByChannel
+│   │   │   ├── chartByChannel.module.scss
+│   │   │   └── index.tsx
+│   │   ├── ChartByDate
+│   │   │   ├── NeedForDate
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── needMoreDate.module.scss
+│   │   │   ├── chartByDate.module.scss
+│   │   │   ├── colors.d.ts
+│   │   │   ├── index.tsx
+│   │   │   └── utils
+│   │   │       ├── conditionalDateFormat.ts
+│   │   │       ├── index.ts
+│   │   │       ├── makeDataForChart.ts
+│   │   │       ├── makeMaxDatas.ts
+│   │   │       ├── rearrangeByTerm.ts
+│   │   │       └── shortenNumber.ts
+│   │   ├── ChartHeader
+│   │   │   ├── SelectButton
+│   │   │   │   ├── Dropdown.tsx
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── selectButton.module.scss
+│   │   │   ├── SelectDateTerm
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── selectDateTerm.module.scss
+│   │   │   ├── chartHeader.module.scss
+│   │   │   └── index.tsx
+│   │   ├── DatePicker
+│   │   │   ├── datePicker.module.scss
+│   │   │   └── index.tsx
+│   │   ├── MediaContainer.tsx
+│   │   ├── Table
+│   │   │   ├── TableRow.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── table.module.scss
+│   │   ├── hooks
+│   │   │   ├── index.ts
+│   │   │   └── useFetchMediaQuery.ts
+│   │   ├── index.tsx
+│   │   ├── states
+│   │   │   ├── dashBoard.ts
+│   │   │   └── date.ts
+│   │   └── utils
+│   │       ├── makeChannelData.ts
+│   │       ├── makeTrendData.ts
+│   │       └── sumChannedlData.ts
+│   ├── ManageAds
+│   │   ├── AdsContainers
+│   │   │   ├── AdsContainer.tsx
+│   │   │   ├── AdsListBlock.tsx
+│   │   │   ├── adsContainer.module.scss
+│   │   │   ├── adsContainers.module.scss
+│   │   │   ├── adsListBlock.module.scss
+│   │   │   ├── index.tsx
+│   │   │   └── utils
+│   │   │       ├── getAdsTitle.ts
+│   │   │       ├── getCreateDate.ts
+│   │   │       ├── getPercentage.ts
+│   │   │       └── index.ts
+│   │   ├── AdsHeader
+│   │   │   ├── AdsFilterDropdown.tsx
+│   │   │   ├── adsFilterDropdown.module.scss
+│   │   │   ├── adsHeader.module.scss
+│   │   │   └── index.tsx
+│   │   ├── _shared
+│   │   │   ├── AdsDeleteModal
+│   │   │   │   ├── adsDeleteModal.module.scss
+│   │   │   │   └── index.tsx
+│   │   │   ├── AdsEditFormModal
+│   │   │   │   ├── AdsEditFormAdTypeInput.tsx
+│   │   │   │   ├── AdsEditFormInput.tsx
+│   │   │   │   ├── adsEditFormInput.module.scss
+│   │   │   │   ├── adsEditFormModal.module.scss
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── useFormHandler.ts
+│   │   │   ├── Button
+│   │   │   │   ├── button.module.scss
+│   │   │   │   └── index.tsx
+│   │   │   ├── ModalPortal.ts
+│   │   │   └── index.ts
+│   │   ├── hooks
+│   │   │   ├── index.ts
+│   │   │   └── useFetchAdsQuery.ts
+│   │   ├── index.tsx
+│   │   ├── states
+│   │   │   ├── adsDataState.ts
+│   │   │   ├── adsFilterIndexState.ts
+│   │   │   └── index.ts
+│   │   └── types.d.ts
+│   └── index.tsx
+├── services
+│   ├── getAdListData.ts
+│   ├── getFilterTrendData.ts
+│   ├── getMediaChannalData.ts
+│   └── index.ts
+├── setupTests.ts
+├── states
+│   ├── index.ts
+│   └── service.ts
+├── styles
+│   ├── base
+│   │   ├── _fonts.scss
+│   │   ├── _more.scss
+│   │   └── _reset.scss
+│   ├── constants
+│   │   ├── _colors.scss
+│   │   ├── _levels.scss
+│   │   └── _sizes.scss
+│   ├── global.scss
+│   ├── index.scss
+│   ├── index.ts
+│   └── mixins
+│       ├── _animation.scss
+│       ├── _flexbox.scss
+│       └── _position.scss
+├── types
+│   ├── chart.d.ts
+│   └── types.d.ts
+└── utils
+    ├── addUnitToBudget.ts
+    ├── index.ts
+    ├── setFetchDelay.ts
+    ├── transformNum.ts
+    └── translateDate.ts
 ```
 
 ## 동작
